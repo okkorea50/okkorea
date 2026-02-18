@@ -4,13 +4,10 @@ import { gsap } from 'gsap';
 
 const Hero = forwardRef((props, ref) => {
     const [particles, setParticles] = useState([]);
-    const containerRef = React.useRef(null);
     const titleLine1Ref = React.useRef(null);
     const titleLine2Ref = React.useRef(null);
 
     // Mouse Interaction Refs
-    const mouseX = React.useRef(0);
-    const mouseY = React.useRef(0);
     const particleContainerRef = React.useRef(null);
 
     useEffect(() => {
@@ -92,6 +89,7 @@ const Hero = forwardRef((props, ref) => {
                 }
             });
         }
+        // eslint-disable-next-line
         setParticles(newParticles);
     }, []);
 

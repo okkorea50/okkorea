@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -84,6 +82,8 @@
 
 .gradient-text-hero {
   background: linear-gradient(135deg, #7C3AED 0%, #F97316 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }

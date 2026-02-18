@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import gsap from 'gsap';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,12 +28,12 @@ const Navbar = () => {
 
             {/* Brand Logo */}
             <div className="text-2xl font-black tracking-tighter flex items-center gap-2 z-50 relative">
-                <div className="w-8 h-8 bg-brand-purple rounded-lg flex items-center justify-center text-white font-bold">O</div>
-                <span className="text-white">OK KOREA.</span>
+                <img src="/oklogo.png" alt="OK KOREA Logo" className="w-8 h-8 object-contain" />
+                <span className="text-white">OK KOREA</span>
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-300">
+            <div className="hidden md:flex gap-8 text-base font-semibold text-slate-300">
                 {navLinks.map((link) => (
                     <a key={link.name} href={link.href} className="hover:text-white transition-colors">
                         {link.name}
@@ -43,7 +42,7 @@ const Navbar = () => {
             </div>
 
             {/* Desktop CTA */}
-            <button className="hidden md:block px-5 py-2 bg-white text-brand-dark rounded-lg font-bold hover:bg-[#352019] hover:text-white transition-colors text-center whitespace-normal leading-tight max-w-[140px]">
+            <button className="hidden md:block px-4 py-2 bg-[#0d0d15] text-white rounded-lg font-bold hover:bg-[#352019] transition-colors text-center whitespace-normal leading-tight w-auto min-w-[120px]">
                 Send Resume
             </button>
 
