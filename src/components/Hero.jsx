@@ -125,10 +125,10 @@ const Hero = forwardRef((props, ref) => {
                 </p>
 
                 <div className="flex justify-center gap-4 mb-20">
-                    <button className="px-10 py-4 bg-white text-brand-dark rounded-xl font-bold text-lg hover:bg-brand-orange hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2" aria-label="Study">
+                    <button className="px-10 py-4 bg-white text-brand-dark rounded-xl font-bold text-lg hover:bg-[#a04bb0] hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2" aria-label="Study">
                         Study <ArrowRight size={18} />
                     </button>
-                    <button className="px-10 py-4 bg-transparent text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center gap-2" aria-label="Work">
+                    <button className="px-10 py-4 bg-transparent text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-[#cd5f62] hover:border-[#cd5f62] transition-all flex items-center gap-2" aria-label="Work">
                         <Play size={18} /> Work
                     </button>
                 </div>
