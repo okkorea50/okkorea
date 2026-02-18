@@ -35,8 +35,10 @@
   .particle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(124, 58, 237, 0.5);
-    /* Brand Purple with opacity */
+    background: white;
+    /* Changed to white for better contrast on dark bg */
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.8), 0 0 20px rgba(249, 115, 22, 0.4);
+    /* Glow effect */
     pointer-events: none;
     animation: floatUp ease-in-out infinite;
   }

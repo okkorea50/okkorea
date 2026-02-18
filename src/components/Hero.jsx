@@ -1,11 +1,36 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import { ArrowRight, Play, CheckCircle2 } from 'lucide-react';
+import { gsap } from 'gsap';
 
 const Hero = forwardRef((props, ref) => {
     const [particles, setParticles] = useState([]);
+    const titleLine1Ref = React.useRef(null);
+    const titleLine2Ref = React.useRef(null);
 
     useEffect(() => {
-        const count = 30;
+        // GSAP Text Animations
+        const ctx = gsap.context(() => {
+            gsap.from(titleLine1Ref.current, {
+                x: -100,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
+                delay: 0.2
+            });
+            gsap.from(titleLine2Ref.current, {
+                x: 100,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
+                delay: 0.4
+            });
+        }, ref);
+
+        return () => ctx.revert();
+    }, [ref]);
+
+    useEffect(() => {
+        const count = 60; // Increased count
         const newParticles = [];
         for (let i = 0; i < count; i++) {
             const left = Math.random() * 100;
@@ -13,7 +38,8 @@ const Hero = forwardRef((props, ref) => {
             const dur = 4 + Math.random() * 6;
             const delay = Math.random() * 6;
             const drift = (Math.random() - 0.5) * 60 + 'px'; // -30px to +30px
-            const size = 1 + Math.random() * 2;
+            const size = 3 + Math.random() * 5; // Increased size (3px - 8px)
+            const opacity = 0.4 + Math.random() * 0.5; // Random opacity
 
             newParticles.push({
                 id: i,
@@ -24,7 +50,8 @@ const Hero = forwardRef((props, ref) => {
                     height: `${size}px`,
                     animationDuration: `${dur}s`,
                     animationDelay: `${delay}s`,
-                    '--drift': drift
+                    '--drift': drift,
+                    opacity: opacity
                 }
             });
         }
@@ -38,7 +65,7 @@ const Hero = forwardRef((props, ref) => {
             <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/30 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000 pointer-events-none"></div>
 
             {/* Particle Effect Container */}
-            <div id="heroParticles" className="absolute inset-0 pointer-events-none opacity-70">
+            <div id="heroParticles" className="absolute inset-0 pointer-events-none">
                 {particles.map(p => (
                     <div key={p.id} className="particle" style={p.style}></div>
                 ))}
@@ -50,9 +77,9 @@ const Hero = forwardRef((props, ref) => {
                     <span className="text-sm font-semibold text-brand-textDark">New: 2026 Global Visa Guide Released</span>
                 </div>
 
-                <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.9] text-white">
-                    Step into the future<br />
-                    of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span>
+                <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.9] text-white overflow-hidden">
+                    <span ref={titleLine1Ref} className="block">Step into the future</span>
+                    <span ref={titleLine2Ref} className="block">of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span></span>
                 </h1>
 
                 <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -61,11 +88,11 @@ const Hero = forwardRef((props, ref) => {
                 </p>
 
                 <div className="flex justify-center gap-4 mb-20">
-                    <button className="px-8 py-4 bg-white text-brand-dark rounded-xl font-bold text-lg hover:bg-brand-orange hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2" aria-label="Start for free">
-                        Start for free <ArrowRight size={18} />
+                    <button className="px-10 py-4 bg-white text-brand-dark rounded-xl font-bold text-lg hover:bg-brand-orange hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2" aria-label="Study">
+                        Study <ArrowRight size={18} />
                     </button>
-                    <button className="px-8 py-4 bg-transparent text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center gap-2" aria-label="Watch Demo Video">
-                        <Play size={18} /> Watch Demo
+                    <button className="px-10 py-4 bg-transparent text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center gap-2" aria-label="Work">
+                        <Play size={18} /> Work
                     </button>
                 </div>
 
