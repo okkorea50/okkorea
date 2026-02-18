@@ -32,39 +32,39 @@ const Hero = forwardRef((props, ref) => {
     }, []);
 
     return (
-        <section ref={ref} className="pt-32 pb-20 px-6 relative overflow-hidden bg-brand-light">
+        <section ref={ref} className="pt-32 pb-20 px-6 relative overflow-hidden bg-brand-dark text-white">
             {/* Aurora Gradients matches reference */}
-            <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/20 rounded-full blur-[120px] mix-blend-multiply animate-blob pointer-events-none"></div>
-            <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/20 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000 pointer-events-none"></div>
+            <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/30 rounded-full blur-[120px] mix-blend-screen animate-blob pointer-events-none"></div>
+            <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/30 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000 pointer-events-none"></div>
 
             {/* Particle Effect Container */}
-            <div id="heroParticles" className="absolute inset-0 pointer-events-none">
+            <div id="heroParticles" className="absolute inset-0 pointer-events-none opacity-70">
                 {particles.map(p => (
                     <div key={p.id} className="particle" style={p.style}></div>
                 ))}
             </div>
 
             <div className="max-w-7xl mx-auto text-center relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 mb-8 border border-slate-200">
-                    <span className="w-2 h-2 rounded-full bg-brand-purple animate-pulse"></span>
-                    <span className="text-sm font-semibold text-slate-600">New: 2026 Global Visa Guide Released</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 mb-8 border border-white/10 backdrop-blur-sm">
+                    <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+                    <span className="text-sm font-semibold text-brand-textDark">New: 2026 Global Visa Guide Released</span>
                 </div>
 
-                <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.9] text-brand-text">
+                <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.9] text-white">
                     Step into the future<br />
-                    of <span className="gradient-text-hero">Korea Life.</span>
+                    of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span>
                 </h1>
 
-                <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+                <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                     유학부터 취업, 정착까지. 복잡한 한국 생활의 모든 퍼즐을<br />
                     OK KOREA의 올인원 솔루션으로 완성하세요.
                 </p>
 
                 <div className="flex justify-center gap-4 mb-20">
-                    <button className="px-8 py-4 bg-brand-dark text-white rounded-xl font-bold text-lg hover:bg-brand-purple transition-all shadow-xl flex items-center gap-2" aria-label="Start for free">
+                    <button className="px-8 py-4 bg-white text-brand-dark rounded-xl font-bold text-lg hover:bg-brand-orange hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2" aria-label="Start for free">
                         Start for free <ArrowRight size={18} />
                     </button>
-                    <button className="px-8 py-4 bg-white text-brand-dark border border-slate-200 rounded-xl font-bold text-lg hover:border-brand-purple transition-all flex items-center gap-2" aria-label="Watch Demo Video">
+                    <button className="px-8 py-4 bg-transparent text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center gap-2" aria-label="Watch Demo Video">
                         <Play size={18} /> Watch Demo
                     </button>
                 </div>

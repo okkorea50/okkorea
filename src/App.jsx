@@ -23,22 +23,19 @@ const App = () => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
 
-      // 1. Scroll Interaction: Background Color Transition (White -> Black)
-      // Note: We need to pass refs to components for this to work precisely, 
-      // or rely on class selectors if refs are tricky to forward on first pass.
-      // I've updated components to forward refs where needed.
-
+      // 1. Scroll Interaction: Background Color Transition
+      // Since Hero is now Dark, we might want to keep it dark or transition to slight gray for Bento
+      // For now, let's keep the nav bar transparent/dark consistent
       ScrollTrigger.create({
-        trigger: "#features", // Using ID selector from FeatureSection
+        trigger: "#features",
         start: "top 60%",
         end: "bottom center",
         onEnter: () => {
           gsap.to(mainRef.current, { backgroundColor: "#0B0C15", color: "#F8FAFC", duration: 0.8 });
-          gsap.to("nav", { backgroundColor: "rgba(11, 12, 21, 0.8)", borderColor: "rgba(255,255,255,0.1)", duration: 0.8 });
         },
         onLeaveBack: () => {
-          gsap.to(mainRef.current, { backgroundColor: "#FFFFFF", color: "#0F172A", duration: 0.8 });
-          gsap.to("nav", { backgroundColor: "rgba(255, 255, 255, 0.8)", borderColor: "rgba(0,0,0,0.05)", duration: 0.8 });
+          // Keep it dark even when scrolling back to hero
+          gsap.to(mainRef.current, { backgroundColor: "#0B0C15", color: "#F8FAFC", duration: 0.8 });
         }
       });
 

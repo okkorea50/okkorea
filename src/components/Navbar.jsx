@@ -25,31 +25,31 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 w-full px-6 md:px-8 py-4 flex justify-between items-center z-50 backdrop-blur-md bg-white/80 border-b border-black/5 transition-all duration-700">
+        <nav className="fixed top-0 left-0 w-full px-6 md:px-8 py-4 flex justify-between items-center z-50 backdrop-blur-md bg-[#0B0C15]/80 border-b border-white/10 transition-all duration-700">
 
             {/* Brand Logo */}
             <div className="text-2xl font-black tracking-tighter flex items-center gap-2 z-50 relative">
                 <div className="w-8 h-8 bg-brand-purple rounded-lg flex items-center justify-center text-white font-bold">O</div>
-                <span className="text-brand-text">OK KOREA.</span>
+                <span className="text-white">OK KOREA.</span>
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8 text-sm font-semibold">
+            <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-300">
                 {navLinks.map((link) => (
-                    <a key={link.name} href={link.href} className="hover:text-brand-purple transition-colors">
+                    <a key={link.name} href={link.href} className="hover:text-white transition-colors">
                         {link.name}
                     </a>
                 ))}
             </div>
 
             {/* Desktop CTA */}
-            <button className="hidden md:block px-5 py-2 bg-brand-dark text-white rounded-lg font-bold hover:bg-brand-purple transition-colors">
+            <button className="hidden md:block px-5 py-2 bg-white text-brand-dark rounded-lg font-bold hover:bg-brand-orange hover:text-white transition-colors">
                 Get Started
             </button>
 
             {/* Mobile Hamburger Button */}
             <button
-                className="md:hidden z-50 relative p-2 text-brand-text hover:text-brand-purple transition-colors"
+                className="md:hidden z-50 relative p-2 text-white hover:text-brand-purple transition-colors"
                 onClick={toggleMenu}
                 aria-label="Toggle Menu"
             >
