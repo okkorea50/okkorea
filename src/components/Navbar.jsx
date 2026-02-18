@@ -19,9 +19,9 @@ const Navbar = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
 
     const navLinks = [
-        { name: 'Solutions', href: '#features' }, // Use anchor links
-        { name: 'Resources', href: '#resources' },
-        { name: 'Pricing', href: '#footer' }, // Placeholder anchor
+        { name: 'Home', href: '#features' },
+        { name: 'Job orders', href: '#resources' },
+        { name: 'Visa consulting', href: '#footer' },
     ];
 
     return (
@@ -43,8 +43,8 @@ const Navbar = () => {
             </div>
 
             {/* Desktop CTA */}
-            <button className="hidden md:block px-5 py-2 bg-white text-brand-dark rounded-lg font-bold hover:bg-brand-orange hover:text-white transition-colors">
-                Get Started
+            <button className="hidden md:block px-5 py-2 bg-white text-brand-dark rounded-lg font-bold hover:bg-[#352019] hover:text-white transition-colors text-center whitespace-normal leading-tight max-w-[140px]">
+                Send Resume
             </button>
 
             {/* Mobile Hamburger Button */}
@@ -68,8 +68,8 @@ const Navbar = () => {
                         {link.name}
                     </a>
                 ))}
-                <button className="mt-4 px-8 py-4 bg-brand-dark text-white rounded-xl font-bold text-lg hover:bg-brand-purple transition-colors w-3/4">
-                    Get Started
+                <button className="mt-4 px-8 py-4 bg-brand-dark text-white rounded-xl font-bold text-lg hover:bg-[#352019] transition-colors w-3/4 text-center whitespace-normal leading-tight">
+                    Send Resume
                 </button>
             </div>
 
