@@ -4,8 +4,14 @@ import { gsap } from 'gsap';
 
 const Hero = forwardRef((props, ref) => {
     const [particles, setParticles] = useState([]);
+    const containerRef = React.useRef(null);
     const titleLine1Ref = React.useRef(null);
     const titleLine2Ref = React.useRef(null);
+
+    // Mouse Interaction Refs
+    const mouseX = React.useRef(0);
+    const mouseY = React.useRef(0);
+    const particleContainerRef = React.useRef(null);
 
     useEffect(() => {
         // GSAP Text Animations
@@ -24,22 +30,51 @@ const Hero = forwardRef((props, ref) => {
                 ease: "power3.out",
                 delay: 0.4
             });
+
+            // Mouse Move Listener
+            const handleMouseMove = (e) => {
+                const { innerWidth, innerHeight } = window;
+                // Calculate normalized position (-1 to 1)
+                const x = (e.clientX / innerWidth) * 2 - 1;
+                const y = (e.clientY / innerHeight) * 2 - 1;
+
+                // Animate particles container subtly opposite to mouse direction for depth (Parallax)
+                // Or follow the mouse (Attraction). Repulsion/Attraction needs individual particle logic.
+                // Let's go with a subtle parallax 'follow' effect on the container first for smoothness.
+                gsap.to(particleContainerRef.current, {
+                    x: x * 30, // Move 30px max
+                    y: y * 30,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            };
+
+            window.addEventListener('mousemove', handleMouseMove);
+            return () => window.removeEventListener('mousemove', handleMouseMove);
+
         }, ref);
 
         return () => ctx.revert();
     }, [ref]);
 
     useEffect(() => {
-        const count = 60; // Increased count
+        const count = 60;
         const newParticles = [];
         for (let i = 0; i < count; i++) {
             const left = Math.random() * 100;
             const top = 20 + Math.random() * 70;
             const dur = 4 + Math.random() * 6;
             const delay = Math.random() * 6;
-            const drift = (Math.random() - 0.5) * 60 + 'px'; // -30px to +30px
-            const size = 3 + Math.random() * 5; // Increased size (3px - 8px)
-            const opacity = 0.4 + Math.random() * 0.5; // Random opacity
+            const drift = (Math.random() - 0.5) * 60 + 'px';
+            const size = 3 + Math.random() * 5;
+            const opacity = 0.4 + Math.random() * 0.5;
+
+            // Color Mix: White and Gold
+            const isGold = Math.random() > 0.7; // 30% chance of gold
+            const color = isGold ? 'rgba(255, 215, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)';
+            const boxShadow = isGold
+                ? '0 0 10px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 140, 0, 0.4)'
+                : '0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(200, 200, 255, 0.4)';
 
             newParticles.push({
                 id: i,
@@ -48,6 +83,8 @@ const Hero = forwardRef((props, ref) => {
                     top: `${top}%`,
                     width: `${size}px`,
                     height: `${size}px`,
+                    backgroundColor: color, // Override CSS
+                    boxShadow: boxShadow,   // Override CSS
                     animationDuration: `${dur}s`,
                     animationDelay: `${delay}s`,
                     '--drift': drift,
@@ -65,7 +102,7 @@ const Hero = forwardRef((props, ref) => {
             <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/30 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000 pointer-events-none"></div>
 
             {/* Particle Effect Container */}
-            <div id="heroParticles" className="absolute inset-0 pointer-events-none">
+            <div id="heroParticles" ref={particleContainerRef} className="absolute inset-0 pointer-events-none">
                 {particles.map(p => (
                     <div key={p.id} className="particle" style={p.style}></div>
                 ))}
