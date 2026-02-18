@@ -1,12 +1,48 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { ArrowRight, Play, CheckCircle2 } from 'lucide-react';
 
 const Hero = forwardRef((props, ref) => {
+    const [particles, setParticles] = useState([]);
+
+    useEffect(() => {
+        const count = 30;
+        const newParticles = [];
+        for (let i = 0; i < count; i++) {
+            const left = Math.random() * 100;
+            const top = 20 + Math.random() * 70;
+            const dur = 4 + Math.random() * 6;
+            const delay = Math.random() * 6;
+            const drift = (Math.random() - 0.5) * 60 + 'px'; // -30px to +30px
+            const size = 1 + Math.random() * 2;
+
+            newParticles.push({
+                id: i,
+                style: {
+                    left: `${left}%`,
+                    top: `${top}%`,
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    animationDuration: `${dur}s`,
+                    animationDelay: `${delay}s`,
+                    '--drift': drift
+                }
+            });
+        }
+        setParticles(newParticles);
+    }, []);
+
     return (
         <section ref={ref} className="pt-32 pb-20 px-6 relative overflow-hidden bg-brand-light">
             {/* Aurora Gradients matches reference */}
             <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/20 rounded-full blur-[120px] mix-blend-multiply animate-blob pointer-events-none"></div>
             <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/20 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000 pointer-events-none"></div>
+
+            {/* Particle Effect Container */}
+            <div id="heroParticles" className="absolute inset-0 pointer-events-none">
+                {particles.map(p => (
+                    <div key={p.id} className="particle" style={p.style}></div>
+                ))}
+            </div>
 
             <div className="max-w-7xl mx-auto text-center relative z-10">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 mb-8 border border-slate-200">
