@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef } from 'react';
-import { ArrowRight, Play, CheckCircle2, Zap, Globe, Shield, Users, BarChart3, ChevronRight } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle2, Zap, Globe, Shield, Users, BarChart3, ChevronRight, GraduationCap } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
