@@ -134,10 +134,14 @@ const PersonaSelector = () => {
                     </div>
                 </div>
 
-                <div ref={sectionRef} className="bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100 min-h-[600px]">
+                <div
+                    ref={sectionRef}
+                    className={`bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-4xl mx-auto' : 'w-full'
+                        }`}
+                >
                     {activeTab === 'Achievement' ? (
                         <div key="achievement-grid" className="w-full h-full animate-fade-in">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full max-w-[70%] mx-auto">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full w-full mx-auto">
                                 {currentContent.images.map((img, i) => (
                                     <div
                                         key={i}
