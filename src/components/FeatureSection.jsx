@@ -1,11 +1,13 @@
-import React, { forwardRef } from 'react';
-import { Zap } from 'lucide-react';
+import React, { forwardRef, useState } from 'react';
+import { Zap, X } from 'lucide-react';
 import imgAriel from '../assets/team-ariel.jpg';
 import imgAnna from '../assets/team-anna.jpg';
 import imgEric from '../assets/team-eric.jpg';
 import imgDirector from '../assets/director-brian-kim.png';
 
 const FeatureSection = forwardRef((props, ref) => {
+    const [selectedImg, setSelectedImg] = useState(null);
+
     const teamMembers = [
         {
             name: "Ariel",
@@ -103,7 +105,7 @@ const FeatureSection = forwardRef((props, ref) => {
                                 <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
                                 <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
                             </div>
-                            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-[0.3em] font-black">OK KOREA TEAM_INFO</span>
+                            <span className="text-[10px] font-mono text-slate-50 uppercase tracking-[0.3em] font-black">OK KOREA TEAM_INFO</span>
                         </div>
 
                         {/* Full View Body (No Scroll) */}
@@ -113,10 +115,13 @@ const FeatureSection = forwardRef((props, ref) => {
                                     key={idx}
                                     className="flex flex-col md:flex-row items-center md:items-start gap-8 p-4 md:p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.05] hover:translate-x-3 transition-all duration-500 group/card"
                                 >
-                                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-2 border-brand-purple/40 flex-shrink-0 group-hover/card:border-brand-orange transition-all duration-700 shadow-2xl relative">
+                                    <button
+                                        onClick={() => setSelectedImg(member.img)}
+                                        className="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-2 border-brand-purple/40 flex-shrink-0 group-hover/card:border-brand-orange transition-all duration-700 shadow-2xl relative cursor-zoom-in active:scale-95"
+                                    >
                                         <div className="absolute inset-0 bg-brand-purple/10 group-hover/card:bg-transparent transition-colors"></div>
                                         <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale-[30%] group-hover/card:grayscale-0 transition-all duration-700" />
-                                    </div>
+                                    </button>
                                     <div className="flex-grow text-center md:text-left space-y-1.5">
                                         <h4 className="text-white font-bold text-lg flex items-center justify-center md:justify-start gap-3">
                                             {member.name}
@@ -139,6 +144,41 @@ const FeatureSection = forwardRef((props, ref) => {
                     </div>
                 </div>
             </div>
+
+            {/* Lightbox Modal */}
+            {selectedImg && (
+                <div
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/90 backdrop-blur-md animate-fade-in"
+                    onClick={() => setSelectedImg(null)}
+                >
+                    <button
+                        className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedImg(null);
+                        }}
+                    >
+                        <X className="w-8 h-8" />
+                    </button>
+                    <div
+                        className="relative max-w-4xl w-full max-h-[80vh] rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] border border-white/10 animate-slide-in-up"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <img
+                            src={selectedImg}
+                            alt="Team Member Large View"
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                </div>
+            )}
+
+            <style>{`
+                @keyframes slide-in-up {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `}</style>
         </section>
     );
 });
