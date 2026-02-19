@@ -31,16 +31,16 @@ const FeatureSection = forwardRef((props, ref) => {
             {/* Background Glows for Dark Mode */}
             <div className="absolute top-1/4 right-0 w-[800px] h-[800px] bg-brand-purple/10 rounded-full blur-[150px] pointer-events-none"></div>
 
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
-                <div className="space-y-8 lg:w-2/5">
+            <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-12 items-center">
+                <div className="space-y-8 lg:w-[28%]">
                     <div className="inline-block px-4 py-1 rounded-full bg-brand-purple/20 text-brand-purple font-bold text-sm border border-brand-purple/30 animate-fade-in">
                         Creative Experts
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black leading-tight">
+                    <h2 className="text-4xl md:text-5xl font-black leading-tight">
                         Meet Our <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Professional.</span>
                     </h2>
-                    <p className="text-slate-400 text-lg leading-relaxed">
+                    <p className="text-slate-400 text-base leading-relaxed">
                         실행력과 전문성을 갖춘 OK KOREA의 핵심 인재들입니다.
                     </p>
 
@@ -62,50 +62,43 @@ const FeatureSection = forwardRef((props, ref) => {
                     </div>
                 </div>
 
-                {/* Team Window frame - Wide Layout */}
-                <div className="relative lg:flex-1 w-full lg:min-w-[600px] animate-float">
+                {/* Team Window frame - Ultra Wide & Tilted */}
+                <div className="relative lg:flex-1 w-full lg:min-w-[800px] animate-float group/window">
                     <style>{`
                         @keyframes slide-in-left {
                             from { opacity: 0; transform: translateX(-30px); }
                             to { opacity: 1; transform: translateX(0); }
                         }
                         @keyframes float-window {
-                            0%, 100% { transform: translateY(0); }
-                            50% { transform: translateY(-10px); }
+                            0%, 100% { transform: translateY(0) rotate(1.5deg); }
+                            50% { transform: translateY(-15px) rotate(1deg); }
                         }
                         .animate-float {
-                            animation: float-window 4s ease-in-out infinite;
-                        }
-                        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-                        .custom-scrollbar::-webkit-scrollbar-thumb { 
-                            background: rgba(255, 255, 255, 0.1); 
-                            border-radius: 10px; 
-                        }
-                        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                            background: rgba(255, 255, 255, 0.2);
+                            animation: float-window 6s ease-in-out infinite;
                         }
                     `}</style>
-                    <div className="absolute inset-0 bg-gradient-to-r from-brand-purple to-brand-orange blur-[40px] opacity-20"></div>
-                    <div className="relative rounded-2xl bg-[#151621] border border-white/10 shadow-2xl overflow-hidden transition-all duration-700">
+                    <div className="absolute inset-0 bg-gradient-to-r from-brand-purple to-brand-orange blur-[60px] opacity-20 group-hover/window:opacity-30 transition-opacity"></div>
+                    <div className="relative rounded-3xl bg-[#0a0b14] border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-1000 transform perspective-[2000px] rotate-[1.5deg] hover:rotate-0">
                         {/* Fake Window Header */}
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-white/5">
-                            <div className="flex gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                                <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        <div className="flex items-center justify-between px-8 py-5 border-b border-white/5 bg-white/[0.02]">
+                            <div className="flex gap-2.5">
+                                <div className="w-3.5 h-3.5 rounded-full bg-[#ff5f56]"></div>
+                                <div className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e]"></div>
+                                <div className="w-3.5 h-3.5 rounded-full bg-[#27c93f]"></div>
                             </div>
-                            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest font-bold">OK KOREA TEAM_INFO</span>
+                            <span className="text-[11px] font-mono text-slate-500 uppercase tracking-[0.3em] font-black">OK KOREA TEAM_INFO</span>
                         </div>
 
-                        {/* Scrollable Body */}
-                        <div className="max-h-[500px] overflow-y-auto p-4 md:p-8 space-y-6 custom-scrollbar">
+                        {/* Full View Body (No Scroll) */}
+                        <div className="p-8 md:p-10 space-y-6">
                             {teamMembers.map((member, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex flex-col md:flex-row items-center md:items-start gap-8 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.06] hover:translate-x-2 transition-all duration-300 group/card border-b last:border-b-0 border-white/5"
+                                    className="flex flex-col md:flex-row items-center md:items-start gap-8 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.07] hover:translate-x-3 transition-all duration-500 group/card"
                                 >
-                                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl overflow-hidden border-2 border-brand-purple/50 flex-shrink-0 group-hover/card:border-brand-orange transition-all duration-500 shadow-2xl transform group-hover/card:scale-105">
-                                        <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
+                                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-brand-purple/40 flex-shrink-0 group-hover/card:border-brand-orange transition-all duration-700 shadow-2xl relative">
+                                        <div className="absolute inset-0 bg-brand-purple/10 group-hover/card:bg-transparent transition-colors"></div>
+                                        <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale-[30%] group-hover/card:grayscale-0 transition-all duration-700" />
                                     </div>
                                     <div className="flex-grow text-center md:text-left space-y-2">
                                         <h4 className="text-white font-bold text-xl flex items-center justify-center md:justify-start gap-3">
