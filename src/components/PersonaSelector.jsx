@@ -107,7 +107,11 @@ const PersonaSelector = () => {
 
                             <div className="space-y-4">
                                 {currentContent.benefits.map((benefit, idx) => (
-                                    <div key={idx} className="flex gap-4">
+                                    <div
+                                        key={idx}
+                                        className="flex gap-4 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 animate-fade-in-up"
+                                        style={{ animationDelay: `${idx * 150}ms`, opacity: 0 }}
+                                    >
                                         <div className={`w-1 rounded-full h-auto ${benefit.iconColor}`}></div>
                                         <div>
                                             <h4 className="font-bold text-lg mb-1 text-slate-800">{benefit.title}</h4>
@@ -129,7 +133,7 @@ const PersonaSelector = () => {
                                 <img
                                     src={currentContent.image}
                                     alt={currentContent.title}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover animate-ken-burns"
                                 />
                             ) : (
                                 <>
