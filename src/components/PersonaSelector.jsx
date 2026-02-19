@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { GraduationCap, Briefcase, Rocket, Home, Globe } from 'lucide-react';
 
 const PersonaSelector = () => {
-    const [activeTab, setActiveTab] = useState('Students');
+    const [activeTab, setActiveTab] = useState('Who we are');
 
-    const tabs = ['Students', 'Job Seekers', 'Startups', 'Families', 'Expats'];
+    const tabs = ['Who we are', 'History', 'Achievement', 'Networks', 'Partners'];
 
     const contentMap = {
-        Students: {
+        'Who we are': {
             title: "Turning students into\nfuture leaders",
             color: "bg-brand-purple",
             lightColor: "bg-brand-purple/20",
@@ -19,7 +19,7 @@ const PersonaSelector = () => {
             cta: "Explore Student Solutions",
             icon: <GraduationCap size={80} className="text-brand-purple mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
-        'Job Seekers': {
+        'History': {
             title: "Land your dream job\nin Korea",
             color: "bg-blue-600",
             lightColor: "bg-blue-600/20",
@@ -31,7 +31,7 @@ const PersonaSelector = () => {
             cta: "Find Jobs Now",
             icon: <Briefcase size={80} className="text-blue-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
-        Startups: {
+        'Achievement': {
             title: "Launch your business\nwith confidence",
             color: "bg-rose-600",
             lightColor: "bg-rose-600/20",
@@ -43,7 +43,7 @@ const PersonaSelector = () => {
             cta: "Start Your Business",
             icon: <Rocket size={80} className="text-rose-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
-        Families: {
+        'Networks': {
             title: "Seamless relocation\nfor your loved ones",
             color: "bg-green-600",
             lightColor: "bg-green-600/20",
@@ -55,7 +55,7 @@ const PersonaSelector = () => {
             cta: "Plan Family Move",
             icon: <Home size={80} className="text-green-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
-        Expats: {
+        'Partners': {
             title: "Enjoy Korea like\na local",
             color: "bg-teal-600",
             lightColor: "bg-teal-600/20",
@@ -76,16 +76,19 @@ const PersonaSelector = () => {
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight text-slate-900">
-                        Built to empower<br />global citizens like you
+                        Built to empower<br />international talent like you
                     </h2>
+                    <p className="text-[14px] text-slate-600 font-medium">
+                        우리는 당신과 같은 글로벌 인재의 역량을 강화하기 위해 존재합니다.
+                    </p>
                     <div className="flex flex-wrap justify-center gap-2 mt-8">
                         {tabs.map((tab) => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
                                 className={`px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${activeTab === tab
-                                        ? 'bg-white shadow-xl text-brand-purple border border-brand-purple/20 ring-4 ring-brand-purple/5 transform scale-105'
-                                        : 'bg-transparent text-slate-500 hover:bg-slate-100'
+                                    ? 'bg-white shadow-xl text-brand-purple border border-brand-purple/20 ring-4 ring-brand-purple/5 transform scale-105'
+                                    : 'bg-transparent text-slate-500 hover:bg-slate-100'
                                     }`}
                             >
                                 {tab}
