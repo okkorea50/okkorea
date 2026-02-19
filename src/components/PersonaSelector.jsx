@@ -8,15 +8,18 @@ const PersonaSelector = () => {
 
     const contentMap = {
         'Who we are': {
-            title: "Turning students into\nfuture leaders",
+            title: "Who We Are",
             color: "bg-brand-purple",
             lightColor: "bg-brand-purple/20",
             borderColor: "border-brand-purple/20",
             benefits: [
-                { title: "Boost admission chances by 60%", desc: "AI-driven application strategy highlights strengths.", iconColor: "bg-brand-orange/20" },
-                { title: "Save 100+ hours on prep", desc: "Automated document organizing and translation.", iconColor: "bg-brand-purple/20" }
+                { title: "1999", desc: "01 서울 대치, 송파 영어/한국어 교육원 시작\n02 건국대 외국인 유학생 한국어 교육 지원", iconColor: "bg-brand-purple/20" },
+                { title: "2007", desc: "01 싱가폴 교육법인 설립: 영어,한국어, 중국어, 일본어 교육\n02 어학 연수 프로그램 운영, 외국인 유학생 유치, 한국으로 송출\n03 동남아시아 교육, 무역 시장조사. 코트라, 한국산업인력공단, 인천경제통상진흥원", iconColor: "bg-brand-purple/30" },
+                { title: "2016-22", desc: "01 국내 교육 서비스 및 컨설팅, 국내 대학 외국인 학생 유치 모집\n02 미국, 영국, 호주, 캐나다 유학 및 연수\n03 싱가폴 유학 및 취업 프로그램 운영\n04 외국인 유학생 모집 및 유치,관리, 해외 거점화 사업\n05 한국산업인력공단 K-move 사업", iconColor: "bg-brand-purple/40" },
+                { title: "2025", desc: "01 국내 대학 해외거점화 연구용역\n02 외국인 근로자의 학생 전환 연구 용역\n03 외국인 유학생 모집 및 유치 해외 거점화 사업\n(네팔,베트남,캄보디아,태국,인도,싱가폴, 방글라데시, 스리랑카, 미얀마, 라오스, 몽골 등 현지 네트워크 구축)\n04 KF24 BIZ 시작\n05 자동차 판금 도장, 부품 제조원, 요양보호사 연구용역, 김포대학 외국인 지원", iconColor: "bg-brand-purple/50" }
             ],
-            cta: "Explore Student Solutions",
+            cta: null,
+            image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
             icon: <GraduationCap size={80} className="text-brand-purple mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
         'History': {
@@ -108,27 +111,38 @@ const PersonaSelector = () => {
                                         <div className={`w-1 rounded-full h-auto ${benefit.iconColor}`}></div>
                                         <div>
                                             <h4 className="font-bold text-lg mb-1 text-slate-800">{benefit.title}</h4>
-                                            <p className="text-slate-500 text-sm">{benefit.desc}</p>
+                                            <p className="text-slate-500 text-sm whitespace-pre-line">{benefit.desc}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
 
-                            <button className="mt-8 px-6 py-3 border border-slate-200 rounded-lg font-bold text-sm hover:border-brand-purple hover:text-brand-purple text-slate-700 transition-colors">
-                                {currentContent.cta}
-                            </button>
+                            {currentContent.cta && (
+                                <button className="mt-8 px-6 py-3 border border-slate-200 rounded-lg font-bold text-sm hover:border-brand-purple hover:text-brand-purple text-slate-700 transition-colors">
+                                    {currentContent.cta}
+                                </button>
+                            )}
                         </div>
 
-                        <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 relative overflow-hidden h-[400px] flex items-center justify-center animate-slide-up key={activeTab + '-img'}">
-                            {/* Abstract Illustration */}
-                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
-                            <div className="relative z-10 text-center">
-                                {currentContent.icon}
-                                <div className="w-64 h-2 bg-slate-200 rounded-full mx-auto mb-3 overflow-hidden">
-                                    <div className={`w-2/3 h-full rounded-full animate-pulse ${currentContent.color.replace('bg-', 'bg-')}`}></div>
-                                </div>
-                                <div className="w-48 h-2 bg-slate-200 rounded-full mx-auto"></div>
-                            </div>
+                        <div className="bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-[400px] flex items-center justify-center animate-slide-up key={activeTab + '-img'}">
+                            {currentContent.image ? (
+                                <img
+                                    src={currentContent.image}
+                                    alt={currentContent.title}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <>
+                                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+                                    <div className="relative z-10 text-center">
+                                        {currentContent.icon}
+                                        <div className="w-64 h-2 bg-slate-200 rounded-full mx-auto mb-3 overflow-hidden">
+                                            <div className={`w-2/3 h-full rounded-full animate-pulse ${currentContent.color.replace('bg-', 'bg-')}`}></div>
+                                        </div>
+                                        <div className="w-48 h-2 bg-slate-200 rounded-full mx-auto"></div>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
