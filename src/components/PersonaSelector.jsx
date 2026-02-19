@@ -73,13 +73,12 @@ const PersonaSelector = () => {
             ],
             cta: null, // Removed CTA
             images: [
-                images: [
-                    "https://postfiles.pstatic.net/MjAyNjAyMTlfMzgg/MDAxNzcxNDk1MjYzMjc2.owB0wA8HxEov_Cd1yxou7vBPYXSX26MctpO0M-2V_FIg.mAZgor8SJa5mUi2XujqKBFZnsDdAwVlj56W2x9i9wLIg.PNG/chrome_0VSDJLIqAq.png?type=w966",
-                    "https://postfiles.pstatic.net/MjAyNjAyMTlfMjc0/MDAxNzcxNDk1MjYzMjcx.VXQEjlwwKcUKGoLWFJzd1PhvwRR4hqF6VO4QHCiOMmUg.1EGd-73Z5M9N1cLmJG8sNk4BkHIPXgl6iVf-gqNkakAg.PNG/chrome_I19ec6vGF2.png?type=w3840",
-                    "https://postfiles.pstatic.net/MjAyNjAyMTlfNzcg/MDAxNzcxNDk1MjYzMjY3.ClqKqMTZtcbf7vD_3KsMKJuQS6e8_1Pa89mXRw1zYkwg.-FOTBIaBiXBJ5e0xPZwEoqguyNgGiGt_sX8F5Hm4GFMg.PNG/chrome_IzzvVoOw8G.png?type=w3840",
-                    "https://postfiles.pstatic.net/MjAyNjAyMTlfMjM3/MDAxNzcxNDk1MjYzMjcy.6JzY3a-Hl2WBdyHJAFzVN03lnvOiRNJkP9DNCUXAuiog.suOPviQZzhNnFRn9HweRwopZB1VfP82tCfzxgNAI-tEg.PNG/chrome_rUjnPyFKWJ.png?type=w3840"
-                ],
-                icon: <Rocket size={80} className="text-rose-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
+                "https://postfiles.pstatic.net/MjAyNjAyMTlfMzgg/MDAxNzcxNDk1MjYzMjc2.owB0wA8HxEov_Cd1yxou7vBPYXSX26MctpO0M-2V_FIg.mAZgor8SJa5mUi2XujqKBFZnsDdAwVlj56W2x9i9wLIg.PNG/chrome_0VSDJLIqAq.png?type=w966",
+                "https://postfiles.pstatic.net/MjAyNjAyMTlfMjc0/MDAxNzcxNDk1MjYzMjcx.VXQEjlwwKcUKGoLWFJzd1PhvwRR4hqF6VO4QHCiOMmUg.1EGd-73Z5M9N1cLmJG8sNk4BkHIPXgl6iVf-gqNkakAg.PNG/chrome_I19ec6vGF2.png?type=w3840",
+                "https://postfiles.pstatic.net/MjAyNjAyMTlfNzcg/MDAxNzcxNDk1MjYzMjY3.ClqKqMTZtcbf7vD_3KsMKJuQS6e8_1Pa89mXRw1zYkwg.-FOTBIaBiXBJ5e0xPZwEoqguyNgGiGt_sX8F5Hm4GFMg.PNG/chrome_IzzvVoOw8G.png?type=w3840",
+                "https://postfiles.pstatic.net/MjAyNjAyMTlfMjM3/MDAxNzcxNDk1MjYzMjcy.6JzY3a-Hl2WBdyHJAFzVN03lnvOiRNJkP9DNCUXAuiog.suOPviQZzhNnFRn9HweRwopZB1VfP82tCfzxgNAI-tEg.PNG/chrome_rUjnPyFKWJ.png?type=w3840"
+            ],
+            icon: <Rocket size={80} className="text-rose-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
         'Networks': {
             title: "Seamless relocation\nfor your loved ones",
