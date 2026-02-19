@@ -62,7 +62,8 @@ const App = () => {
         ease: "power4.out",
         scrollTrigger: {
           trigger: synergyRef.current,
-          start: "top 80%"
+          start: "top 90%", // Trigger earlier
+          toggleActions: "play none none none"
         }
       });
 

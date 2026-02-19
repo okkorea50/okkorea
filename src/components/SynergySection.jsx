@@ -1,5 +1,11 @@
 import React, { forwardRef } from 'react';
 
+// Import images for robust path resolution (Vite)
+import imgSuman from '/team/nepal-suman.png';
+import imgPratik from '/team/nepal-pratik.png';
+import imgSajina from '/team/nepal-sajina.png';
+import imgPralhad from '/team/nepal-pralhad.png';
+
 const SynergySection = forwardRef((props, ref) => {
     const partners = [
         {
@@ -8,7 +14,7 @@ const SynergySection = forwardRef((props, ref) => {
             name: 'Suman Silwal | CEO',
             desc: '핀테크 및 인슈어테크 시스템 설계 전문가로서 비즈니스 디지털 전환 전략을 설계합니다.',
             icon: '🚀',
-            img: '/team/nepal-suman.png'
+            img: imgSuman
         },
         {
             id: 'pratik',
@@ -16,7 +22,7 @@ const SynergySection = forwardRef((props, ref) => {
             name: 'Pratik Guragain | SEO Specialist',
             desc: '검색 최적화 및 전략적 온라인 캠페인을 통해 브랜드의 글로벌 가시성을 확보합니다.',
             icon: '📈',
-            img: '/team/nepal-pratik.png'
+            img: imgPratik
         },
         {
             id: 'sajina',
@@ -24,7 +30,7 @@ const SynergySection = forwardRef((props, ref) => {
             name: 'Sajina Silwal | UI/UX Designer',
             desc: '사용자 아이디어를 시각적으로 매력적이고 직관적인 인터페이스로 구현합니다.',
             icon: '🎨',
-            img: '/team/nepal-sajina.png'
+            img: imgSajina
         },
         {
             id: 'pralhad',
@@ -32,7 +38,7 @@ const SynergySection = forwardRef((props, ref) => {
             name: 'Pralhad Sedhai | Tech Director',
             desc: '10년 이상의 금융 시스템 아키텍처 분석 경험으로 안정적인 글로벌 통합을 지원합니다.',
             icon: '🌐',
-            img: '/team/nepal-pralhad.png'
+            img: imgPralhad
         }
     ];
 
@@ -100,22 +106,23 @@ const SynergySection = forwardRef((props, ref) => {
                     opacity: 1; /* Ensure visible even if GSAP fails, GSAP will manage visibility if present */
                 }
 
-                .synergy-card::before {
-                    content: '';
+                /* Background image container for each card */
+                .card-image-bg {
                     position: absolute;
                     inset: 0;
                     background-size: cover;
                     background-position: center;
                     z-index: 0;
-                    opacity: 0.2;
-                    filter: grayscale(100%) brightness(0.5);
+                    opacity: 0.25;
+                    filter: grayscale(100%) brightness(0.6);
                     transition: all 0.7s ease;
                 }
 
-                .card-suman::before { background-image: url('/team/nepal-suman.png'); }
-                .card-pratik::before { background-image: url('/team/nepal-pratik.png'); }
-                .card-sajina::before { background-image: url('/team/nepal-sajina.png'); }
-                .card-pralhad::before { background-image: url('/team/nepal-pralhad.png'); }
+                .synergy-card:hover .card-image-bg {
+                    opacity: 0.6;
+                    filter: grayscale(0%) brightness(0.85);
+                    transform: scale(1.1);
+                }
 
                 .synergy-card:hover {
                     transform: translateY(-12px);
@@ -180,6 +187,10 @@ const SynergySection = forwardRef((props, ref) => {
             <div className="synergy-grid">
                 {partners.map((partner) => (
                     <div key={partner.id} className={`synergy-card card-${partner.id}`}>
+                        <div
+                            className="card-image-bg"
+                            style={{ backgroundImage: `url(${partner.img})` }}
+                        />
                         <div className="card-content">
                             <div className="card-icon-top">{partner.icon}</div>
                             <h3>{partner.title}</h3>
