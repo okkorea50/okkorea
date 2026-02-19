@@ -33,7 +33,7 @@ const SynergySection = forwardRef((props, ref) => {
             id: 'pralhad',
             title: 'International Business',
             name: 'Pralhad Sedhai',
-            desc: '10년 이상의 기술 컨설팅 경험으로 글로벌\n시스템 통합 및 리스크 관리를 지원합니다.',
+            desc: '10년 이상의 기술 컨설팅 경험으로\n글로벌 시스템 통합 및 리스크관리를\n지원합니다.',
             img: imgPralhad
         }
     ];
