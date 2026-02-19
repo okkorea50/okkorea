@@ -1,14 +1,58 @@
 import React from 'react';
 
 const Logos = () => {
+    // High-Res University List (Source: User Snippet)
+    const universities = [
+        { name: "덕성여자대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMTk0/MDAxNzY5Mzk3ODc2Mjk2.eo3_jMNxOe9-_2iOwoXX4TUfKqJRvye58dNugGEdH78g.XYUMqi4tY0XCxnviYgfQS9P4zcx2My7gmEtJOf58Ckgg.PNG/2.png?type=w966" },
+        { name: "세종대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMjcx/MDAxNzY5Mzk3ODc2Mjkw.WJX5pSu7_5ebkgUfpn-hojJ5FiT3t5zKpCXGQpT3nh0g.PjS3XgYKlUNOOLwaM7z9_8N2bp9GbUuaRs_v04d2ft0g.PNG/3.png?type=w966" },
+        { name: "경남정보대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMTgw/MDAxNzY5Mzk3ODc2NjE0._NNM1156dbW3wn1k7PhjyrAyDo3Bu34WqbWER2wMMmYg.Me7ggmcw7ipfcBksulfR9RsSV7kR7xUR2VUnWpk5-qcg.PNG/4.png?type=w966" },
+        { name: "영산대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMjE3/MDAxNzY5Mzk3ODc2NjIy.E7yAwWsnTL4FU3OMU7Vk9uxq292RAVIYqt0RSUT3q3sg.4uQykwSXDPz-8QfX1A6x4pjpWTi1kryEuI7DD40zLMgg.PNG/5.png?type=w966" },
+        { name: "숭실대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMTcx/MDAxNzY5Mzk3ODc3MDY1.VK-AHP_VUlxFOPnS6FUDbQKHu0O3QieCuV2Dpv_9QSQg.5qSJW6CLZMpeJkE0AsH5l7TbUfUXmpSuGdx04E7xDy4g.PNG/6.png?type=w966" },
+        { name: "선문대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMjEg/MDAxNzY5Mzk3ODc3MTAw.6S2ksbHWm_F0mS4WtHup0BLbCZ5S7JUwNn9YJlYedAog.cQUGR9VDsPypOSI3F165aUqT2wOTyUaQtMtOBwvzH6Qg.PNG/7.png?type=w966" },
+        { name: "대덕대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMjcw/MDAxNzY5Mzk3ODc2NTA0.-RWFeG4zWSAKje_U2rHmdMYBIoAkhywmK-A8y8sj2JUg.oGfdZpI7XXSEWONtlTn0cgW2viR1GspuXmzL6FTe3mIg.PNG/8.png?type=w966" },
+        { name: "목포과학대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMjk3/MDAxNzY5Mzk3ODc2Mjkz.xtDJ9XHhVQSvrTQ7I4iEkKJ460wZJhX40Fwt27l29t4g.czSWwVnkTl_0Sjvo8Iltjh_iG9ShIv-rFC5nQDqEY74g.PNG/9.png?type=w966" },
+        { name: "한국외국어대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMTI3/MDAxNzY5Mzk3ODc2Mjk1.L8ct8bweSKyuUeOIMVmaPT2QXBfWx9gLiKszbF5OERcg.ThT3cwPfSuUYQttbe1vdQZV0OakZ7b7tFLdj1wski-wg.PNG/10.png?type=w966" },
+        { name: "경북산업직업전문학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMTQ1/MDAxNzY5Mzk3ODc2Mjk2.UsC7VWSKfwY7loAJBuexYeKFVueIKVNWO1eWQwUnSV8g.YsjjR8YOyGpHSaBw9D4RJUliO9R4WXCBneig2kXHhTEg.PNG/11.png?type=w966" },
+        { name: "영진기술교육원", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMjYx/MDAxNzY5Mzk3ODc2NDYz.4WNSALxr05cbePm-0KUxnAvUbICXZ1hKe_hbh0eshYsg.UgzXzcrTvIQrRunjPBdiTRgZQvk9bTtePJPKvvKt_2Mg.PNG/12.png?type=w966" },
+        { name: "숙명여자대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMjA1/MDAxNzY5Mzk3ODc2NTA2.rVfiYCdpC0H8ojsokD3AshHol2h9QARurqnbP1hxzw8g.XOOKOMqAc5_EXYdtR3u5j7HJpH8oByku8j4VrY_ochwg.PNG/13.png?type=w966" },
+        { name: "대진대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfNTMg/MDAxNzY5Mzk3ODc3MTg5.OhUPDqvA0BXBp4UMEZqWlL0Fa9JLfje5jVu2WVW5xNYg.Tuvy3krmScnKCnj6u1Vn7w1-yo9FJ4dWvcqdViKlEhYg.PNG/14.png?type=w966" },
+        { name: "동명대학교", imgUrl: "https://postfiles.pstatic.net/MjAyNjAxMjZfMjk2/MDAxNzY5Mzk3ODc3MjA0.-7A-w1dCNzKHu9Q8Lp62TgdUxaGgLeEXmh5gSb6Uc1cg.btP8Wj0kwj159CkCxMF7GSTj80OzWaU3bwqyRhR2m1kg.PNG/15.png?type=w966" }
+    ];
+
+    // Triple list for infinite scroll
+    const marqueeList = [...universities, ...universities, ...universities];
+
     return (
-        <section className="py-10 border-y border-slate-100 bg-white">
-            <div className="max-w-7xl mx-auto px-6 text-center">
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Trusted by 5,000+ Students & Companies</p>
-                <div className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                    {/* Placeholders for logos matching style */}
-                    {['Samsung', 'LG', 'Hyundai', 'SK', 'Naver', 'Kakao'].map(logo => (
-                        <span key={logo} className="text-xl font-black text-slate-800">{logo}</span>
+        <section className="py-16 border-y border-slate-100 bg-white overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 text-center mb-12">
+                <p className="text-sm font-bold text-black uppercase tracking-widest">
+                    TRUSTED BY MORE THAN 5000+ STUDENTS & COMPANIES
+                </p>
+            </div>
+
+            <div className="w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+                {/* Marquee Track - forcing width to max-content to prevent wrapping */}
+                <div className="flex items-center gap-6 animate-marquee w-max hover:[animation-play-state:paused] py-4">
+                    {marqueeList.map((uni, index) => (
+                        <div
+                            key={`${uni.name}-${index}`}
+                            className="group relative w-[160px] h-[220px] flex-shrink-0 cursor-pointer overflow-hidden rounded-xl bg-white border-2 border-slate-100 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(251,191,36,0.6)] transition-all duration-300"
+                        >
+                            {/* Card Image Area (Full Height, Cover) */}
+                            <div className="w-full h-full p-0"> {/* Removed padding to allow full cover */}
+                                <img
+                                    src={uni.imgUrl}
+                                    alt={uni.name}
+                                    className="w-full h-full object-cover"
+                                    referrerPolicy="no-referrer"
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = "https://placehold.co/160x220?text=" + uni.name;
+                                    }}
+                                />
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>

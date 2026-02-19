@@ -27,15 +27,19 @@ const Navbar = () => {
         <nav className="fixed top-0 left-0 w-full px-6 md:px-8 py-4 flex justify-between items-center z-50 backdrop-blur-md bg-[#0B0C15]/80 border-b border-white/10 transition-all duration-700">
 
             {/* Brand Logo */}
-            <div className="text-2xl font-black tracking-tighter flex items-center gap-2 z-50 relative">
-                <img src="/oklogo.png" alt="OK KOREA Logo" className="w-8 h-8 object-contain" />
+            <div className="text-base font-bold tracking-tight flex items-center gap-2 z-50 relative">
+                <img src={`${import.meta.env.BASE_URL}oklogo.png`} alt="OK KOREA Logo" className="w-8 h-8 object-contain" />
                 <span className="text-white">OK KOREA</span>
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8 text-base font-semibold text-slate-300">
+            <div className="hidden md:flex gap-8 text-base font-medium text-white items-center">
                 {navLinks.map((link) => (
-                    <a key={link.name} href={link.href} className="hover:text-white transition-colors">
+                    <a
+                        key={link.name}
+                        href={link.href}
+                        className="transition-all duration-300 hover:text-[#FFD700] hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]"
+                    >
                         {link.name}
                     </a>
                 ))}

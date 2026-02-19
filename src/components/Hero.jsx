@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import { ArrowRight, Play, CheckCircle2 } from 'lucide-react';
 import { gsap } from 'gsap';
+// import HeroImage from '../assets/Hero.png'; // Replaced with direct URL
 
 const Hero = forwardRef((props, ref) => {
     const [particles, setParticles] = useState([]);
@@ -14,18 +15,18 @@ const Hero = forwardRef((props, ref) => {
         // GSAP Text Animations
         const ctx = gsap.context(() => {
             gsap.from(titleLine1Ref.current, {
-                x: -100,
+                x: -50,
                 opacity: 0,
-                duration: 1,
-                ease: "power3.out",
+                duration: 2.5,
+                ease: "power4.out",
                 delay: 0.2
             });
             gsap.from(titleLine2Ref.current, {
-                x: 100,
+                x: 50,
                 opacity: 0,
-                duration: 1,
-                ease: "power3.out",
-                delay: 0.4
+                duration: 2.5,
+                ease: "power4.out",
+                delay: 0.8
             });
 
             // Mouse Move Listener
@@ -106,29 +107,34 @@ const Hero = forwardRef((props, ref) => {
                 ))}
             </div>
 
-            <div className="max-w-7xl mx-auto text-center relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 mb-8 border border-white/10 backdrop-blur-sm">
+            <div className="max-w-7xl mx-auto text-center relative z-10 flex flex-col items-center">
+                {/* Top Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 mb-24 border border-white/10 backdrop-blur-sm">
                     <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
                     <span className="text-sm font-semibold text-brand-textDark">New: 2026 Global Visa Guide Released</span>
                 </div>
 
-                <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.9] text-white overflow-hidden">
-                    <span ref={titleLine1Ref} className="block">Step into the future</span>
-                    <span ref={titleLine2Ref} className="block">of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span></span>
-                </h1>
+                {/* Content Group: Headline -> Subhead -> Buttons */}
+                <div className="flex flex-col items-center gap-6 mb-20">
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] text-white overflow-hidden">
+                        <span ref={titleLine1Ref} className="block">Step into the future</span>
+                        <span ref={titleLine2Ref} className="block">of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span></span>
+                    </h1>
 
-                <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    유학부터 취업, 정착까지. 복잡한 한국 생활의 모든 퍼즐을<br />
-                    OK KOREA의 올인원 솔루션으로 완성하세요.
-                </p>
+                    <p className="text-base text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                        유학부터 취업, 비자까지. OK KOREA가 당신의 한국 생활을 완벽하게 가이드합니다.<br className="hidden md:block" />
+                        복잡한 절차는 저희에게 맡기고 꿈을 향해 나아가세요.
+                    </p>
 
-                <div className="flex justify-center gap-4 mb-20">
-                    <button className="px-10 py-4 bg-white text-brand-dark rounded-xl font-bold text-lg hover:bg-[#a04bb0] hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2" aria-label="Study">
-                        Study <ArrowRight size={18} />
-                    </button>
-                    <button className="px-10 py-4 bg-transparent text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-[#cd5f62] hover:border-[#cd5f62] transition-all flex items-center gap-2" aria-label="Work">
-                        <Play size={18} /> Work
-                    </button>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4">
+                        {/* Adjusted text color for visibility: text-brand-dark on light bg */}
+                        <button className="group px-6 py-3 bg-brand-light text-brand-dark rounded-full font-bold text-base hover:bg-[#a04bb0] hover:text-white transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]" aria-label="Start for free">
+                            Study <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        </button>
+                        <button className="group px-6 py-3 bg-white/5 text-white border border-white/10 rounded-full font-bold text-base hover:bg-[#cd5f62] hover:border-transparent transition-all flex items-center gap-2 backdrop-blur-sm" aria-label="Watch Demo Video">
+                            <Play size={16} className="fill-current" /> Work
+                        </button>
+                    </div>
                 </div>
 
                 {/* Hero UI Mockup (Parallax) */}
@@ -136,7 +142,7 @@ const Hero = forwardRef((props, ref) => {
                     <div className="rounded-2xl border-4 border-white shadow-2xl overflow-hidden bg-white">
                         {/* Fixed Alt Text */}
                         <img
-                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
+                            src="https://postfiles.pstatic.net/MjAyNjAyMTlfMTEx/MDAxNzcxNDYzOTY0ODAx.5KTt66rkHdzuVNUdJMAStkdEYFVwwJUjJfcV8h68AiAg.OYFL9SKtPMwQO4xaJ0ZlEZaHBp72bzoylwHQbhaFp5sg.PNG/Hero.png?type=w966"
                             className="w-full object-cover"
                             alt="OK KOREA Dashboard Analytics Interface"
                         />
