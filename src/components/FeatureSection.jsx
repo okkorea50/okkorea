@@ -1,3 +1,5 @@
+import React, { forwardRef } from 'react';
+import { Zap } from 'lucide-react';
 import imgAriel from '../assets/team-ariel.jpg';
 import imgAnna from '../assets/team-anna.jpg';
 import imgEric from '../assets/team-eric.jpg';
