@@ -1,8 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { GraduationCap, Briefcase, Rocket, Home, Globe } from 'lucide-react';
 
 const PersonaSelector = () => {
     const [activeTab, setActiveTab] = useState('Who we are');
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                } else {
+                    setIsVisible(false); // Reset when out of view
+                }
+            },
+            { threshold: 0.1 } // Trigger when 10% visible
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
 
     const tabs = ['Who we are', 'History', 'Achievement', 'Networks', 'Partners'];
 
@@ -100,7 +125,7 @@ const PersonaSelector = () => {
                     </div>
                 </div>
 
-                <div className="bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100">
+                <div ref={sectionRef} className="bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-stretch h-full">
                         <div className="space-y-6 animate-fade-in key={activeTab}">
                             <h3 className="text-3xl font-bold whitespace-pre-line text-slate-900">{currentContent.title}</h3>
@@ -109,8 +134,8 @@ const PersonaSelector = () => {
                                 {currentContent.benefits.map((benefit, idx) => (
                                     <div
                                         key={idx}
-                                        className="flex gap-4 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 animate-fade-in-up"
-                                        style={{ animationDelay: `${idx * 150}ms`, opacity: 0 }}
+                                        className={`flex gap-4 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        style={{ animationDelay: `${idx * 150}ms` }}
                                     >
                                         <div className={`w-1 rounded-full h-auto ${benefit.iconColor}`}></div>
                                         <div>
@@ -128,7 +153,7 @@ const PersonaSelector = () => {
                             )}
                         </div>
 
-                        <div className="bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center animate-slide-up key={activeTab + '-img'}">
+                        <div className={`bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'} key={activeTab + '-img'}`}>
                             {currentContent.image ? (
                                 <img
                                     src={currentContent.image}
