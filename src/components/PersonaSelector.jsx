@@ -200,7 +200,7 @@ const PersonaSelector = () => {
                                                 className="w-full h-full object-cover"
                                             />
                                         </div>
-                                        <span className="font-bold text-slate-700 group-hover:text-brand-purple transition-colors">{country}</span>
+                                        <span className="font-bold text-slate-700 group-hover:text-white group-hover:bg-brand-purple px-3 py-1 rounded-full transition-all duration-300">{country}</span>
                                     </div>
                                 ))}
                             </div>
