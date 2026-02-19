@@ -82,7 +82,7 @@ const SynergySection = forwardRef((props, ref) => {
                 .synergy-header p {
                     color: #94a3b8;
                     font-size: 1.1rem;
-                    max-width: 600px;
+                    max-width: 900px; /* Increased to allow one-line display */
                     margin: 0 auto;
                 }
 
@@ -179,7 +179,8 @@ const SynergySection = forwardRef((props, ref) => {
             <div className="synergy-header max-w-4xl mx-auto">
                 <span className="synergy-badge">Global Strategic Team</span>
                 <h2>Your Extended Marketing <span className="gradient-text">Powerhouse.</span></h2>
-                <p>네팔의 InsurTech 혁신 기업과 함께 데이터 기반의 글로벌 마케팅을 실현합니다.</p>
+                <p>네팔의 InsurTech 혁신 기업과 함께 데이터 기반의 수익이 나는 강력한 마케팅을 실현합니다.</p>
+                <p>OK KOREA 해외 마케팅 팀</p>
             </div>
 
             <div className="synergy-grid">
