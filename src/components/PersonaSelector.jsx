@@ -1,5 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { GraduationCap, Briefcase, Rocket, Home, Globe, X } from 'lucide-react';
+const networkCountries = [
+    "중국", "필리핀", "인도네시아", "베트남", "몽골",
+    "태국", "파키스탄", "스리랑카", "인도", "미얀마",
+    "네팔", "방글라데시", "키르기스스탄", "우즈베키스탄",
+    "카자흐스탄", "나이지리아", "가나", "모로코", "타지키스탄"
+];
+
+const getCountryCode = (name) => {
+    const codes = {
+        "중국": "cn", "필리핀": "ph", "인도네시아": "id", "베트남": "vn", "몽골": "mn",
+        "태국": "th", "파키스탄": "pk", "스리랑카": "lk", "인도": "in", "미얀마": "mm",
+        "네팔": "np", "방글라데시": "bd", "키르기스스탄": "kg", "우즈베키스탄": "uz",
+        "카자흐스탄": "kz", "나이지리아": "ng", "가나": "gh", "모로코": "ma", "타지키스탄": "tj"
+    };
+    return codes[name] || "un";
+};
 
 const PersonaSelector = () => {
     const [activeTab, setActiveTab] = useState('Who we are');
@@ -136,7 +150,7 @@ const PersonaSelector = () => {
 
                 <div
                     ref={sectionRef}
-                    className={`bg-white rounded-[2rem] shadow-2xl border border-slate-100 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : 'w-full p-6 md:p-10'
+                    className={`bg-white rounded-[2rem] shadow-2xl border border-slate-100 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : activeTab === 'Networks' ? 'max-w-5xl mx-auto p-8' : 'w-full p-6 md:p-10'
                         }`}
                 >
                     {activeTab === 'Achievement' ? (
@@ -154,6 +168,27 @@ const PersonaSelector = () => {
                                             className="w-full h-full object-cover pointer-events-none"
                                             referrerPolicy="no-referrer"
                                         />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ) : activeTab === 'Networks' ? (
+                        <div key="networks-grid" className="w-full h-full animate-fade-in text-center">
+                            <h3 className="text-3xl font-bold mb-10 text-slate-900">Global Networks</h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                                {networkCountries.map((country, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="flex flex-col items-center group transition-all duration-300 hover:-translate-y-2"
+                                    >
+                                        <div className="relative mb-4 w-20 h-14 overflow-hidden rounded-lg shadow-md border border-slate-100 group-hover:shadow-xl group-hover:border-brand-purple/30 transition-all">
+                                            <img
+                                                src={`https://flagcdn.com/w160/${getCountryCode(country)}.png`}
+                                                alt={`${country} flag`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <span className="font-bold text-slate-700 group-hover:text-brand-purple transition-colors">{country}</span>
                                     </div>
                                 ))}
                             </div>
