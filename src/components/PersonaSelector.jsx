@@ -116,7 +116,7 @@ const PersonaSelector = () => {
                                 onClick={() => setActiveTab(tab)}
                                 className={`px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${activeTab === tab
                                     ? 'bg-white shadow-xl text-brand-purple border border-brand-purple/20 ring-4 ring-brand-purple/5 transform scale-105'
-                                    : 'bg-white text-slate-500 border border-slate-200 shadow-md hover:shadow-xl hover:-translate-y-1 hover:bg-slate-50'
+                                    : 'bg-white text-slate-500 border-2 border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:bg-slate-50'
                                     }`}
                             >
                                 {tab}
