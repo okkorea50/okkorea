@@ -32,8 +32,8 @@ const FeatureSection = forwardRef((props, ref) => {
             {/* Background Glows for Dark Mode */}
             <div className="absolute top-1/4 right-0 w-[800px] h-[800px] bg-brand-purple/10 rounded-full blur-[150px] pointer-events-none"></div>
 
-            <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row gap-12 items-center">
-                <div className="space-y-8 lg:w-[32%] flex-shrink-0">
+            <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
+                <div className="space-y-8 lg:w-[30%] flex-shrink-0">
                     <div className="inline-block px-4 py-1 rounded-full bg-brand-purple/20 text-brand-purple font-bold text-sm border border-brand-purple/30 animate-fade-in">
                         Creative Experts
                     </div>
@@ -54,8 +54,11 @@ const FeatureSection = forwardRef((props, ref) => {
                                 className="w-full h-full object-cover"
                             />
                         </div>
-                        <div className="space-y-1">
-                            <h3 className="text-2xl font-bold text-white leading-none">Director Brian Kim</h3>
+                        <div className="space-y-2">
+                            <h3 className="text-3xl md:text-4xl font-bold text-white leading-[1.1]">
+                                Director<br />
+                                Brian Kim
+                            </h3>
                         </div>
                     </div>
 
