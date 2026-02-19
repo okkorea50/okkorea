@@ -10,34 +10,30 @@ const SynergySection = forwardRef((props, ref) => {
     const partners = [
         {
             id: 'suman',
-            title: 'Digital Strategy',
-            name: 'Suman Silwal | CEO',
-            desc: '핀테크 및 인슈어테크 시스템 설계 전문가로서 비즈니스 디지털 전환 전략을 설계합니다.',
-            icon: '🚀',
+            title: 'Digital Transformation',
+            name: 'Suman Silwal (CEO)',
+            desc: '9년 이상의 경험으로 비즈니스 디지털 성숙도를 진단하고 전략적 로드맵을 설계합니다.',
             img: imgSuman
         },
         {
             id: 'pratik',
             title: 'Growth & SEO',
-            name: 'Pratik Guragain | SEO Specialist',
-            desc: '브랜드의 가시성을 확보하고 최고의 마케팅으로 수익실현',
-            icon: '📈',
+            name: 'Pratik Guragain',
+            desc: '검색 최적화와 디지털 캠페인을 통해 글로벌 시장에서의 가시성을 극대화합니다.',
             img: imgPratik
         },
         {
             id: 'sajina',
-            title: 'Creative Design',
-            name: 'Sajina Silwal | UI/UX Designer',
-            desc: '사용자 아이디어를 시각적으로 매력적이고 직관적인 인터페이스로 구현합니다.',
-            icon: '🎨',
+            title: 'Creative UI/UX',
+            name: 'Sajina Silwal',
+            desc: '3년 이상의 디자인 경험으로 아이디어를 직관적이고 매력적인 인터페이스로 구현합니다.',
             img: imgSajina
         },
         {
             id: 'pralhad',
-            title: 'Global Systems',
-            name: 'Pralhad Sedhai | Tech Director',
-            desc: '10년 이상의 금융 시스템 아키텍처 분석 경험으로 안정적인 글로벌 통합을 지원합니다.',
-            icon: '🌐',
+            title: 'International Business',
+            name: 'Pralhad Sedhai',
+            desc: '10년 이상의 기술 컨설팅 경험으로 글로벌 시스템 통합 및 리스크 관리를 지원합니다.',
             img: imgPralhad
         }
     ];
@@ -178,8 +174,8 @@ const SynergySection = forwardRef((props, ref) => {
 
             <div className="synergy-header max-w-4xl mx-auto">
                 <span className="synergy-badge">Global Strategic Team</span>
-                <h2>Your Extended Marketing <span className="gradient-text">Powerhouse.</span></h2>
-                <p>네팔의 InsurTech 혁신 기업과 함께 데이터 기반의 수익이 나는 강력한 마케팅을 실현합니다.</p>
+                <h2>Everything for your <span className="gradient-text">Global Growth.</span></h2>
+                <p>핀테크 및 인슈어테크 전문 파트너와 함께 데이터 기반의 마케팅 혁신을 시작하세요.</p>
                 <p>OK KOREA 해외 마케팅 팀</p>
             </div>
 

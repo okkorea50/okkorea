@@ -9,6 +9,7 @@ import Logos from './components/Logos';
 import FeatureSection from './components/FeatureSection';
 import PersonaSelector from './components/PersonaSelector';
 import SynergySection from './components/SynergySection';
+import PortfolioSlider from './components/PortfolioSlider';
 import TestimonialGrid from './components/TestimonialGrid';
 import BlogResources from './components/BlogResources';
 import Footer from './components/Footer';
@@ -83,6 +84,7 @@ const App = () => {
       <PersonaSelector />
       <FeatureSection ref={darkSectionRef} />
       <SynergySection ref={synergyRef} />
+      <PortfolioSlider />
       <TestimonialGrid />
       <BlogResources />
       <Footer />
