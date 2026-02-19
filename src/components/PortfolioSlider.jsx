@@ -79,7 +79,12 @@ const PortfolioSlider = () => {
                     width: 100%;
                     border-radius: 20px;
                     border: 1px solid rgba(255, 255, 255, 0.08);
-                    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                    /* Dimmed and Grayscale by default */
+                    filter: grayscale(100%) brightness(0.4);
+                    opacity: 0.6;
+                    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                                filter 0.6s ease,
+                                opacity 0.6s ease,
                                 border-color 0.5s ease,
                                 box-shadow 0.5s ease;
                     aspect-ratio: 16/10;
@@ -88,9 +93,11 @@ const PortfolioSlider = () => {
                 }
 
                 .pot-slide img:hover {
-                    transform: scale(1.06) translateY(-5px);
-                    border-color: rgba(139, 92, 246, 0.6);
-                    box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.4);
+                    transform: scale(1.08) translateY(-10px);
+                    filter: grayscale(0%) brightness(1);
+                    opacity: 1;
+                    border-color: rgba(139, 92, 246, 0.8);
+                    box-shadow: 0 30px 60px -15px rgba(139, 92, 246, 0.4);
                 }
 
                 @keyframes slideInfinite {
