@@ -136,7 +136,7 @@ const PersonaSelector = () => {
 
                 <div
                     ref={sectionRef}
-                    className={`bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-4xl mx-auto' : 'w-full'
+                    className={`bg-white rounded-[2rem] shadow-2xl border border-slate-100 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : 'w-full p-6 md:p-10'
                         }`}
                 >
                     {activeTab === 'Achievement' ? (
