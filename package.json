@@ -7,6 +7,7 @@
     "dev": "vite",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
+    "sync": "node autosync.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
