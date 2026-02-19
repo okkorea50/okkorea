@@ -103,6 +103,7 @@ const SynergySection = forwardRef((props, ref) => {
                     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
                                 border-color 0.5s ease, 
                                 box-shadow 0.5s ease;
+                    opacity: 1; /* Ensure visible after GSAP cleanup */
                 }
 
                 /* Background image container for each card */
@@ -127,12 +128,6 @@ const SynergySection = forwardRef((props, ref) => {
                     transform: translateY(-12px);
                     border-color: rgba(124, 77, 255, 0.5);
                     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-                }
-
-                .synergy-card:hover::before {
-                    opacity: 0.5;
-                    filter: grayscale(0%) brightness(0.7);
-                    transform: scale(1.08);
                 }
 
                 .card-content {

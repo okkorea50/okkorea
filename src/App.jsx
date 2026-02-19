@@ -68,6 +68,9 @@ const App = () => {
           start: "top 95%", // Trigger almost immediately on entry
           once: true, // Only play once
           toggleActions: "play none none none"
+        },
+        onComplete: () => {
+          gsap.set(".synergy-card", { clearProps: "transform" });
         }
       });
 
