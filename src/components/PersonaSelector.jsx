@@ -137,7 +137,7 @@ const PersonaSelector = () => {
                 <div ref={sectionRef} className="bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100 min-h-[600px]">
                     {activeTab === 'Achievement' ? (
                         <div key="achievement-grid" className="w-full h-full animate-fade-in">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full max-w-[70%] mx-auto">
                                 {currentContent.images.map((img, i) => (
                                     <div
                                         key={i}
