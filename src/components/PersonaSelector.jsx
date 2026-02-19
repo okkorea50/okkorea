@@ -71,6 +71,12 @@ const PersonaSelector = () => {
                 { title: "Global Talent Pool", desc: "Hire international talent compliant with regulations.", iconColor: "bg-orange-200" }
             ],
             cta: "Start Your Business",
+            images: [
+                "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80",
+                "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=80",
+                "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80",
+                "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80"
+            ],
             icon: <Rocket size={80} className="text-rose-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
         'Networks': {
@@ -156,7 +162,19 @@ const PersonaSelector = () => {
                         </div>
 
                         <div key={activeTab + '-img'} className={`bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
-                            {currentContent.image ? (
+                            {currentContent.images ? (
+                                <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
+                                    {currentContent.images.map((img, i) => (
+                                        <div key={i} className="overflow-hidden">
+                                            <img
+                                                src={img}
+                                                alt={`Achievement ${i + 1}`}
+                                                className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : currentContent.image ? (
                                 <img
                                     src={currentContent.image}
                                     alt={currentContent.title}
