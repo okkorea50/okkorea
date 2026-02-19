@@ -129,7 +129,7 @@ const PersonaSelector = () => {
 
                 <div ref={sectionRef} className="bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-stretch h-full">
-                        <div className="space-y-6 animate-fade-in key={activeTab}">
+                        <div key={activeTab} className="space-y-6 animate-fade-in">
                             <h3 className="text-3xl font-bold whitespace-pre-line text-slate-900">{currentContent.title}</h3>
 
                             <div className="space-y-4">
@@ -155,7 +155,7 @@ const PersonaSelector = () => {
                             )}
                         </div>
 
-                        <div className={`bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'} key={activeTab + '-img'}`}>
+                        <div key={activeTab + '-img'} className={`bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
                             {currentContent.image ? (
                                 <img
                                     src={currentContent.image}
