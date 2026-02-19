@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GraduationCap, Briefcase, Rocket, Home, Globe } from 'lucide-react';
+import chart1 from '../assets/images/chart_1.png';
+import chart2 from '../assets/images/chart_2.png';
 
 const PersonaSelector = () => {
     const [activeTab, setActiveTab] = useState('Who we are');
@@ -72,10 +74,10 @@ const PersonaSelector = () => {
             ],
             cta: null, // Removed CTA
             images: [
-                "/okkorea/images/chart_1.png",
-                "/okkorea/images/chart_2.png",
-                "/okkorea/images/chart_1.png",
-                "/okkorea/images/chart_2.png"
+                chart1,
+                chart2,
+                chart1,
+                chart2
             ],
             icon: <Rocket size={80} className="text-rose-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
