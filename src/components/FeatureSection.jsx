@@ -3,6 +3,7 @@ import { Zap } from 'lucide-react';
 import imgAriel from '../assets/team-ariel.jpg';
 import imgAnna from '../assets/team-anna.jpg';
 import imgEric from '../assets/team-eric.jpg';
+import imgDirector from '../assets/director-brian-kim.png';
 
 const FeatureSection = forwardRef((props, ref) => {
     const teamMembers = [
@@ -48,7 +49,7 @@ const FeatureSection = forwardRef((props, ref) => {
                     <div className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.03] border border-white/5 backdrop-blur-sm animate-fade-in delay-500">
                         <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-brand-orange/50 shadow-xl flex-shrink-0">
                             <img
-                                src="/director professor brian kim.png"
+                                src={imgDirector}
                                 alt="Director Brian Kim"
                                 className="w-full h-full object-cover"
                             />
