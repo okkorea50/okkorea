@@ -142,7 +142,7 @@ const Hero = forwardRef((props, ref) => {
                     <div className="rounded-2xl border-4 border-white shadow-2xl overflow-hidden bg-white">
                         {/* Fixed Alt Text */}
                         <img
-                            src="https://postfiles.pstatic.net/MjAyNjAyMTlfMTEx/MDAxNzcxNDYzOTY0ODAx.5KTt66rkHdzuVNUdJMAStkdEYFVwwJUjJfcV8h68AiAg.OYFL9SKtPMwQO4xaJ0ZlEZaHBp72bzoylwHQbhaFp5sg.PNG/Hero.png"
+                            src="https://postfiles.pstatic.net/MjAyNjAyMTlfMTEx/MDAxNzcxNDYzOTY0ODAx.5KTt66rkHdzuVNUdJMAStkdEYFVwwJUjJfcV8h68AiAg.OYFL9SKtPMwQO4xaJ0ZlEZaHBp72bzoylwHQbhaFp5sg.PNG/Hero.png?type=w966"
                             className="w-full object-cover"
                             alt="OK KOREA Dashboard Analytics Interface"
                             referrerPolicy="no-referrer"
