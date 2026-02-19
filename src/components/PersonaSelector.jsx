@@ -5,7 +5,8 @@ const networkCountries = [
     "중국", "필리핀", "인도네시아", "베트남", "몽골",
     "태국", "파키스탄", "스리랑카", "인도", "미얀마",
     "네팔", "방글라데시", "키르기스스탄", "우즈베키스탄",
-    "카자흐스탄", "나이지리아", "가나", "모로코", "타지키스탄"
+    "카자흐스탄", "나이지리아", "가나", "모로코", "타지키스탄",
+    "미국", "일본", "싱가폴", "말레이시아", "튀르키예"
 ];
 
 const getCountryCode = (name) => {
@@ -13,7 +14,8 @@ const getCountryCode = (name) => {
         "중국": "cn", "필리핀": "ph", "인도네시아": "id", "베트남": "vn", "몽골": "mn",
         "태국": "th", "파키스탄": "pk", "스리랑카": "lk", "인도": "in", "미얀마": "mm",
         "네팔": "np", "방글라데시": "bd", "키르기스스탄": "kg", "우즈베키스탄": "uz",
-        "카자흐스탄": "kz", "나이지리아": "ng", "가나": "gh", "모로코": "ma", "타지키스탄": "tj"
+        "카자흐스탄": "kz", "나이지리아": "ng", "가나": "gh", "모로코": "ma", "타지키스탄": "tj",
+        "미국": "us", "일본": "jp", "싱가폴": "sg", "말레이시아": "my", "튀르키예": "tr"
     };
     return codes[name] || "un";
 };
@@ -177,7 +179,6 @@ const PersonaSelector = () => {
                         </div>
                     ) : activeTab === 'Networks' ? (
                         <div key="networks-grid" className="w-full h-full animate-fade-in text-center">
-                            <h3 className="text-3xl font-bold mb-10 text-slate-900">Global Networks</h3>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
                                 {networkCountries.map((country, idx) => (
                                     <div
