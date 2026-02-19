@@ -18,26 +18,31 @@ const TestimonialGrid = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     {/* Row 1 */}
                     <div className="bg-[#FEF08A] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">98%<span className="text-2xl align-top">+</span></div>
+                        <div className="text-5xl font-black text-slate-900 tracking-tighter">92%<span className="text-2xl align-top">+</span></div>
                         <div className="font-medium text-slate-800">Visa Approval Rate</div>
                         <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Global Avg: 72%</div>
                     </div>
 
                     <div className="bg-[#86EFAC] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">150<span className="text-2xl align-top">+</span></div>
+                        <div className="text-5xl font-black text-slate-900 tracking-tighter">20<span className="text-2xl align-top">+</span></div>
                         <div className="font-medium text-slate-800">Partner Universities</div>
                         <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Across Korea</div>
                     </div>
 
                     <div className="bg-[#F8FAFC] rounded-3xl p-8 col-span-1 md:col-span-2 flex flex-col justify-center min-h-[240px] border border-slate-100 px-12 relative overflow-hidden">
-                        <p className="text-xl font-medium text-slate-900 leading-relaxed relative z-10">
-                            "OK KOREA has helped revive our recruitment pipeline. We found 5 incredible developers in just 2 weeks!"
-                        </p>
+                        <div className="text-xl font-medium text-slate-900 leading-relaxed relative z-10">
+                            <p>"OK KOREA has helped revive our recruitment pipeline. We found 5 incredible developers in just 2 weeks!"</p>
+                            <p className="text-sm text-slate-500 mt-2 font-normal">
+                                "OK KOREA 덕분에 정체되었던 채용에 다시 활기가 돌기 시작했습니다. 단 2주 만에 실력이 검증된 개발자 5명을 채용하는 성과를 거뒀습니다!"
+                            </p>
+                        </div>
                         <div className="flex items-center gap-3 mt-6">
-                            <div className="w-10 h-10 bg-slate-300 rounded-full flex-shrink-0"></div>
+                            <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-2xl flex-shrink-0">
+                                👩‍💼
+                            </div>
                             <div>
                                 <div className="font-bold text-sm text-slate-900">Sarah Kim</div>
-                                <div className="text-xs text-slate-500">HR Director, Toss Lab</div>
+                                <div className="text-xs text-slate-500">HR Director, SG service in Singapore</div>
                             </div>
                         </div>
                     </div>
