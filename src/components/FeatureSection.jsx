@@ -56,8 +56,7 @@ const FeatureSection = forwardRef((props, ref) => {
                         </div>
                         <div className="space-y-1">
                             <h3 className="text-base font-bold text-white leading-tight">
-                                Director<br />
-                                Brian Kim
+                                Director Brian Kim
                             </h3>
                         </div>
                     </div>
