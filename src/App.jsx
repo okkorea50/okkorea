@@ -55,14 +55,18 @@ const App = () => {
 
       // 3. Scroll Interaction: Synergy Cards Staggered Reveal
       gsap.from(".synergy-card", {
-        y: 100,
+        y: 60,
         opacity: 0,
         duration: 1.2,
-        stagger: 0.2,
-        ease: "power4.out",
+        stagger: {
+          amount: 0.6,
+          from: "start"
+        },
+        ease: "power3.out",
         scrollTrigger: {
           trigger: synergyRef.current,
-          start: "top 90%", // Trigger earlier
+          start: "top 95%", // Trigger almost immediately on entry
+          once: true, // Only play once
           toggleActions: "play none none none"
         }
       });

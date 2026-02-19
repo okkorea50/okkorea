@@ -101,9 +101,12 @@ const SynergySection = forwardRef((props, ref) => {
                     border: 1px solid rgba(255, 255, 255, 0.08);
                     cursor: pointer;
                     height: 420px;
-                    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
                     background: #0f1020;
-                    opacity: 1; /* Ensure visible even if GSAP fails, GSAP will manage visibility if present */
+                    /* GSAP will handle the entrance, removing 'transition: all' 
+                       from the base state to avoid conflicts during reveal */
+                    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                                border-color 0.5s ease, 
+                                box-shadow 0.5s ease;
                 }
 
                 /* Background image container for each card */
