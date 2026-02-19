@@ -46,8 +46,8 @@ const FeatureSection = forwardRef((props, ref) => {
                     </p>
 
                     {/* Director Profile Section */}
-                    <div className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.03] border border-white/5 backdrop-blur-sm animate-fade-in delay-500">
-                        <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-brand-orange/50 shadow-xl flex-shrink-0">
+                    <div className="flex items-center gap-8 p-6 rounded-3xl bg-white/[0.03] border border-white/5 backdrop-blur-sm animate-fade-in delay-500">
+                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white/80 shadow-2xl flex-shrink-0">
                             <img
                                 src={imgDirector}
                                 alt="Director Brian Kim"
@@ -55,8 +55,7 @@ const FeatureSection = forwardRef((props, ref) => {
                             />
                         </div>
                         <div className="space-y-1">
-                            <h3 className="text-xl font-bold text-white leading-none">Director Brian Kim</h3>
-                            <p className="text-brand-orange text-sm font-black uppercase tracking-widest">General Director</p>
+                            <h3 className="text-2xl font-bold text-white leading-none">Director Brian Kim</h3>
                         </div>
                     </div>
 
