@@ -211,8 +211,11 @@ const PersonaSelector = () => {
                                 {partnerList.map((partner, idx) => (
                                     <span
                                         key={idx}
-                                        className={`inline-block px-6 py-3 bg-white border border-slate-100 rounded-full text-sm font-bold text-slate-600 shadow-sm transition-all duration-500 hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/5 hover:-translate-y-1 hover:shadow-md cursor-default ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                                        style={{ animationDelay: `${idx * 50}ms` }}
+                                        className={`inline-block px-6 py-3 bg-white border border-slate-100 rounded-full text-sm font-bold text-slate-600 shadow-[0_2px_5px_rgba(0,0,0,0.05)] transition-all duration-[400ms] hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/5 hover:-translate-y-[5px] hover:shadow-[0_8px_15px_rgba(106,90,205,0.2)] cursor-default ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        style={{
+                                            animationDelay: `${idx * 50}ms`,
+                                            transitionTimingFunction: 'cubic-bezier(0.165, 0.84, 0.44, 1)'
+                                        }}
                                     >
                                         {partner}
                                     </span>
