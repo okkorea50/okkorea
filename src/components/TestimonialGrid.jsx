@@ -88,15 +88,15 @@ const TestimonialGrid = () => {
                     </div>
 
                     <div className="bg-[#FBCFE8] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-4xl font-black text-slate-900 tracking-tighter">30%-80%</div>
+                        <div className="text-3xl font-black text-slate-900 tracking-tighter">D-2, D-4 Visa 30%-80%</div>
                         <div className="font-medium text-slate-800">Scholarship Base</div>
                         <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">From Banks or Schools</div>
                     </div>
 
                     <div className="bg-[#F8FAFC] rounded-3xl p-8 col-span-1 md:col-span-2 flex flex-col justify-center min-h-[240px] border border-slate-100 px-12">
-                        <div className="text-xl font-medium text-slate-900 leading-relaxed">
-                            <p>"We created super-tailored settlement plans for you and your family"</p>
-                            <p className="text-sm text-slate-500 mt-2 font-normal">
+                        <div className="leading-relaxed">
+                            <p className="text-lg font-medium text-slate-900">"We created super-tailored settlement plans for you and your family"</p>
+                            <p className="text-xs text-slate-500 mt-1 font-normal italic">
                                 "당신과 당신의 가족을 위해, 세상에 단 하나뿐인 초정밀 맞춤형 정착 플랜을 설계했습니다."
                             </p>
                         </div>
