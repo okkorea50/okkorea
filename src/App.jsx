@@ -8,7 +8,7 @@ import Hero from './components/Hero';
 import Logos from './components/Logos';
 import FeatureSection from './components/FeatureSection';
 import PersonaSelector from './components/PersonaSelector';
-import BentoGrid from './components/BentoGrid';
+import SynergySection from './components/SynergySection';
 import TestimonialGrid from './components/TestimonialGrid';
 import BlogResources from './components/BlogResources';
 import Footer from './components/Footer';
@@ -17,7 +17,7 @@ const App = () => {
   const mainRef = useRef(null);
   const heroRef = useRef(null);
   const darkSectionRef = useRef(null);
-  const bentoRef = useRef(null);
+  const synergyRef = useRef(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -53,15 +53,16 @@ const App = () => {
         }
       });
 
-      // 3. Scroll Interaction: Bento Grid Staggered Reveal
-      gsap.from(".bento-item", {
-        y: 50,
+      // 3. Scroll Interaction: Synergy Cards Staggered Reveal
+      gsap.from(".synergy-card", {
+        y: 100,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "power4.out",
         scrollTrigger: {
-          trigger: bentoRef.current,
-          start: "top 75%"
+          trigger: synergyRef.current,
+          start: "top 80%"
         }
       });
 
@@ -76,7 +77,7 @@ const App = () => {
       <Logos />
       <PersonaSelector />
       <FeatureSection ref={darkSectionRef} />
-      <BentoGrid ref={bentoRef} />
+      <SynergySection ref={synergyRef} />
       <TestimonialGrid />
       <BlogResources />
       <Footer />
