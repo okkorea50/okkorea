@@ -6,7 +6,10 @@ const TestimonialGrid = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-24 relative">
                     <span className="absolute -top-10 left-1/2 -translate-x-1/2 -rotate-6 text-brand-purple font-handwriting text-2xl animate-bounce">See the insights!</span>
-                    <h2 className="text-5xl md:text-6xl font-black text-brand-text text-slate-900">Real results from<br />real customers</h2>
+                    <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-tight">
+                        Real results from<br />
+                        real customers <span className="text-[18px] font-medium text-slate-500 block md:inline md:ml-4">진짜 고객이 증명하는 확실한 결과</span>
+                    </h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

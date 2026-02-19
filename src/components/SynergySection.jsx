@@ -12,28 +12,28 @@ const SynergySection = forwardRef((props, ref) => {
             id: 'suman',
             title: 'Digital Transformation',
             name: 'Suman Silwal (CEO)',
-            desc: '9년 이상의 경험으로 비즈니스 디지털 성숙도를 진단하고 전략적 로드맵을 설계합니다.',
+            desc: '9년 이상의 경험으로 비즈니스\n디지털 성숙도를 진단하고\n전략적 로드맵을 설계합니다.',
             img: imgSuman
         },
         {
             id: 'pratik',
             title: 'Growth & SEO',
             name: 'Pratik Guragain',
-            desc: '검색 최적화와 디지털 캠페인을 통해 글로벌 시장에서의 가시성을 극대화합니다.',
+            desc: '검색 최적화와 디지털 캠페인을\n통해 글로벌 시장에서의 가시성을\n극대화합니다.',
             img: imgPratik
         },
         {
             id: 'sajina',
             title: 'Creative UI/UX',
             name: 'Sajina Silwal',
-            desc: '3년 이상의 디자인 경험으로 아이디어를 직관적이고 매력적인 인터페이스로 구현합니다.',
+            desc: '3년 이상의 디자인 경험으로\n아이디어를 직관적이고 매력적인\n인터페이스로 구현합니다.',
             img: imgSajina
         },
         {
             id: 'pralhad',
             title: 'International Business',
             name: 'Pralhad Sedhai',
-            desc: '10년 이상의 기술 컨설팅 경험으로 글로벌 시스템 통합 및 리스크 관리를 지원합니다.',
+            desc: '10년 이상의 기술 컨설팅 경험으로 글로벌\n시스템 통합 및 리스크 관리를 지원합니다.',
             img: imgPralhad
         }
     ];
@@ -164,6 +164,7 @@ const SynergySection = forwardRef((props, ref) => {
                     color: #94a3b8;
                     line-height: 1.6;
                     font-weight: 500;
+                    white-space: pre-line;
                 }
             `}</style>
 
