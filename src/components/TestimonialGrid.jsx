@@ -53,7 +53,8 @@ const TestimonialGrid = () => {
                         <div className="text-xl font-medium text-slate-900 leading-relaxed">
                             <p>"The New Standard of Visa Support: Expert-led & Lightning-fast."</p>
                             <p className="text-sm text-slate-500 mt-2 font-normal">
-                                "기존 대행사와는 차원이 다릅니다. 전문가들이 이끄는 철저하고 신속한 비자 서류 준비로 걱정할 필요가 없었습니다."
+                                "기존 대행사와는 차원이 다릅니다. 전문가들이 이끄는 철저하고 신속한<br />
+                                비자 서류 준비로 걱정할 필요가 없었습니다."
                             </p>
                         </div>
                         <div className="flex items-center gap-3 mt-6">
@@ -81,26 +82,31 @@ const TestimonialGrid = () => {
 
                     {/* Row 3 */}
                     <div className="bg-[#E9D5FF] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">9<span className="text-2xl align-top">x</span></div>
-                        <div className="font-medium text-slate-800">ROI on Tuition</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Avg. 1st Year</div>
+                        <div className="text-3xl font-black text-slate-900 tracking-tighter">E-7-1 ~ E-7-4</div>
+                        <div className="font-medium text-slate-800 leading-tight">Ready-To-Go Solution with Legal Experts</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">AVG 95% Approved</div>
                     </div>
 
                     <div className="bg-[#FBCFE8] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">4<span className="text-2xl align-top">x</span></div>
+                        <div className="text-4xl font-black text-slate-900 tracking-tighter">30%-80%</div>
                         <div className="font-medium text-slate-800">Scholarship Base</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Founding</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">From Banks or Schools</div>
                     </div>
 
                     <div className="bg-[#F8FAFC] rounded-3xl p-8 col-span-1 md:col-span-2 flex flex-col justify-center min-h-[240px] border border-slate-100 px-12">
-                        <p className="text-xl font-medium text-slate-900 leading-relaxed">
-                            "We created super-tailored settlement plans for our family, freeing us to focus on enjoying Seoul."
-                        </p>
+                        <div className="text-xl font-medium text-slate-900 leading-relaxed">
+                            <p>"We created super-tailored settlement plans for you and your family"</p>
+                            <p className="text-sm text-slate-500 mt-2 font-normal">
+                                "당신과 당신의 가족을 위해, 세상에 단 하나뿐인 초정밀 맞춤형 정착 플랜을 설계했습니다."
+                            </p>
+                        </div>
                         <div className="flex items-center gap-3 mt-6">
-                            <div className="w-10 h-10 bg-slate-300 rounded-full flex-shrink-0"></div>
+                            <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-2xl flex-shrink-0">
+                                👨‍👩‍👧‍👦
+                            </div>
                             <div>
                                 <div className="font-bold text-sm text-slate-900">David & Lisa</div>
-                                <div className="text-xs text-slate-500">Expats from UK</div>
+                                <div className="text-xs text-slate-500">Family from India</div>
                             </div>
                         </div>
                     </div>
