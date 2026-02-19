@@ -9,6 +9,13 @@ const networkCountries = [
     "미국", "일본", "싱가폴", "말레이시아", "튀르키예"
 ];
 
+const partnerList = [
+    "Samsung", "Hyundai", "LG Electronics", "SK Telecom", "Naver",
+    "Kakao", "Coupang", "Woowa Bros", "Line", "Toss",
+    "Google Korea", "AWS", "Microsoft", "Oracle", "Meta",
+    "Partner A", "Partner B", "Partner C", "Partner D", "Partner E"
+];
+
 const getCountryCode = (name) => {
     const codes = {
         "중국": "cn", "필리핀": "ph", "인도네시아": "id", "베트남": "vn", "몽골": "mn",
@@ -155,7 +162,7 @@ const PersonaSelector = () => {
 
                 <div
                     ref={sectionRef}
-                    className={`bg-white rounded-[2rem] shadow-2xl border border-slate-100 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : activeTab === 'Networks' ? 'max-w-5xl mx-auto p-8' : 'w-full p-6 md:p-10'
+                    className={`bg-white rounded-[2rem] shadow-2xl border border-slate-100 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : (activeTab === 'Networks' || activeTab === 'Partners') ? 'max-w-5xl mx-auto p-8' : 'w-full p-6 md:p-10'
                         }`}
                 >
                     {activeTab === 'Achievement' ? (
@@ -194,6 +201,21 @@ const PersonaSelector = () => {
                                         </div>
                                         <span className="font-bold text-slate-700 group-hover:text-brand-purple transition-colors">{country}</span>
                                     </div>
+                                ))}
+                            </div>
+                        </div>
+                    ) : activeTab === 'Partners' ? (
+                        <div key="partners-wall" className="w-full h-full animate-fade-in text-center flex flex-col items-center justify-center">
+                            <p className="text-slate-500 mb-10 font-medium italic">함께 성장하는 소중한 파트너사입니다.</p>
+                            <div className="flex flex-wrap justify-center gap-4 max-w-4xl">
+                                {partnerList.map((partner, idx) => (
+                                    <span
+                                        key={idx}
+                                        className={`inline-block px-6 py-3 bg-white border border-slate-100 rounded-full text-sm font-bold text-slate-600 shadow-sm transition-all duration-500 hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/5 hover:-translate-y-1 hover:shadow-md cursor-default ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        style={{ animationDelay: `${idx * 50}ms` }}
+                                    >
+                                        {partner}
+                                    </span>
                                 ))}
                             </div>
                         </div>
