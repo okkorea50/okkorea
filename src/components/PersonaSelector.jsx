@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GraduationCap, Briefcase, Rocket, Home, Globe } from 'lucide-react';
+import { GraduationCap, Briefcase, Rocket, Home, Globe, X } from 'lucide-react';
 
 const PersonaSelector = () => {
     const [activeTab, setActiveTab] = useState('Who we are');
     const [isVisible, setIsVisible] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
     const sectionRef = useRef(null);
 
     useEffect(() => {
@@ -72,12 +73,13 @@ const PersonaSelector = () => {
             ],
             cta: null, // Removed CTA
             images: [
-                "https://postfiles.pstatic.net/MjAyNjAyMTlfMzgg/MDAxNzcxNDk1MjYzMjc2.owB0wA8HxEov_Cd1yxou7vBPYXSX26MctpO0M-2V_FIg.mAZgor8SJa5mUi2XujqKBFZnsDdAwVlj56W2x9i9wLIg.PNG/chrome_0VSDJLIqAq.png?type=w966",
-                "https://postfiles.pstatic.net/MjAyNjAyMTlfMjc0/MDAxNzcxNDk1MjYzMjcx.VXQEjlwwKcUKGoLWFJzd1PhvwRR4hqF6VO4QHCiOMmUg.1EGd-73Z5M9N1cLmJG8sNk4BkHIPXgl6iVf-gqNkakAg.PNG/chrome_I19ec6vGF2.png?type=w966",
-                "https://postfiles.pstatic.net/MjAyNjAyMTlfNzcg/MDAxNzcxNDk1MjYzMjY3.ClqKqMTZtcbf7vD_3KsMKJuQS6e8_1Pa89mXRw1zYkwg.-FOTBIaBiXBJ5e0xPZwEoqguyNgGiGt_sX8F5Hm4GFMg.PNG/chrome_IzzvVoOw8G.png?type=w966",
-                "https://postfiles.pstatic.net/MjAyNjAyMTlfMjM3/MDAxNzcxNDk1MjYzMjcy.6JzY3a-Hl2WBdyHJAFzVN03lnvOiRNJkP9DNCUXAuiog.suOPviQZzhNnFRn9HweRwopZB1VfP82tCfzxgNAI-tEg.PNG/chrome_rUjnPyFKWJ.png?type=w966"
-            ],
-            icon: <Rocket size={80} className="text-rose-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
+                images: [
+                    "https://postfiles.pstatic.net/MjAyNjAyMTlfMzgg/MDAxNzcxNDk1MjYzMjc2.owB0wA8HxEov_Cd1yxou7vBPYXSX26MctpO0M-2V_FIg.mAZgor8SJa5mUi2XujqKBFZnsDdAwVlj56W2x9i9wLIg.PNG/chrome_0VSDJLIqAq.png?type=w966",
+                    "https://postfiles.pstatic.net/MjAyNjAyMTlfMjc0/MDAxNzcxNDk1MjYzMjcx.VXQEjlwwKcUKGoLWFJzd1PhvwRR4hqF6VO4QHCiOMmUg.1EGd-73Z5M9N1cLmJG8sNk4BkHIPXgl6iVf-gqNkakAg.PNG/chrome_I19ec6vGF2.png?type=w3840",
+                    "https://postfiles.pstatic.net/MjAyNjAyMTlfNzcg/MDAxNzcxNDk1MjYzMjY3.ClqKqMTZtcbf7vD_3KsMKJuQS6e8_1Pa89mXRw1zYkwg.-FOTBIaBiXBJ5e0xPZwEoqguyNgGiGt_sX8F5Hm4GFMg.PNG/chrome_IzzvVoOw8G.png?type=w3840",
+                    "https://postfiles.pstatic.net/MjAyNjAyMTlfMjM3/MDAxNzcxNDk1MjYzMjcy.6JzY3a-Hl2WBdyHJAFzVN03lnvOiRNJkP9DNCUXAuiog.suOPviQZzhNnFRn9HweRwopZB1VfP82tCfzxgNAI-tEg.PNG/chrome_rUjnPyFKWJ.png?type=w3840"
+                ],
+                icon: <Rocket size={80} className="text-rose-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
         'Networks': {
             title: "Seamless relocation\nfor your loved ones",
@@ -140,12 +142,13 @@ const PersonaSelector = () => {
                                 {currentContent.images.map((img, i) => (
                                     <div
                                         key={i}
-                                        className="relative group rounded-2xl border-4 border-slate-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] bg-white overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-yellow-400 hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] cursor-pointer flex items-center justify-center p-2"
+                                        onClick={() => setSelectedImage(img)}
+                                        className="relative group rounded-2xl border-4 border-slate-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] bg-white overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-yellow-400 hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] cursor-zoom-in flex items-center justify-center p-2"
                                     >
                                         <img
                                             src={img}
                                             alt={`Achievement Chart ${i + 1}`}
-                                            className="w-full h-full object-contain"
+                                            className="w-full h-full object-contain pointer-events-none"
                                         />
                                     </div>
                                 ))}
@@ -203,6 +206,26 @@ const PersonaSelector = () => {
                     )}
                 </div>
             </div>
+
+            {/* Lightbox Modal */}
+            {selectedImage && (
+                <div
+                    className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in"
+                    onClick={() => setSelectedImage(null)}
+                >
+                    <button
+                        className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
+                        onClick={() => setSelectedImage(null)}
+                    >
+                        <X size={48} />
+                    </button>
+                    <img
+                        src={selectedImage}
+                        alt="Full size view"
+                        className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                    />
+                </div>
+            )}
         </section>
     );
 };
