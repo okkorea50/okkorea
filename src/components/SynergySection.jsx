@@ -20,7 +20,7 @@ const SynergySection = forwardRef((props, ref) => {
             id: 'pratik',
             title: 'Growth & SEO',
             name: 'Pratik Guragain | SEO Specialist',
-            desc: '검색 최적화 및 전략적 온라인 캠페인을 통해 브랜드의 글로벌 가시성을 확보합니다.',
+            desc: '브랜드의 가시성을 확보하고 최고의 마케팅으로 수익실현',
             icon: '📈',
             img: imgPratik
         },
