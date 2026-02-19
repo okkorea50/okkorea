@@ -151,11 +151,6 @@ const SynergySection = forwardRef((props, ref) => {
                     text-align: left;
                 }
 
-                .card-icon-top {
-                    font-size: 2.8rem;
-                    margin-bottom: auto;
-                    filter: drop-shadow(0 0 10px rgba(124, 77, 255, 0.3));
-                }
 
                 .card-content h3 {
                     font-size: 0.9rem;
@@ -195,7 +190,6 @@ const SynergySection = forwardRef((props, ref) => {
                             style={{ backgroundImage: `url(${partner.img})` }}
                         />
                         <div className="card-content">
-                            <div className="card-icon-top">{partner.icon}</div>
                             <h3>{partner.title}</h3>
                             <p className="member-name">{partner.name}</p>
                             <p className="member-desc">{partner.desc}</p>
