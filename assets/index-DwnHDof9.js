@@ -17,7 +17,8 @@ Error generating stack: `+a.message+`
 05 한국산업인력공단 K-move 사업`,iconColor:"bg-brand-purple/40"},{title:"2025",desc:`01 국내 대학 해외거점화 연구용역
 02 외국인 근로자의 학생 전환 연구 용역
 03 외국인 유학생 모집 및 유치 해외 거점화 사업
-     (네팔,베트남,캄보디아,태국,인도,싱가폴, 방글라데시, 스리랑카, 미얀마, 라오스, 몽골 등 현지 네트워크 구축)
+     (네팔,베트남,캄보디아,태국,인도,싱가폴, 방글라데시, 스리랑카, 미얀마, 
+       라오스, 몽골 등 현지 네트워크 구축)
 04 KF24 BIZ 시작
 05 자동차 판금 도장, 부품 제조원, 요양보호사 연구용역, 김포대학 
      외국인 지원`,iconColor:"bg-brand-purple/50"}],cta:null,image:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",icon:A.jsx(s2,{size:80,className:"text-brand-purple mx-auto mb-6 opacity-80",strokeWidth:1})},History:{title:`Land your dream job
