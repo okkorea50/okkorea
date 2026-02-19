@@ -190,7 +190,8 @@ const PersonaSelector = () => {
                                 {networkCountries.map((country, idx) => (
                                     <div
                                         key={idx}
-                                        className="flex flex-col items-center group transition-all duration-300 hover:-translate-y-2"
+                                        className={`flex flex-col items-center group transition-all duration-300 hover:-translate-y-2 ${isVisible ? 'animate-pop-in' : 'opacity-0'}`}
+                                        style={{ animationDelay: `${idx * 40}ms` }}
                                     >
                                         <div className="relative mb-4 w-20 h-14 overflow-hidden rounded-lg shadow-md border border-slate-100 group-hover:shadow-xl group-hover:border-brand-purple/30 transition-all">
                                             <img
@@ -211,9 +212,9 @@ const PersonaSelector = () => {
                                 {partnerList.map((partner, idx) => (
                                     <span
                                         key={idx}
-                                        className={`inline-block px-6 py-3 bg-white border border-slate-100 rounded-full text-sm font-bold text-slate-600 shadow-[0_2px_5px_rgba(0,0,0,0.05)] transition-all duration-[400ms] hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/5 hover:-translate-y-[5px] hover:shadow-[0_8px_15px_rgba(106,90,205,0.2)] cursor-default ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                        className={`inline-block px-6 py-3 bg-white border border-slate-100 rounded-full text-sm font-bold text-slate-600 shadow-[0_2px_5px_rgba(0,0,0,0.05)] transition-all duration-[400ms] hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/5 hover:-translate-y-[5px] hover:shadow-[0_8px_15px_rgba(106,90,205,0.2)] cursor-default ${isVisible ? 'animate-pop-in' : 'opacity-0'}`}
                                         style={{
-                                            animationDelay: `${idx * 50}ms`,
+                                            animationDelay: `${idx * 40}ms`,
                                             transitionTimingFunction: 'cubic-bezier(0.165, 0.84, 0.44, 1)'
                                         }}
                                     >
