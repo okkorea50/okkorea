@@ -81,10 +81,10 @@ const TestimonialGrid = () => {
                     </div>
 
                     {/* Row 3 */}
-                    <div className="bg-[#E9D5FF] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-3xl font-black text-slate-900 tracking-tighter">E-7-1 ~ E-7-4</div>
-                        <div className="font-medium text-slate-800 leading-tight">Ready-To-Go Solution with Legal Experts</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">AVG 95% Approved</div>
+                    <div className="bg-[#080812] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
+                        <div className="text-3xl font-black text-white tracking-tighter">E-7-1 ~ E-7-4</div>
+                        <div className="font-medium text-slate-300 leading-tight">Ready-To-Go Solution with Legal Experts</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-400">AVG 95% Approved</div>
                     </div>
 
                     <div className="bg-[#FBCFE8] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
