@@ -147,7 +147,7 @@ const PersonaSelector = () => {
                                         <img
                                             src={img}
                                             alt={`Achievement Chart ${i + 1}`}
-                                            className="w-full h-full object-contain pointer-events-none"
+                                            className="w-1/2 h-1/2 object-contain pointer-events-none"
                                             referrerPolicy="no-referrer"
                                         />
                                     </div>
