@@ -148,6 +148,7 @@ const PersonaSelector = () => {
                                             src={img}
                                             alt={`Achievement Chart ${i + 1}`}
                                             className="w-full h-full object-contain pointer-events-none"
+                                            referrerPolicy="no-referrer"
                                         />
                                     </div>
                                 ))}
