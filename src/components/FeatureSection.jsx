@@ -54,8 +54,8 @@ const FeatureSection = forwardRef((props, ref) => {
                                 className="w-full h-full object-cover"
                             />
                         </div>
-                        <div className="space-y-2">
-                            <h3 className="text-3xl md:text-4xl font-bold text-white leading-[1.1]">
+                        <div className="space-y-1">
+                            <h3 className="text-base font-bold text-white leading-tight">
                                 Director<br />
                                 Brian Kim
                             </h3>
