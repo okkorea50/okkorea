@@ -137,7 +137,7 @@ const PersonaSelector = () => {
                                         className={`flex gap-4 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                                         style={{ animationDelay: `${idx * 150}ms` }}
                                     >
-                                        <div className="w-1.5 rounded-full h-auto bg-[#8c52ef] shrink-0"></div>
+                                        <div className="w-1 rounded-full h-auto bg-[#8c52ef] shrink-0"></div>
                                         <div>
                                             <h4 className="font-bold text-lg mb-1 text-slate-800">{benefit.title}</h4>
                                             <p className="text-slate-500 text-sm whitespace-pre-line">{benefit.desc}</p>
