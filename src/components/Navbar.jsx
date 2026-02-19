@@ -18,7 +18,7 @@ const Navbar = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
 
     const navLinks = [
-        { name: 'Home', href: '/' },
+        { name: 'Home', href: '/okkorea/' },
         { name: 'Job orders', href: '#resources' },
         { name: 'Visa consulting', href: '#footer' },
     ];
@@ -27,7 +27,7 @@ const Navbar = () => {
         <nav className="fixed top-0 left-0 w-full px-6 md:px-8 py-4 flex justify-between items-center z-50 backdrop-blur-md bg-[#0B0C15]/80 border-b border-white/10 transition-all duration-700">
 
             {/* Brand Logo */}
-            <a href="/" className="text-base font-bold tracking-tight flex items-center gap-2 z-50 relative">
+            <a href="/okkorea/" className="text-base font-bold tracking-tight flex items-center gap-2 z-50 relative">
                 <img src={`${import.meta.env.BASE_URL}oklogo.png`} alt="OK KOREA Logo" className="w-8 h-8 object-contain" />
                 <span className="text-white">OK KOREA</span>
             </a>
