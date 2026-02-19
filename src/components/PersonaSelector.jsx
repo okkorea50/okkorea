@@ -77,7 +77,7 @@ const PersonaSelector = () => {
     return (
         <section className="py-20 px-6 bg-slate-50">
             <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-16">
+                <div className="text-center mb-8">
                     <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight text-slate-900">
                         Built to empower<br />international talent like you
                     </h2>
@@ -100,8 +100,8 @@ const PersonaSelector = () => {
                     </div>
                 </div>
 
-                <div className="bg-white rounded-[2rem] p-8 md:p-16 shadow-2xl border border-slate-100 min-h-[500px]">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center h-full">
+                <div className="bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-stretch h-full">
                         <div className="space-y-6 animate-fade-in key={activeTab}">
                             <h3 className="text-3xl font-bold whitespace-pre-line text-slate-900">{currentContent.title}</h3>
 
@@ -124,7 +124,7 @@ const PersonaSelector = () => {
                             )}
                         </div>
 
-                        <div className="bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-[400px] flex items-center justify-center animate-slide-up key={activeTab + '-img'}">
+                        <div className="bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center animate-slide-up key={activeTab + '-img'}">
                             {currentContent.image ? (
                                 <img
                                     src={currentContent.image}
