@@ -142,12 +142,12 @@ const PersonaSelector = () => {
                                     <div
                                         key={i}
                                         onClick={() => setSelectedImage(img)}
-                                        className="relative group rounded-2xl border-4 border-slate-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] bg-white overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-yellow-400 hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] cursor-zoom-in flex items-center justify-center p-2"
+                                        className="relative group aspect-square rounded-2xl border-4 border-slate-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] bg-white overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-yellow-400 hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] cursor-zoom-in"
                                     >
                                         <img
                                             src={img}
                                             alt={`Achievement Chart ${i + 1}`}
-                                            className="w-1/2 h-1/2 object-contain pointer-events-none"
+                                            className="w-full h-full object-cover pointer-events-none"
                                             referrerPolicy="no-referrer"
                                         />
                                     </div>
