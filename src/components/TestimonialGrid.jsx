@@ -95,7 +95,7 @@ const TestimonialGrid = () => {
 
                     <div className="bg-[#F8FAFC] rounded-3xl p-8 col-span-1 md:col-span-2 flex flex-col justify-center min-h-[240px] border border-slate-100 px-12">
                         <div className="leading-relaxed">
-                            <p className="text-lg font-medium text-slate-900">"We created super-tailored settlement plans for you and your family"</p>
+                            <p className="text-base font-medium text-slate-900">"We created super-tailored settlement plans for you and your family"</p>
                             <p className="text-xs text-slate-500 mt-1 font-normal italic">
                                 "당신과 당신의 가족을 위해, 세상에 단 하나뿐인 초정밀 맞춤형 정착 플랜을 설계했습니다."
                             </p>
