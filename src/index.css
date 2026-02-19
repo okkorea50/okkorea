@@ -135,7 +135,7 @@
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.5s ease-out forwards;
+  animation: fade-in-up 1.2s ease-out forwards;
 }
 
 @keyframes slide-in-right {
@@ -151,5 +151,5 @@
 }
 
 .animate-slide-in-right {
-  animation: slide-in-right 0.8s ease-out forwards;
+  animation: slide-in-right 1.5s ease-out forwards;
 }
