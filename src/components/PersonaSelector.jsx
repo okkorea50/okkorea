@@ -70,12 +70,12 @@ const PersonaSelector = () => {
                 { title: "OASIS Program Guide", desc: "Step-by-step startup visa (D-8-4) roadmap.", iconColor: "bg-rose-200" },
                 { title: "Global Talent Pool", desc: "Hire international talent compliant with regulations.", iconColor: "bg-orange-200" }
             ],
-            cta: "Start Your Business",
+            cta: null, // Removed CTA
             images: [
-                "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80",
-                "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=80",
-                "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&q=80",
-                "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80"
+                "/okkorea/images/chart_1.png",
+                "/okkorea/images/chart_2.png",
+                "/okkorea/images/chart_1.png",
+                "/okkorea/images/chart_2.png"
             ],
             icon: <Rocket size={80} className="text-rose-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
@@ -133,67 +133,74 @@ const PersonaSelector = () => {
                     </div>
                 </div>
 
-                <div ref={sectionRef} className="bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-stretch h-full">
-                        <div key={activeTab} className="space-y-6 animate-fade-in">
-                            <h3 className="text-3xl font-bold whitespace-pre-line text-slate-900">{currentContent.title}</h3>
-
-                            <div className="space-y-4">
-                                {currentContent.benefits.map((benefit, idx) => (
+                <div ref={sectionRef} className="bg-white rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-100 min-h-[600px]">
+                    {activeTab === 'Achievement' ? (
+                        <div key="achievement-grid" className="w-full h-full animate-fade-in">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+                                {currentContent.images.map((img, i) => (
                                     <div
-                                        key={idx}
-                                        className={`flex gap-4 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                                        style={{ animationDelay: `${idx * 150}ms` }}
+                                        key={i}
+                                        className="relative group rounded-2xl border-4 border-slate-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] bg-white overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-yellow-400 hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] cursor-pointer flex items-center justify-center p-2"
                                     >
-                                        <div className="w-1 rounded-full h-auto bg-[#8c52ef] shrink-0"></div>
-                                        <div>
-                                            <h4 className="font-bold text-lg mb-1 text-slate-800">{benefit.title}</h4>
-                                            <p className="text-slate-500 text-sm whitespace-pre-line">{benefit.desc}</p>
-                                        </div>
+                                        <img
+                                            src={img}
+                                            alt={`Achievement Chart ${i + 1}`}
+                                            className="w-full h-full object-contain"
+                                        />
                                     </div>
                                 ))}
                             </div>
-
-                            {currentContent.cta && (
-                                <button className="mt-8 px-6 py-3 border border-slate-200 rounded-lg font-bold text-sm hover:border-brand-purple hover:text-brand-purple text-slate-700 transition-colors">
-                                    {currentContent.cta}
-                                </button>
-                            )}
                         </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-stretch h-full">
+                            <div key={activeTab} className="space-y-6 animate-fade-in">
+                                <h3 className="text-3xl font-bold whitespace-pre-line text-slate-900">{currentContent.title}</h3>
 
-                        <div key={activeTab + '-img'} className={`bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
-                            {currentContent.images ? (
-                                <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
-                                    {currentContent.images.map((img, i) => (
-                                        <div key={i} className="overflow-hidden">
-                                            <img
-                                                src={img}
-                                                alt={`Achievement ${i + 1}`}
-                                                className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                                            />
+                                <div className="space-y-4">
+                                    {currentContent.benefits.map((benefit, idx) => (
+                                        <div
+                                            key={idx}
+                                            className={`flex gap-4 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                            style={{ animationDelay: `${idx * 150}ms` }}
+                                        >
+                                            <div className="w-1 rounded-full h-auto bg-[#8c52ef] shrink-0"></div>
+                                            <div>
+                                                <h4 className="font-bold text-lg mb-1 text-slate-800">{benefit.title}</h4>
+                                                <p className="text-slate-500 text-sm whitespace-pre-line">{benefit.desc}</p>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
-                            ) : currentContent.image ? (
-                                <img
-                                    src={currentContent.image}
-                                    alt={currentContent.title}
-                                    className="w-full h-full object-cover animate-ken-burns"
-                                />
-                            ) : (
-                                <>
-                                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
-                                    <div className="relative z-10 text-center">
-                                        {currentContent.icon}
-                                        <div className="w-64 h-2 bg-slate-200 rounded-full mx-auto mb-3 overflow-hidden">
-                                            <div className={`w-2/3 h-full rounded-full animate-pulse ${currentContent.color.replace('bg-', 'bg-')}`}></div>
+
+                                {currentContent.cta && (
+                                    <button className="mt-8 px-6 py-3 border border-slate-200 rounded-lg font-bold text-sm hover:border-brand-purple hover:text-brand-purple text-slate-700 transition-colors">
+                                        {currentContent.cta}
+                                    </button>
+                                )}
+                            </div>
+
+                            <div key={activeTab + '-img'} className={`bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
+                                {currentContent.image ? (
+                                    <img
+                                        src={currentContent.image}
+                                        alt={currentContent.title}
+                                        className="w-full h-full object-cover animate-ken-burns"
+                                    />
+                                ) : (
+                                    <>
+                                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+                                        <div className="relative z-10 text-center">
+                                            {currentContent.icon}
+                                            <div className="w-64 h-2 bg-slate-200 rounded-full mx-auto mb-3 overflow-hidden">
+                                                <div className={`w-2/3 h-full rounded-full animate-pulse ${currentContent.color.replace('bg-', 'bg-')}`}></div>
+                                            </div>
+                                            <div className="w-48 h-2 bg-slate-200 rounded-full mx-auto"></div>
                                         </div>
-                                        <div className="w-48 h-2 bg-slate-200 rounded-full mx-auto"></div>
-                                    </div>
-                                </>
-                            )}
+                                    </>
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </section>
