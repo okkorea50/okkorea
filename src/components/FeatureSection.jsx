@@ -30,7 +30,7 @@ const FeatureSection = forwardRef((props, ref) => {
     ];
 
     return (
-        <section ref={ref} id="features" className="py-32 px-6 bg-brand-dark text-white overflow-hidden relative">
+        <section ref={ref} id="features" className="relative pt-20 md:pt-32 pb-12 md:pb-16 overflow-hidden">
             {/* Background Glows for Dark Mode */}
             <div className="absolute top-1/4 right-0 w-[800px] h-[800px] bg-brand-purple/10 rounded-full blur-[150px] pointer-events-none"></div>
 
