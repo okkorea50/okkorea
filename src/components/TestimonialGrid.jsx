@@ -33,7 +33,8 @@ const TestimonialGrid = () => {
                         <div className="text-xl font-medium text-slate-900 leading-relaxed relative z-10">
                             <p>"OK KOREA has helped revive our recruitment pipeline. We found 5 incredible developers in just 2 weeks!"</p>
                             <p className="text-sm text-slate-500 mt-2 font-normal">
-                                "OK KOREA 덕분에 정체되었던 채용에 다시 활기가 돌기 시작했습니다. 단 2주 만에 실력이 검증된 개발자 5명을 채용하는 성과를 거뒀습니다!"
+                                "OK KOREA 덕분에 정체되었던 채용에 다시 활기가 돌기 시작했습니다.<br />
+                                단 2주 만에 실력이 검증된 개발자 5명을 채용하는 성과를 거뒀습니다!"
                             </p>
                         </div>
                         <div className="flex items-center gap-3 mt-6">
@@ -49,28 +50,33 @@ const TestimonialGrid = () => {
 
                     {/* Row 2 */}
                     <div className="bg-[#F8FAFC] rounded-3xl p-8 col-span-1 md:col-span-2 flex flex-col justify-center min-h-[240px] border border-slate-100 px-12">
-                        <p className="text-xl font-medium text-slate-900 leading-relaxed">
-                            "Having the ability to automate visa paperwork with AI guidance was a huge upgrade from typical agencies."
-                        </p>
+                        <div className="text-xl font-medium text-slate-900 leading-relaxed">
+                            <p>"The New Standard of Visa Support: Expert-led & Lightning-fast."</p>
+                            <p className="text-sm text-slate-500 mt-2 font-normal">
+                                "기존 대행사와는 차원이 다릅니다. 전문가들이 이끄는 철저하고 신속한 비자 서류 준비로 걱정할 필요가 없었습니다."
+                            </p>
+                        </div>
                         <div className="flex items-center gap-3 mt-6">
-                            <div className="w-10 h-10 bg-slate-300 rounded-full flex-shrink-0"></div>
+                            <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-2xl flex-shrink-0">
+                                👨‍🎓
+                            </div>
                             <div>
                                 <div className="font-bold text-sm text-slate-900">Michael Chang</div>
-                                <div className="text-xs text-slate-500">Student, Yonsei Univ.</div>
+                                <div className="text-xs text-slate-500">Student, China</div>
                             </div>
                         </div>
                     </div>
 
                     <div className="bg-[#FDE047] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">2<span className="text-2xl align-top">mo</span></div>
+                        <div className="text-4xl font-black text-slate-900 tracking-tighter line-clamp-2">2-3 weeks <span className="text-2xl align-top">faster</span></div>
                         <div className="font-medium text-slate-800">Saved on process</div>
                         <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Fast Track</div>
                     </div>
 
                     <div className="bg-[#FBCFE8] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">Top<span className="text-2xl align-top">10</span></div>
+                        <div className="text-5xl font-black text-slate-900 tracking-tighter">Top<span className="text-2xl align-top">15</span></div>
                         <div className="font-medium text-slate-800">Career Placement</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Major Firms</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">IN SEOUL and 5 Metropolitan cities in KOREA</div>
                     </div>
 
                     {/* Row 3 */}
