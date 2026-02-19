@@ -48,15 +48,17 @@ const PersonaSelector = () => {
             icon: <GraduationCap size={80} className="text-brand-purple mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
         'History': {
-            title: "Land your dream job\nin Korea",
+            title: <>Connecting the World to Korea<br /><span className="text-base font-normal text-slate-500 mt-2 block">세계를 한국과 연결해온 이야기</span></>,
             color: "bg-blue-600",
             lightColor: "bg-blue-600/20",
             borderColor: "border-blue-600/20",
             benefits: [
-                { title: "Resume Optimization", desc: "Tailor your CV to Korean standards instantly.", iconColor: "bg-blue-200" },
-                { title: "Visa Sponsorship Match", desc: "Find companies willing to sponsor E-7 visas.", iconColor: "bg-green-200" }
+                { title: "1999 ~ 2012: Pioneering Global Education & Building an Asia-Centric Network", desc: "글로벌 교육 개척 및 아시아 중심 네트워크 구축", iconColor: "bg-blue-200" },
+                { title: "2013 ~ 2019: Exporting the K-Education System & Accelerating International Talent Recruitment", desc: "K-교육 시스템 수출 및 글로벌 우수 인재 유치 가속화", iconColor: "bg-blue-300" },
+                { title: "2020 ~ Present: Expanding Global Partnerships & Launching the Integrated K-Education Platform", desc: "글로벌 파트너십 확장 및 K-Education 통합 지원 플랫폼 론칭", iconColor: "bg-blue-400" }
             ],
-            cta: "Find Jobs Now",
+            cta: null,
+            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             icon: <Briefcase size={80} className="text-blue-600 mx-auto mb-6 opacity-80" strokeWidth={1} />
         },
         'Achievement': {
