@@ -1,3 +1,6 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { GraduationCap, Briefcase, Rocket, Home, Globe, X } from 'lucide-react';
+
 const networkCountries = [
     "중국", "필리핀", "인도네시아", "베트남", "몽골",
     "태국", "파키스탄", "스리랑카", "인도", "미얀마",
