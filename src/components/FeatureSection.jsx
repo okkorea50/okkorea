@@ -44,6 +44,21 @@ const FeatureSection = forwardRef((props, ref) => {
                         실행력과 전문성을 갖춘 OK KOREA의 핵심 인재들입니다.
                     </p>
 
+                    {/* Director Profile Section */}
+                    <div className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.03] border border-white/5 backdrop-blur-sm animate-fade-in delay-500">
+                        <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-brand-orange/50 shadow-xl flex-shrink-0">
+                            <img
+                                src="/director professor brian kim.png"
+                                alt="Director Brian Kim"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div className="space-y-1">
+                            <h3 className="text-xl font-bold text-white leading-none">Director Brian Kim</h3>
+                            <p className="text-brand-orange text-sm font-black uppercase tracking-widest">General Director</p>
+                        </div>
+                    </div>
+
                     <div className="space-y-4">
                         {[
                             "체계적인 행정 및 리스크 관리",
@@ -103,7 +118,7 @@ const FeatureSection = forwardRef((props, ref) => {
                                     <div className="flex-grow text-center md:text-left space-y-1.5">
                                         <h4 className="text-white font-bold text-lg flex items-center justify-center md:justify-start gap-3">
                                             {member.name}
-                                            <span className="text-[9px] px-2.5 py-0.5 rounded-full bg-brand-purple/20 text-brand-purple font-black uppercase tracking-wider border border-brand-purple/30">
+                                            <span className="text-[9px] px-2.5 py-1 rounded-full bg-brand-purple/40 text-slate-50 font-black uppercase tracking-wider border border-brand-purple/50 shadow-sm leading-none">
                                                 {member.role}
                                             </span>
                                         </h4>
