@@ -10,19 +10,19 @@ const FeatureSection = forwardRef((props, ref) => {
         {
             name: "Ariel",
             role: "Admin Expert",
-            desc: "차분하고 꼼꼼한 행정 전문가. 깔끔하고 정확한 서류 정리로 인기가 높습니다. 자주 옥상에 올라가 머리를 식히곤 합니다.",
+            desc: "차분하고 꼼꼼한 행정 전문가. 깔끔하고 정확한 서류 정리로 인기가 높습니다.\n자주 옥상에 올라가 머리를 식히곤 합니다.",
             img: imgAriel
         },
         {
             name: "Anna",
             role: "Chief Team Leader",
-            desc: "수석 팀장. 열받으면 대표도 못 말리는 그녀이지만, 웃는 모습이 아름답습니다. 국제 교류 및 협력, 국내 업무를 총괄합니다.",
+            desc: "수석 팀장. 열받으면 대표도 못 말리는 그녀이지만, 웃는 모습이 아름답습니다.\n국제 교류 및 협력, 국내 업무를 총괄합니다.",
             img: imgAnna
         },
         {
             name: "Eric",
             role: "Global Manager",
-            desc: "미국 대학 시절부터 다져진 친화력으로 국내 유학을 담당하며 전국을 누비는 전문가입니다. 본인이 인기남이었다고 합니다.",
+            desc: "미국 대학 시절부터 다져진 친화력으로 국내 유학을 담당하며 전국을 누비는 전문가입니다.\n본인이 인기남이었다고 합니다.",
             img: imgEric
         }
     ];
@@ -107,13 +107,13 @@ const FeatureSection = forwardRef((props, ref) => {
                         </div>
 
                         {/* Full View Body (No Scroll) */}
-                        <div className="p-8 md:p-10 space-y-5">
+                        <div className="p-6 md:p-8 space-y-4">
                             {teamMembers.map((member, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex flex-col md:flex-row items-center md:items-start gap-8 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.05] hover:translate-x-3 transition-all duration-500 group/card"
+                                    className="flex flex-col md:flex-row items-center md:items-start gap-8 p-4 md:p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.05] hover:translate-x-3 transition-all duration-500 group/card"
                                 >
-                                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl overflow-hidden border-2 border-brand-purple/40 flex-shrink-0 group-hover/card:border-brand-orange transition-all duration-700 shadow-2xl relative">
+                                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-2 border-brand-purple/40 flex-shrink-0 group-hover/card:border-brand-orange transition-all duration-700 shadow-2xl relative">
                                         <div className="absolute inset-0 bg-brand-purple/10 group-hover/card:bg-transparent transition-colors"></div>
                                         <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale-[30%] group-hover/card:grayscale-0 transition-all duration-700" />
                                     </div>
@@ -125,7 +125,12 @@ const FeatureSection = forwardRef((props, ref) => {
                                             </span>
                                         </h4>
                                         <p className="text-[#d0d0d0] text-sm leading-relaxed font-medium">
-                                            {member.desc}
+                                            {member.desc.split('\n').map((line, i) => (
+                                                <React.Fragment key={i}>
+                                                    {line}
+                                                    {i < member.desc.split('\n').length - 1 && <br />}
+                                                </React.Fragment>
+                                            ))}
                                         </p>
                                     </div>
                                 </div>
