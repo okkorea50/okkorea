@@ -151,9 +151,9 @@ const Hero = forwardRef((props, ref) => {
 
                 {/* Hero UI Mockup (Parallax) */}
                 <div className="hero-ui relative max-w-5xl mx-auto -mt-[30px]">
-                    {/* Floating Badge - Positioned at extreme top-right of mockup container */}
-                    <div className="absolute top-4 right-4 z-20 animate-bounce duration-[3000ms] cursor-default">
-                        <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-100 flex items-center gap-2 shadow-[0_15px_35px_rgba(0,0,0,0.4)] whitespace-nowrap">
+                    {/* Floating Badge - Positioned OUTSIDE at extreme top-right of mockup container */}
+                    <div className="absolute -top-10 right-0 z-20 animate-bounce duration-[3000ms] cursor-default">
+                        <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 flex items-center gap-2 shadow-[0_10px_25px_rgba(0,0,0,0.4)] whitespace-nowrap">
                             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
                             <span className="text-[12px] font-black text-slate-900 tracking-wide uppercase">Visa Approved</span>
                         </div>
