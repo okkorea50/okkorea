@@ -162,7 +162,7 @@ const PersonaSelector = () => {
 
                 <div
                     ref={sectionRef}
-                    className={`bg-[#13141C] rounded-[2rem] shadow-2xl border border-white/5 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : activeTab === 'Networks' ? 'max-w-4xl mx-auto p-8' : activeTab === 'Partners' ? 'max-w-5xl mx-auto p-8' : 'w-full p-6 md:p-10'
+                    className={`bg-[#13141C] rounded-[2rem] shadow-2xl border border-white/5 min-h-[500px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : activeTab === 'Networks' ? 'max-w-4xl mx-auto p-8' : activeTab === 'Partners' ? 'max-w-5xl mx-auto p-8' : 'w-full p-6 md:p-10'
                         }`}
                 >
                     {activeTab === 'Achievement' ? (
@@ -224,15 +224,15 @@ const PersonaSelector = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-stretch h-full">
-                            <div key={activeTab} className="space-y-6 animate-fade-in">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center h-full">
+                            <div key={activeTab} className="space-y-6 animate-fade-in flex flex-col justify-center">
                                 <h3 className="text-3xl font-bold whitespace-pre-line text-white">{currentContent.title}</h3>
 
                                 <div className="space-y-4">
                                     {currentContent.benefits.map((benefit, idx) => (
                                         <div
                                             key={idx}
-                                            className={`flex gap-4 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                            className={`flex gap-4 hover:bg-white/5 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                                             style={{ animationDelay: `${idx * 150}ms` }}
                                         >
                                             <div className="w-1 rounded-full h-auto bg-brand-purple shrink-0"></div>
