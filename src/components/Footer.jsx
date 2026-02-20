@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HikoreaLogo from '../assets/footer/hikorea.png';
+import VisaPortalLogo from '../assets/footer/visaportal.png';
+import EpsLogo from '../assets/footer/eps.png';
 
 const Footer = ({ showCTA = true }) => {
     return (
@@ -22,9 +25,26 @@ const Footer = ({ showCTA = true }) => {
                 </section>
             )}
 
+            {/* Government Portals Section */}
+            <div className="bg-black py-10 border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 hover:opacity-100 transition-opacity duration-500">
+                        <a href="https://www.hikorea.go.kr/Main.pt" target="_blank" rel="noopener noreferrer" className="grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110">
+                            <img src={HikoreaLogo} alt="Hi Korea" className="h-10 md:h-12 w-auto object-contain" />
+                        </a>
+                        <a href="https://www.visa.go.kr/" target="_blank" rel="noopener noreferrer" className="grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110">
+                            <img src={VisaPortalLogo} alt="Korea Visa Portal" className="h-10 md:h-12 w-auto object-contain" />
+                        </a>
+                        <a href="https://eps.hrdkorea.or.kr/main/intro.do" target="_blank" rel="noopener noreferrer" className="grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110">
+                            <img src={EpsLogo} alt="EPS HRD Korea" className="h-10 md:h-12 w-auto object-contain" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             {/* Footer Text */}
-            <footer className="py-8 bg-black text-slate-600 text-sm border-t border-white/10 text-center">
-                <p>© 2026 OK KOREA Inc.</p>
+            <footer className="py-8 bg-black text-slate-600 text-sm border-t border-white/5 text-center">
+                <p>© Since 2007 OK KOREA Co,.Ltd</p>
             </footer>
         </>
     );
