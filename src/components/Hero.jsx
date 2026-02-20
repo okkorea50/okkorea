@@ -120,17 +120,7 @@ const Hero = forwardRef((props, ref) => {
 
                     <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] text-white">
                         <span ref={titleLine1Ref} className="block">
-                            Step into the
-                            <span className="relative inline-block">
-                                future
-                                {/* Floating Badge - Simplified elongated style above 'future' */}
-                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20 animate-bounce duration-[3000ms] cursor-default">
-                                    <div className="bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10 flex items-center gap-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)] whitespace-nowrap">
-                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
-                                        <span className="text-[12px] font-bold text-white tracking-wide uppercase">Visa Approved</span>
-                                    </div>
-                                </div>
-                            </span>
+                            Step into the future
                         </span>
                         <span ref={titleLine2Ref} className="block mt-2">of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span></span>
                     </h1>
@@ -161,6 +151,14 @@ const Hero = forwardRef((props, ref) => {
 
                 {/* Hero UI Mockup (Parallax) */}
                 <div className="hero-ui relative max-w-5xl mx-auto -mt-[30px]">
+                    {/* Floating Badge - Positioned over woman's picture in mockup */}
+                    <div className="absolute top-[8%] right-[8%] z-20 animate-bounce duration-[3000ms] cursor-default">
+                        <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-100 flex items-center gap-2 shadow-[0_15px_35px_rgba(0,0,0,0.3)] whitespace-nowrap">
+                            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
+                            <span className="text-[12px] font-black text-slate-900 tracking-wide uppercase">Visa Approved</span>
+                        </div>
+                    </div>
+
                     <div className="rounded-2xl border-4 border-white shadow-2xl overflow-hidden bg-white relative z-10">
                         {/* Fixed Alt Text */}
                         <img
