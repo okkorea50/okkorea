@@ -34,21 +34,28 @@ const rawJobs = [
 ];
 
 const jobs = rawJobs.map((line, index) => {
-    // Simple parsing for display
     const parts = line.split(' / ');
     const titlePart = parts[0].split('] ');
     const location = titlePart[0].replace(/.*\[/, '');
     const title = titlePart[1]?.replace(/\s*\(.*\)/, '') || titlePart[0];
     const visa = line.match(/\((E-.*?)\)/)?.[1] || 'E-9';
 
+    // Extract tags from the raw string
+    const tags = [];
+    if (line.includes('기숙사 무')) tags.push('기숙사❌');
+    else if (line.includes('기숙사 유')) tags.push('기숙사🏠');
+    if (line.includes('경력자')) tags.push('경력자우대');
+    if (line.includes('한국어 가능')) tags.push('한국어');
+
     return {
         title: title,
         company: "확인 필요",
         location: location,
         visa: visa,
-        salary: parts[1] || "협의",
+        salary: parts[1] || parts[parts.length - 2] || "협의", // Improved salary extraction
         raw: line,
-        date: new Date(Date.now() - index * 60000).toISOString() // Different timestamps to maintain order
+        tags: tags,
+        date: new Date(Date.now() - index * 60000).toISOString()
     };
 });
 
