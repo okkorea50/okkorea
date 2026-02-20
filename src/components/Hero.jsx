@@ -149,7 +149,7 @@ const Hero = forwardRef((props, ref) => {
                 {/* Hero UI Mockup (Parallax) */}
                 <div className="hero-ui relative max-w-5xl mx-auto -mt-[30px]">
                     {/* Floating Badge moved OUTSIDE and updated for 'cuteness' */}
-                    <div className="absolute -top-8 -left-4 md:-left-8 z-20 bg-white/95 backdrop-blur-sm p-2 px-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 animate-bounce duration-[3000ms] -rotate-[15deg] scale-90 md:scale-100 origin-bottom-right">
+                    <div className="absolute -top-8 -left-4 md:-left-8 z-20 bg-white/95 backdrop-blur-sm p-2 px-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 animate-bounce duration-[3000ms] -rotate-[35deg] scale-90 md:scale-100 origin-bottom-right">
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
                             <CheckCircle2 size={16} />
                         </div>
