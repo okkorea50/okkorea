@@ -138,7 +138,7 @@ const Hero = forwardRef((props, ref) => {
                 </div>
 
                 {/* Hero UI Mockup (Parallax) */}
-                <div className="hero-ui relative max-w-5xl mx-auto">
+                <div className="hero-ui relative max-w-5xl mx-auto -mt-[30px]">
                     <div className="rounded-2xl border-4 border-white shadow-2xl overflow-hidden bg-white">
                         {/* Fixed Alt Text */}
                         <img
