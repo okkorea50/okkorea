@@ -120,22 +120,14 @@ const Hero = forwardRef((props, ref) => {
 
                     <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] text-white">
                         <span ref={titleLine1Ref} className="block">
-                            Step into the f
+                            Step into the
                             <span className="relative inline-block">
-                                uture
-                                {/* Floating Badge - Nested for perfect alignment over 'uture' */}
-                                <div className="absolute -top-14 left-1/2 -translate-x-1/2 z-20 animate-bounce duration-[3000ms] cursor-default">
-                                    <div className="bg-white/95 backdrop-blur-sm p-3 px-5 rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-3 origin-bottom whitespace-nowrap">
-                                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
-                                            <CheckCircle2 size={18} />
-                                        </div>
-                                        <div className="text-left">
-                                            <div className="text-[14px] font-black text-slate-900 leading-none">Visa Approved</div>
-                                            <div className="text-[10px] text-slate-500 font-bold flex items-center gap-1 mt-1">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                                                Just now
-                                            </div>
-                                        </div>
+                                future
+                                {/* Floating Badge - Simplified elongated style above 'future' */}
+                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20 animate-bounce duration-[3000ms] cursor-default">
+                                    <div className="bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10 flex items-center gap-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)] whitespace-nowrap">
+                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
+                                        <span className="text-[12px] font-bold text-white tracking-wide uppercase">Visa Approved</span>
                                     </div>
                                 </div>
                             </span>
