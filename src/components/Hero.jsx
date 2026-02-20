@@ -117,25 +117,30 @@ const Hero = forwardRef((props, ref) => {
 
                 {/* Content Group: Headline -> Subhead -> Buttons */}
                 <div className="flex flex-col items-center gap-6 mb-16 relative">
-                    {/* Floating Badge - Relocated to above 'ure' in 'future' */}
-                    <div className="absolute -top-12 translate-x-1/2 right-[15%] md:right-[38%] z-20 animate-bounce duration-[3000ms]">
-                        <div className="bg-white/95 backdrop-blur-sm p-2 px-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 scale-90 origin-center">
-                            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
-                                <CheckCircle2 size={16} />
-                            </div>
-                            <div className="text-left">
-                                <div className="text-[12px] font-black text-slate-900 whitespace-nowrap leading-none">Visa Approved</div>
-                                <div className="text-[10px] text-slate-500 font-bold flex items-center gap-1 mt-0.5">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                                    Just now
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] text-white">
-                        <span ref={titleLine1Ref} className="block">Step into the future</span>
-                        <span ref={titleLine2Ref} className="block">of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span></span>
+                        <span ref={titleLine1Ref} className="block">
+                            Step into the fut
+                            <span className="relative inline-block">
+                                ure
+                                {/* Floating Badge - Nested for perfect alignment over 'ure' */}
+                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20 animate-bounce duration-[3000ms] cursor-default">
+                                    <div className="bg-white/95 backdrop-blur-sm p-1.5 px-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 scale-75 md:scale-90 origin-bottom whitespace-nowrap">
+                                        <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
+                                            <CheckCircle2 size={14} />
+                                        </div>
+                                        <div className="text-left">
+                                            <div className="text-[10px] font-black text-slate-900 leading-none">Visa Approved</div>
+                                            <div className="text-[8px] text-slate-500 font-bold flex items-center gap-1 mt-0.5">
+                                                <span className="w-1 h-1 rounded-full bg-green-500 animate-pulse"></span>
+                                                Just now
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                        </span>
+                        <span ref={titleLine2Ref} className="block mt-2">of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span></span>
                     </h1>
 
                     <p className="text-base text-gray-400 max-w-2xl mx-auto leading-relaxed">
