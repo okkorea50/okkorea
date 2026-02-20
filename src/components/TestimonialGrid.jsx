@@ -17,10 +17,10 @@ const TestimonialGrid = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     {/* Row 1 */}
-                    <div className="bg-[#FEF08A] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">92%<span className="text-2xl align-top">+</span></div>
-                        <div className="font-medium text-slate-800">Visa Approval Rate</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Global Avg: 72%</div>
+                    <div className="yellow-card-style rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px]">
+                        <div className="text-5xl font-black tracking-tighter text-white">92%<span className="text-2xl align-top">+</span></div>
+                        <div className="font-medium">Visa Approval Rate</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50">Global Avg: 72%</div>
                     </div>
 
                     <div className="green-card-style rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px]">
@@ -68,10 +68,10 @@ const TestimonialGrid = () => {
                         </div>
                     </div>
 
-                    <div className="bg-[#FDE047] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-4xl font-black text-slate-900 tracking-tighter line-clamp-2">2-3 weeks <span className="text-2xl align-top">faster</span></div>
-                        <div className="font-medium text-slate-800">Saved on process</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Fast Track</div>
+                    <div className="yellow-card-style rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px]">
+                        <div className="text-4xl font-black tracking-tighter text-white line-clamp-2">2-3 weeks <span className="text-2xl align-top">faster</span></div>
+                        <div className="font-medium leading-tight">Saved on process</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50">Fast Track</div>
                     </div>
 
                     <div className="pink-card-style rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px]">
