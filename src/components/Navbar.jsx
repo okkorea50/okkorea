@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, LogOut, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, logout } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     // Close mobile menu on resize if screen becomes large
     useEffect(() => {
@@ -21,20 +23,23 @@ const Navbar = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
 
     const scrollToSection = (e, id) => {
-        e.preventDefault();
+        if (e) e.preventDefault();
         setIsOpen(false);
+
         const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-            // Update URL hash without reload if possible, or just scroll
-            window.location.hash = `#/${id}`;
+        if (element && location.pathname === '/') {
+            const offset = 100;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         } else {
-            // If not on home page, go home first with the hash
-            window.location.href = `#/`;
-            setTimeout(() => {
-                const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+            navigate(`/?section=${id}`);
         }
     };
 

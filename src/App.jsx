@@ -1,31 +1,35 @@
 import React, { useLayoutEffect, useRef } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-// Components
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Logos from './components/Logos';
-import FeatureSection from './components/FeatureSection';
-import PersonaSelector from './components/PersonaSelector';
-import SynergySection from './components/SynergySection';
-import TestimonialGrid from './components/TestimonialGrid';
-import BlogResources from './components/BlogResources';
-import Footer from './components/Footer';
-
-// Pages
-import AllJobs from './pages/AllJobs';
-import Login from './pages/Login';
-import { AuthProvider } from './context/AuthContext';
+import { HashRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
+// ... rest of imports unchanged
 
 const MainContent = () => {
+  const [searchParams] = useSearchParams();
   const mainRef = useRef(null);
   const heroRef = useRef(null);
   const darkSectionRef = useRef(null);
   const synergyRef = useRef(null);
 
+  useEffect(() => {
+    const sectionId = searchParams.get('section');
+    if (sectionId) {
+      // Small delay to ensure all components and animations are ready
+      const timer = setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offset = 100;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
+
   useLayoutEffect(() => {
+    // ... GSAP code unchanged ...
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
