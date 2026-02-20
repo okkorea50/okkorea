@@ -6,9 +6,9 @@ const BlogResources = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="flex justify-between items-end mb-12">
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-400 mb-2">Level-up your Korea game</h2>
+                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Your Job Orders Here <span className="text-brand-purple">내 직업 찾기</span></h2>
                     </div>
-                    <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm font-bold hover:bg-slate-100 transition-colors text-slate-600">View all articles</button>
+                    <button className="px-6 py-2 bg-[#080812] text-white border border-white/10 rounded-full text-sm font-bold hover:border-brand-purple hover:shadow-[0_0_15px_rgba(124,77,255,0.4)] transition-all duration-300">View all jobs</button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
