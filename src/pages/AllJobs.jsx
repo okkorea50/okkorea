@@ -34,27 +34,28 @@ const AllJobs = () => {
                 </div>
 
                 {loading ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                         {[...Array(15)].map((_, i) => (
-                            <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-4 aspect-[3/2] animate-pulse"></div>
+                            <div key={i} className="bg-white/5 border border-white/10 rounded-xl h-[120px] animate-pulse"></div>
                         ))}
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                         {jobs.map((job) => (
-                            <div key={job.id} className="bg-[#080812] border border-white/10 rounded-xl p-4 aspect-[3/2] flex flex-col justify-between items-start text-left cursor-pointer hover:border-brand-purple/50 hover:shadow-[0_0_15px_rgba(124,77,255,0.2)] transition-all duration-300 group">
+                            <div key={job.id} className="bg-[#12121A] border border-white/5 rounded-xl p-4 flex flex-col justify-between hover:border-brand-purple/50 transition-all duration-300 group hover:-translate-y-1">
                                 <div>
-                                    <div className="flex justify-between w-full items-start">
-                                        <span className="text-[9px] font-bold uppercase tracking-widest text-white/40">{job.location}</span>
-                                        <span className="px-1.5 py-0.5 rounded bg-brand-purple/20 text-brand-purple text-[8px] font-black uppercase">{job.visa}</span>
+                                    <div className="flex justify-between items-center mb-1">
+                                        <span className="text-[10px] font-bold text-brand-purple uppercase tracking-tight">{job.location}</span>
+                                        <span className="text-[9px] font-black text-white/20 uppercase">{job.visa}</span>
                                     </div>
-                                    <h3 className="text-sm font-bold text-white line-clamp-2 mt-2 leading-tight group-hover:text-brand-purple transition-colors">{job.title}</h3>
+                                    <h3 className="text-[14px] font-bold text-white line-clamp-1 group-hover:text-brand-purple transition-colors mb-1">{job.title}</h3>
                                 </div>
-                                <div className="w-full">
-                                    <div className="h-[1px] w-full bg-white/5 mb-3"></div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-[10px] font-bold text-white">{job.salary}</span>
-                                        <span className="text-[8px] text-white/40">{new Date(job.date).toLocaleDateString()}</span>
+                                <div className="mt-auto">
+                                    <div className="text-[12px] font-black text-white mb-2">{job.salary}</div>
+                                    <div className="flex flex-wrap gap-1">
+                                        {(job.tags || []).slice(0, 2).map(tag => (
+                                            <span key={tag} className="px-1.5 py-0.5 rounded-sm bg-white/5 text-white/40 text-[8px] font-bold uppercase tracking-tighter">{tag}</span>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
