@@ -95,7 +95,7 @@ const Hero = forwardRef((props, ref) => {
     }, []);
 
     return (
-        <section id="hero" ref={ref} className="pt-[160px] pb-[100px] px-6 relative overflow-hidden bg-brand-dark text-white">
+        <section id="hero" ref={ref} className="pt-[140px] pb-[80px] px-6 relative overflow-hidden bg-brand-dark text-white">
             {/* Aurora Gradients matches reference */}
             <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/30 rounded-full blur-[120px] mix-blend-screen animate-blob pointer-events-none"></div>
             <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/30 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000 pointer-events-none"></div>
@@ -109,13 +109,13 @@ const Hero = forwardRef((props, ref) => {
 
             <div className="max-w-7xl mx-auto text-center relative z-10 flex flex-col items-center">
                 {/* Top Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 mb-24 border border-white/10 backdrop-blur-sm">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 mb-12 border border-white/10 backdrop-blur-sm">
                     <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
                     <span className="text-sm font-semibold text-brand-textDark">New: 2026 Global Visa Guide Released</span>
                 </div>
 
                 {/* Content Group: Headline -> Subhead -> Buttons */}
-                <div className="flex flex-col items-center gap-6 mb-20">
+                <div className="flex flex-col items-center gap-6 mb-16">
                     <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] text-white overflow-hidden">
                         <span ref={titleLine1Ref} className="block">Step into the future</span>
                         <span ref={titleLine2Ref} className="block">of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span></span>
