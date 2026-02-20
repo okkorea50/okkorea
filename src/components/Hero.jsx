@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect, useState } from 'react';
+import { ArrowRight, Play, CheckCircle2 } from 'lucide-react';
 import { gsap } from 'gsap';
 import { useNavigate } from 'react-router-dom';
 // import HeroImage from '../assets/Hero.png'; // Replaced with direct URL
