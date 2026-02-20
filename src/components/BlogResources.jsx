@@ -30,7 +30,7 @@ const BlogResources = () => {
     ];
 
     const handleViewAll = () => {
-        window.open('/all-jobs', '_blank');
+        window.open('#/all-jobs', '_blank');
     };
 
     return (
