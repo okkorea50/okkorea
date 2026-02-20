@@ -83,7 +83,7 @@ const ConsultationForm = () => {
     };
 
     return (
-        <section id="consultation" className="relative pt-24 pb-8 px-6 md:px-12 bg-[#0B0C15] overflow-hidden">
+        <section id="consultation" className="relative pt-12 pb-20 px-6 md:px-12 bg-[#0B0C15] overflow-hidden">
             {/* Background Glows */}
             <div className="absolute top-1/4 -left-20 w-80 h-80 bg-[#FBBF24]/5 rounded-full blur-[100px]"></div>
             <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#7C3AED]/5 rounded-full blur-[100px]"></div>
