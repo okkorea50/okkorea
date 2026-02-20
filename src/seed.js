@@ -1,57 +1,76 @@
 import { db } from './firebase.js';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 
-const jobs = [
-    {
-        title: "Global Marketing Intern",
-        company: "Seoul Tech Global",
-        location: "Seoul (Gangnam)",
-        type: "Internship",
-        salary: "KRW 2.2M / Month",
-        tags: ["Marketing", "English", "Remote Friendly"],
-        date: new Date().toISOString()
-    },
-    {
-        title: "Junior Backend Developer",
-        company: "K-Soft Solutions",
-        location: "Pangyo Tech Valley",
-        type: "Full-time",
-        salary: "KRW 45M - 55M / Year",
-        tags: ["Node.js", "Firebase", "Visa Support"],
-        date: new Date().toISOString()
-    },
-    {
-        title: "Hospitality Manager",
-        company: "Evergreen Grand Hotel",
-        location: "Jeju Island",
-        type: "Full-time",
-        salary: "KRW 3.5M / Month",
-        tags: ["Hospitality", "Service", "Housing Provided"],
-        date: new Date().toISOString()
-    }
+const rawJobs = [
+    "5. [포천] 철판절곡 및 벤딩 (E-9) / 240만 / 1명",
+    "8. [포천] 음료생산 (E-9) / 기숙사 무 / 230만 / 1명",
+    "10. [포천] 반찬/장신구(수염X) (E-9) / 기숙사 무 / 남 230, 여 220 / 6명",
+    "12. [포천] 한식반찬/밀키트 (E-9) / 기숙사 무 / 남 230, 여 220 / 6명 (돼지고기 취급)",
+    "13. [강화] 화장품 원료생산 (E-7-4R) / 기숙사 유 / 300만 / 4명",
+    "14. [강화] 기계부품제조 (E-7-4R) / 기숙사 무 / 300만 / 1명",
+    "16. [포천] 가구공장(경력자) (E-7-4R) / 기숙사 유 / 220만(기숙사비 공제)",
+    "17. [시흥] 알미늄코팅 (E-9) / 기숙사 유(유료) / 교대 339만 / 주간 240만",
+    "63. [음성] 김치제조 (E-9) / 기숙사 유 / 250-280만 / 남2, 여1",
+    "65. [음성] 원료재생 쇼트설비 (E-9) / 기숙사 유 / 270-300만 / 1명 (파키스탄 제외)",
+    "66. [홍성] 양계장 닭사육 (E-9) / 기숙사 유 / 260만 / 5명",
+    "68. [음성] 톱밥기계/포크레인 (E-9) / 기숙사 유 / 300만(6개월 후 330) / 1명",
+    "70. [음성] 앵글 CNC 경력자 (E-9) / 기숙사 유 / 350-430만 / 1명",
+    "71. [충주] 김 가공 (E-9) / 기숙사 무 / 250만(주 4일) / 2명",
+    "101. [담양] ABS도어 제작 (E-7-4R) / 기숙사 유 / 230-300만 / 2명 (국적무관)",
+    "105. [영암] 선박가공(블럭) (E-7-4R) / 기숙사 무 / 일 11만 / 2명",
+    "107. [김제] 특장차 조립 (E-7-4R) / 기숙사 유 / 250-300만",
+    "108. [광주] 산소/CO2 용접 (E-9) / 기숙사 유 / 300만",
+    "163. [영천] 자동차 부품생산 (E-9) / 기숙사 무 / 340만 / 2명 (한국어 가능자)",
+    "165. [경주] 제설제 생산 (E-9) / 기숙사 무 / 250만 / 2명",
+    "167. [홍천] 육가공(돼지) (E-7-4R) / 기숙사 무 / 216-350만 / 2명",
+    "202. [산청] 과일젤리생산 (E-7-4R) / 기숙사 유 / 280-300만 / 여자 2명 (국적무관)",
+    "204. [고령] CO2용접/파렛트 (E-7-4R) / 기숙사 유 / 230만(6개월 후 300) / 2명",
+    "206, 210. [부산] 수산물포장 (E-9) / 기숙사 무 / 216만",
+    "207. [함안] 목재 포장 (E-7-4R) / 기숙사 무 / 280만 / 1명",
+    "209. [함양] 제품 제조 및 포장 (E-7-4R) / 기숙사 무 / 260-270만 / 2명",
+    "213. [산청] 젤리생산 (E-7-4R) / 기숙사 유 / 250-300만 / 여자 2명",
+    "214. [거창] 인조대리석생산 (E-7-4R) / 기숙사 무 / 216만 / 1명",
+    "216. [고성] 조선 부자재생산 (E-7-4R) / 기숙사 유 / 260-270만"
 ];
 
-async function seed(retries = 5) {
-    for (let i = 0; i < retries; i++) {
-        try {
-            console.log(`📡 Seeding attempt ${i + 1}/${retries}...`);
-            const jobsCol = collection(db, 'jobs');
-            for (const job of jobs) {
-                await addDoc(jobsCol, job);
-                console.log(`   ✅ Added job: ${job.title}`);
-            }
-            console.log("\n✨ Seeding completed successfully!");
-            return;
-        } catch (e) {
-            console.error(`   ⚠️ Attempt ${i + 1} failed: ${e.message}`);
-            if (i < retries - 1) {
-                console.log("   ⏳ Waiting 10 seconds for database provisioning...");
-                await new Promise(r => setTimeout(r, 10000));
-            } else {
-                console.error("\n❌ Maximum retries reached. Please check the Firebase console.");
-            }
+const jobs = rawJobs.map((line, index) => {
+    // Simple parsing for display
+    const parts = line.split(' / ');
+    const titlePart = parts[0].split('] ');
+    const location = titlePart[0].replace(/.*\[/, '');
+    const title = titlePart[1]?.replace(/\s*\(.*\)/, '') || titlePart[0];
+    const visa = line.match(/\((E-.*?)\)/)?.[1] || 'E-9';
+
+    return {
+        title: title,
+        company: "확인 필요",
+        location: location,
+        visa: visa,
+        salary: parts[1] || "협의",
+        raw: line,
+        date: new Date(Date.now() - index * 60000).toISOString() // Different timestamps to maintain order
+    };
+});
+
+async function clearAndSeed() {
+    try {
+        const jobsCol = collection(db, 'jobs');
+        const snapshot = await getDocs(jobsCol);
+
+        console.log("🧹 Clearing old jobs...");
+        for (const oldDoc of snapshot.docs) {
+            await deleteDoc(doc(db, 'jobs', oldDoc.id));
         }
+
+        console.log(`📡 Seeding ${jobs.length} new jobs...`);
+        for (const job of jobs) {
+            await addDoc(jobsCol, job);
+            console.log(`   ✅ Added: ${job.title}`);
+        }
+        console.log("\n✨ Seeding completed successfully!");
+    } catch (e) {
+        console.error("❌ Seeding failed: ", e);
     }
 }
 
-seed();
+clearAndSeed();
