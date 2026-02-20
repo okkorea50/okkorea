@@ -42,19 +42,19 @@ const AllJobs = () => {
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                         {jobs.map((job) => (
-                            <div key={job.id} className="bg-[#12121A] border border-white/5 rounded-lg p-3 flex flex-col justify-between hover:border-brand-purple/50 transition-all duration-300 group hover:-translate-y-0.5 shadow-sm">
+                            <div key={job.id} className="bg-[#12121A] border border-white/5 rounded-lg p-3 flex flex-col justify-between hover:border-[#FBBF24]/50 transition-all duration-300 group hover:-translate-y-0.5 shadow-sm">
                                 <div className="space-y-1">
                                     <div className="flex justify-between items-center">
-                                        <span className="text-[11px] font-black text-brand-purple uppercase tracking-tighter">{job.location}</span>
-                                        <span className="text-[9px] font-bold text-white/20 uppercase">{job.visa}</span>
+                                        <span className="text-[11px] font-black text-[#FBBF24] uppercase tracking-tighter">{job.location}</span>
+                                        <span className="text-[9px] font-extrabold text-[#FBBF24]/40 uppercase tracking-widest">{job.visa}</span>
                                     </div>
-                                    <h3 className="text-[13px] font-bold text-white line-clamp-1 group-hover:text-brand-purple transition-colors">{job.title}</h3>
+                                    <h3 className="text-[14px] font-bold text-white line-clamp-1 group-hover:text-[#FBBF24] transition-colors">{job.title}</h3>
                                 </div>
                                 <div className="mt-3 pt-2 border-t border-white/5 flex flex-col gap-1.5">
-                                    <div className="text-[12px] font-black text-white">{job.salary}</div>
+                                    <div className="text-[13px] font-black text-[#FBBF24] leading-tight">{job.salary}</div>
                                     <div className="flex flex-wrap gap-1">
                                         {(job.tags || []).map(tag => (
-                                            <span key={tag} className="px-1 py-0.5 rounded-sm bg-brand-purple/10 text-brand-purple text-[8px] font-bold uppercase tracking-tight">{tag}</span>
+                                            <span key={tag} className="px-1.5 py-0.5 rounded-sm bg-[#FBBF24]/10 text-[#FBBF24] text-[9px] font-bold uppercase tracking-tight">{tag}</span>
                                         ))}
                                     </div>
                                 </div>
