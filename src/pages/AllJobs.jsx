@@ -25,12 +25,12 @@ const AllJobs = () => {
     }, []);
 
     return (
-        <div className="w-full min-h-screen bg-brand-dark text-white">
+        <div className="w-full min-h-screen bg-[#080812] text-white">
             <Navbar />
             <div className="max-w-7xl mx-auto px-6 pt-[160px] pb-[100px]">
                 <div className="mb-12">
-                    <h1 className="text-4xl font-black mb-4">전체 구직 정보 <span className="text-brand-purple">All Jobs</span></h1>
-                    <p className="text-white/60">OK KOREA에서 제공하는 모든 최신 일자리 목록입니다.</p>
+                    <h1 className="text-4xl font-black mb-4 uppercase tracking-tighter">전체 구직 정보 <span className="text-[#FBBF24]">All Jobs</span></h1>
+                    <p className="text-white/40 font-medium">OK KOREA에서 제공하는 모든 최신 실시간 일자리 목록입니다.</p>
                 </div>
 
                 {loading ? (
