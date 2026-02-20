@@ -129,20 +129,20 @@ const Hero = forwardRef((props, ref) => {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4">
                         {/* Adjusted text color for visibility: text-brand-dark on light bg */}
-                        <button
-                            onClick={() => { }}
+                        <Link
+                            to="/study"
                             className="group px-6 py-3 bg-brand-light text-brand-dark rounded-full font-bold text-base hover:bg-[#a04bb0] hover:text-white transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]"
                             aria-label="Start for free"
                         >
                             Study <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                        </button>
-                        <button
-                            onClick={() => { }}
+                        </Link>
+                        <Link
+                            to="/work"
                             className="group px-6 py-3 bg-white/5 text-white border border-white/10 rounded-full font-bold text-base hover:bg-[#cd5f62] hover:border-transparent transition-all flex items-center gap-2 backdrop-blur-sm"
                             aria-label="Watch Demo Video"
                         >
                             <Play size={16} className="fill-current" /> Work
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
