@@ -11,7 +11,7 @@ const Footer = () => {
                         <span className="text-brand-purple">Super Journey.</span>
                     </h2>
                     <button className="px-12 py-5 bg-white text-brand-dark rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.3)]">
-                        Get Started Now
+                        로그인(구글)
                     </button>
                 </div>
             </section>
