@@ -148,7 +148,21 @@ const Hero = forwardRef((props, ref) => {
 
                 {/* Hero UI Mockup (Parallax) */}
                 <div className="hero-ui relative max-w-5xl mx-auto -mt-[30px]">
-                    <div className="rounded-2xl border-4 border-white shadow-2xl overflow-hidden bg-white">
+                    {/* Floating Badge moved OUTSIDE and updated for 'cuteness' */}
+                    <div className="absolute -top-8 -left-4 md:-left-8 z-20 bg-white/95 backdrop-blur-sm p-2 px-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 animate-bounce duration-[3000ms] -rotate-[15deg] scale-90 md:scale-100 origin-bottom-right">
+                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
+                            <CheckCircle2 size={16} />
+                        </div>
+                        <div className="text-left">
+                            <div className="text-[12px] font-black text-slate-900 whitespace-nowrap leading-none">Visa Approved</div>
+                            <div className="text-[10px] text-slate-500 font-bold flex items-center gap-1 mt-0.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                Just now
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border-4 border-white shadow-2xl overflow-hidden bg-white relative z-10">
                         {/* Fixed Alt Text */}
                         <img
                             src="https://postfiles.pstatic.net/MjAyNjAyMTlfMTEx/MDAxNzcxNDYzOTY0ODAx.5KTt66rkHdzuVNUdJMAStkdEYFVwwJUjJfcV8h68AiAg.OYFL9SKtPMwQO4xaJ0ZlEZaHBp72bzoylwHQbhaFp5sg.PNG/Hero.png?type=w966"
@@ -156,17 +170,6 @@ const Hero = forwardRef((props, ref) => {
                             alt="OK KOREA Dashboard Analytics Interface"
                             referrerPolicy="no-referrer"
                         />
-
-                        {/* Floating Elements mimicking reference */}
-                        <div className="absolute top-10 left-10 bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg border border-slate-100 flex items-center gap-3 animate-bounce duration-[3000ms]">
-                            <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                <CheckCircle2 size={20} />
-                            </div>
-                            <div>
-                                <div className="text-sm font-bold text-slate-900">Visa Approved</div>
-                                <div className="text-xs text-slate-500">Just now</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
