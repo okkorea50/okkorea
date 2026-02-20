@@ -23,10 +23,6 @@ const BlogResources = () => {
         return () => unsubscribe();
     }, []);
 
-    const handleViewAll = () => {
-        window.open('#/all-jobs', '_blank');
-    };
-
     return (
         <section id="resources" className="py-[100px] px-6 bg-[#080812]">
             <div className="max-w-7xl mx-auto">
@@ -35,12 +31,14 @@ const BlogResources = () => {
                         <h2 className="text-3xl font-black text-white mb-2 uppercase tracking-tighter">Your Job Orders <span className="text-brand-purple">내 직업 찾기</span></h2>
                         <p className="text-white/40 text-sm font-medium">실시간으로 업데이트되는 OK KOREA의 특별한 채용 정보를 확인하세요.</p>
                     </div>
-                    <button
-                        onClick={handleViewAll}
-                        className="px-8 py-3 bg-white/5 text-white border border-white/10 rounded-full text-xs font-black uppercase tracking-widest hover:bg-brand-purple hover:border-brand-purple hover:shadow-[0_0_20px_rgba(124,77,255,0.4)] transition-all duration-300"
+                    <a
+                        href="#/all-jobs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-8 py-3 bg-white/5 text-white border border-white/10 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#FBBF24] hover:text-[#080812] hover:border-[#FBBF24] hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] transition-all duration-300"
                     >
                         View All Jobs
-                    </button>
+                    </a>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
