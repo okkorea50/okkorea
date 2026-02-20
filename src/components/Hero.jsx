@@ -116,8 +116,24 @@ const Hero = forwardRef((props, ref) => {
                 </div>
 
                 {/* Content Group: Headline -> Subhead -> Buttons */}
-                <div className="flex flex-col items-center gap-6 mb-16">
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] text-white overflow-hidden">
+                <div className="flex flex-col items-center gap-6 mb-16 relative">
+                    {/* Floating Badge - Relocated to Headline Area */}
+                    <div className="absolute -top-12 right-0 md:right-[15%] z-20 animate-bounce duration-[3000ms]">
+                        <div className="bg-white/95 backdrop-blur-sm p-2 px-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 -rotate-[35deg] scale-90 origin-bottom-right">
+                            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
+                                <CheckCircle2 size={16} />
+                            </div>
+                            <div className="text-left">
+                                <div className="text-[12px] font-black text-slate-900 whitespace-nowrap leading-none">Visa Approved</div>
+                                <div className="text-[10px] text-slate-500 font-bold flex items-center gap-1 mt-0.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                    Just now
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] text-white">
                         <span ref={titleLine1Ref} className="block">Step into the future</span>
                         <span ref={titleLine2Ref} className="block">of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Korea Life.</span></span>
                     </h1>
@@ -148,22 +164,6 @@ const Hero = forwardRef((props, ref) => {
 
                 {/* Hero UI Mockup (Parallax) */}
                 <div className="hero-ui relative max-w-5xl mx-auto -mt-[30px]">
-                    {/* Floating Badge - Nested to prevent animate-bounce from overriding transform */}
-                    <div className="absolute -top-8 -left-4 md:-left-8 z-20 animate-bounce duration-[3000ms]">
-                        <div className="bg-white/95 backdrop-blur-sm p-2 px-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 -rotate-[35deg] scale-90 md:scale-100 origin-bottom-right">
-                            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
-                                <CheckCircle2 size={16} />
-                            </div>
-                            <div className="text-left">
-                                <div className="text-[12px] font-black text-slate-900 whitespace-nowrap leading-none">Visa Approved</div>
-                                <div className="text-[10px] text-slate-500 font-bold flex items-center gap-1 mt-0.5">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                                    Just now
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div className="rounded-2xl border-4 border-white shadow-2xl overflow-hidden bg-white relative z-10">
                         {/* Fixed Alt Text */}
                         <img
