@@ -88,17 +88,17 @@ const ConsultationForm = () => {
             <div className="absolute top-1/4 -left-20 w-80 h-80 bg-[#FBBF24]/5 rounded-full blur-[100px]"></div>
             <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#7C3AED]/5 rounded-full blur-[100px]"></div>
 
-            <div className="max-w-4xl mx-auto relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">
+            <div className="max-w-2xl mx-auto relative z-10">
+                <div className="text-center mb-10">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white tracking-tight">
                         Visa <span className="text-[#FBBF24]">Consulting</span>
                     </h2>
-                    <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-slate-400 text-base max-w-xl mx-auto leading-relaxed">
                         Expert guidance for your Korean journey. Fill out the form below, and our specialists will get back to you within 24 hours.
                     </p>
                 </div>
 
-                <div className="bg-[#13141C] p-8 md:p-12 rounded-3xl border border-white/5 shadow-2xl">
+                <div className="bg-[#13141C] p-6 md:p-8 rounded-2xl border border-white/5 shadow-2xl">
                     {status === 'success' ? (
                         <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
                             <CheckCircle size={80} className="text-[#FBBF24] mb-6 animate-bounce" />
@@ -114,8 +114,8 @@ const ConsultationForm = () => {
                             </button>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Name Field */}
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-slate-400 block ml-1">Full Name *</label>
@@ -130,7 +130,7 @@ const ConsultationForm = () => {
                                             value={formData.name}
                                             onChange={handleChange}
                                             placeholder="John Doe"
-                                            className="w-full bg-[#0B0C15] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner"
+                                            className="w-full bg-[#0B0C15] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner"
                                         />
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@ const ConsultationForm = () => {
                                             value={formData.mobile}
                                             onChange={handleChange}
                                             placeholder="+82 10-XXXX-XXXX"
-                                            className="w-full bg-[#0B0C15] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner"
+                                            className="w-full bg-[#0B0C15] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner"
                                         />
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@ const ConsultationForm = () => {
                                             value={formData.email}
                                             onChange={handleChange}
                                             placeholder="john@example.com"
-                                            className="w-full bg-[#0B0C15] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner"
+                                            className="w-full bg-[#0B0C15] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner"
                                         />
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@ const ConsultationForm = () => {
                                             value={formData.nationality}
                                             onChange={handleChange}
                                             placeholder="e.g. Nepal, USA, Vietnam"
-                                            className="w-full bg-[#0B0C15] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner"
+                                            className="w-full bg-[#0B0C15] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner"
                                         />
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@ const ConsultationForm = () => {
                                     onChange={handleChange}
                                     rows="4"
                                     placeholder="Briefly describe your visa requirements..."
-                                    className="w-full bg-[#0B0C15] border border-white/10 rounded-2xl py-4 px-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner resize-none"
+                                    className="w-full bg-[#0B0C15] border border-white/10 rounded-xl py-3 px-4 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-[#FBBF24]/50 focus:ring-1 focus:ring-[#FBBF24]/50 transition-all shadow-inner resize-none"
                                 ></textarea>
                             </div>
 
@@ -211,7 +211,7 @@ const ConsultationForm = () => {
                                 <label className="text-sm font-medium text-slate-400 block ml-1">Upload Documents (Optional)</label>
                                 <div
                                     onClick={() => fileInputRef.current.click()}
-                                    className="w-full border-2 border-dashed border-white/10 rounded-2xl py-8 flex flex-col items-center justify-center gap-3 cursor-pointer hover:border-[#FBBF24]/40 hover:bg-white/[0.02] transition-all group"
+                                    className="w-full border-2 border-dashed border-white/10 rounded-xl py-6 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-[#FBBF24]/40 hover:bg-white/[0.02] transition-all group"
                                 >
                                     <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-slate-400 group-hover:text-[#FBBF24] group-hover:bg-[#FBBF24]/10 transition-all">
                                         <Upload size={24} />
@@ -238,7 +238,7 @@ const ConsultationForm = () => {
                             <button
                                 type="submit"
                                 disabled={status === 'loading'}
-                                className="w-full bg-[#FBBF24] hover:bg-[#FBBF24]/90 disabled:bg-slate-700 disabled:cursor-not-allowed text-[#080812] font-bold py-5 rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_30px_rgba(251,191,36,0.2)] mt-8 text-lg"
+                                className="w-full bg-[#FBBF24] hover:bg-[#FBBF24]/90 disabled:bg-slate-700 disabled:cursor-not-allowed text-[#080812] font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-[0_0_30px_rgba(251,191,36,0.2)] mt-6 text-base"
                             >
                                 {status === 'loading' ? (
                                     <>
