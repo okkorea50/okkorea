@@ -31,8 +31,7 @@ const ConsultationForm = () => {
         setStatus('loading');
 
         try {
-            // Note: In a real app with file upload, you'd use Firebase Storage.
-            // For now, we save the text data and log the file presence.
+            // 1. Save to Firestore
             const docRef = await addDoc(collection(db, "consultations"), {
                 ...formData,
                 hasAttachment: !!file,
@@ -43,42 +42,45 @@ const ConsultationForm = () => {
 
             console.log("Consultation saved with ID: ", docRef.id);
 
-            // Send to Make.com Webhook for Email Notification
+            // 2. Send to Make.com Webhook for Email Notification
             const WEBHOOK_URL = 'https://hook.eu1.make.com/2jtlxg7vgm5zjwypzaijy0yn5il1sdkn';
-            console.log("Sending data to Webhook:", WEBHOOK_URL);
-            const response = await fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    id: docRef.id,
-                    ...formData,
-                    hasAttachment: !!file,
-                    fileName: file ? file.name : null,
-                    timestamp: new Date().toISOString()
-                })
-            });
+            try {
+                console.log("Sending data to Webhook:", WEBHOOK_URL);
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: docRef.id,
+                        ...formData,
+                        hasAttachment: !!file,
+                        fileName: file ? file.name : null,
+                        timestamp: new Date().toISOString()
+                    })
+                });
 
-            if (response.ok) {
-                console.log("Make.com Webhook reported SUCCESS");
-                // window.alert("상담 신청이 완료되었습니다! Make.com 화면을 확인해 주세요.");
-            } else {
-                console.error("Make.com Webhook reported ERROR:", response.status);
+                if (response.ok) {
+                    console.log("Make.com Webhook reported SUCCESS");
+                } else {
+                    console.error("Make.com Webhook reported ERROR:", response.status);
+                }
+            } catch (webhookError) {
+                console.error("Webhook network error:", webhookError);
+                // Note: We don't fail the UI state just because the notification failed
             }
-        } catch (webhookError) {
-            console.error("Webhook network error:", webhookError);
+
+            // 3. Update UI state
+            setStatus('success');
+            setFormData({ name: '', mobile: '', email: '', nationality: '', message: '' });
+            setFile(null);
+
+            // Auto-reset success message after 5 seconds
+            setTimeout(() => setStatus('idle'), 5000);
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 5000);
         }
-
-        setStatus('success');
-        setFormData({ name: '', mobile: '', email: '', nationality: '', message: '' });
-        setFile(null);
-
-        // Auto-reset success message after 5 seconds
-        setTimeout(() => setStatus('idle'), 5000);
-    } catch (error) {
-        console.error("Error adding document: ", error);
-        setStatus('error');
-        setTimeout(() => setStatus('idle'), 5000);
-    }
+    };
 };
 
 return (
