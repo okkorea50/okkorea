@@ -95,7 +95,7 @@ const Hero = forwardRef((props, ref) => {
     }, []);
 
     return (
-        <section ref={ref} className="pt-[160px] pb-[100px] px-6 relative overflow-hidden bg-brand-dark text-white">
+        <section id="hero" ref={ref} className="pt-[160px] pb-[100px] px-6 relative overflow-hidden bg-brand-dark text-white">
             {/* Aurora Gradients matches reference */}
             <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/30 rounded-full blur-[120px] mix-blend-screen animate-blob pointer-events-none"></div>
             <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/30 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000 pointer-events-none"></div>

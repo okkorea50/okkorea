@@ -20,10 +20,28 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
+    const scrollToSection = (e, id) => {
+        e.preventDefault();
+        setIsOpen(false);
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            // Update URL hash without reload if possible, or just scroll
+            window.location.hash = `#/${id}`;
+        } else {
+            // If not on home page, go home first with the hash
+            window.location.href = `#/`;
+            setTimeout(() => {
+                const el = document.getElementById(id);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    };
+
     const navLinks = [
-        { name: 'Home', href: '/okkorea/' },
-        { name: 'Job orders', href: '#resources' },
-        { name: 'Visa consulting', href: '#footer' },
+        { name: 'Home', action: (e) => scrollToSection(e, 'hero'), id: 'hero' },
+        { name: 'Job orders', action: (e) => scrollToSection(e, 'resources'), id: 'resources' },
+        { name: 'Visa consulting', action: (e) => scrollToSection(e, 'footer'), id: 'footer' },
     ];
 
     return (
@@ -40,7 +58,8 @@ const Navbar = () => {
                 {navLinks.map((link) => (
                     <a
                         key={link.name}
-                        href={link.href}
+                        href={`#${link.id}`}
+                        onClick={(e) => link.action(e)}
                         className="transition-all duration-300 hover:text-[#FFD700] hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]"
                     >
                         {link.name}
@@ -92,9 +111,9 @@ const Navbar = () => {
                 {navLinks.map((link) => (
                     <a
                         key={link.name}
-                        href={link.href}
+                        href={`#${link.id}`}
+                        onClick={(e) => link.action(e)}
                         className="text-2xl font-black text-white hover:text-[#FBBF24] transition-colors uppercase tracking-widest"
-                        onClick={() => setIsOpen(false)}
                     >
                         {link.name}
                     </a>
