@@ -76,7 +76,7 @@ const VisaInfo = () => {
     const activeData = contentData[`${activeMain}-${activeSub}`];
 
     return (
-        <div className="w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden bg-[#13141C] border border-white/5 shadow-2xl mt-20">
+        <div className="bottom-feature-card w-full max-w-5xl mx-auto overflow-hidden mt-20">
             {/* Main Tabs */}
             <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/5">
                 {mainMenus.map((m) => (
@@ -86,12 +86,15 @@ const VisaInfo = () => {
                             setActiveMain(m.id);
                             setActiveSub(subMenus[m.id][0].id);
                         }}
-                        className={`py-6 px-4 text-sm font-bold transition-all ${activeMain === m.id
-                                ? 'bg-brand-purple/10 text-brand-purple border-b-2 border-brand-purple'
-                                : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                        className={`py-6 px-4 text-sm font-bold transition-all relative ${activeMain === m.id
+                            ? 'bg-brand-purple/10 text-brand-purple'
+                            : 'text-slate-400 hover:bg-white/5 hover:text-white'
                             }`}
                     >
                         {m.name}
+                        {activeMain === m.id && (
+                            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-brand-purple to-brand-orange shadow-[0_0_10px_rgba(124,58,237,0.8)]"></div>
+                        )}
                     </button>
                 ))}
             </div>
@@ -103,8 +106,8 @@ const VisaInfo = () => {
                         key={s.id}
                         onClick={() => setActiveSub(s.id)}
                         className={`whitespace-nowrap px-6 py-2 rounded-full text-xs font-bold transition-all border ${activeSub === s.id
-                                ? 'bg-brand-purple text-white border-brand-purple shadow-[0_0_15px_rgba(124,58,237,0.3)]'
-                                : 'bg-white/5 text-slate-400 border-white/10 hover:border-white/30'
+                            ? 'bg-brand-purple text-white border-brand-purple shadow-[0_0_15px_rgba(124,58,237,0.3)]'
+                            : 'bg-white/5 text-slate-400 border-white/10 hover:border-white/30'
                             }`}
                     >
                         {s.name}

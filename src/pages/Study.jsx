@@ -19,30 +19,30 @@ const Study = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Placeholder for Table Menu / Content */}
-                    <div className="bg-[#13141C] border border-white/5 p-8 rounded-3xl shadow-xl">
+                    <div className="pink-card-style rounded-3xl p-8 flex flex-col min-h-[300px]">
                         <h2 className="text-2xl font-bold mb-4 text-brand-purple">University Admission</h2>
                         <p className="text-slate-400 mb-6">Expert consulting for undergraduate and graduate applications to Korea's top universities.</p>
-                        <ul className="space-y-3 text-sm text-slate-300">
+                        <ul className="space-y-3 text-sm text-slate-300 mt-auto">
                             <li>• Document Preparation</li>
                             <li>• Personal Statement Review</li>
                             <li>• Interview Coaching</li>
                         </ul>
                     </div>
 
-                    <div className="bg-[#13141C] border border-white/5 p-8 rounded-3xl shadow-xl">
+                    <div className="yellow-card-style rounded-3xl p-8 flex flex-col min-h-[300px]">
                         <h2 className="text-2xl font-bold mb-4 text-brand-orange">Language Programs</h2>
                         <p className="text-slate-400 mb-6">Find the perfect Korean language course hosted by prestigious institutions.</p>
-                        <ul className="space-y-3 text-sm text-slate-300">
+                        <ul className="space-y-3 text-sm text-slate-300 mt-auto">
                             <li>• D-4 Visa Support</li>
                             <li>• Institution Comparison</li>
                             <li>• Housing Assistance</li>
                         </ul>
                     </div>
 
-                    <div className="bg-[#13141C] border border-white/5 p-8 rounded-3xl shadow-xl">
+                    <div className="green-card-style rounded-3xl p-8 flex flex-col min-h-[300px]">
                         <h2 className="text-2xl font-bold mb-4 text-blue-500">Scholarship Support</h2>
                         <p className="text-slate-400 mb-6">Maximize your chances for GKS and university-specific scholarships.</p>
-                        <ul className="space-y-3 text-sm text-slate-300">
+                        <ul className="space-y-3 text-sm text-slate-300 mt-auto">
                             <li>• Application Strategy</li>
                             <li>• Merit-based Awards</li>
                             <li>• Financial Aid Planning</li>
