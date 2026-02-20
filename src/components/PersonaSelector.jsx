@@ -135,7 +135,7 @@ const PersonaSelector = () => {
     const currentContent = contentMap[activeTab];
 
     return (
-        <section className="py-20 px-6 bg-slate-50">
+        <section className="py-[100px] px-6 bg-slate-50">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-8">
                     <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight text-slate-900">

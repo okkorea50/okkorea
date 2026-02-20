@@ -2,7 +2,7 @@ import React from 'react';
 
 const BlogResources = () => {
     return (
-        <section id="resources" className="py-20 px-6 bg-slate-50">
+        <section id="resources" className="py-[100px] px-6 bg-slate-50">
             <div className="max-w-7xl mx-auto">
                 <div className="flex justify-between items-end mb-12">
                     <div>

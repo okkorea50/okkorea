@@ -39,7 +39,7 @@ const SynergySection = forwardRef((props, ref) => {
     ];
 
     return (
-        <section ref={ref} className="marketing-synergy-section bg-[#080812] pt-[46px] pb-[76px] px-6 overflow-hidden">
+        <section ref={ref} className="marketing-synergy-section bg-[#080812] py-[100px] px-6 overflow-hidden">
             <style>{`
                 .marketing-synergy-section {
                     text-align: center;
