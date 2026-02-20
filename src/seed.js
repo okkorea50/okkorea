@@ -31,16 +31,26 @@ const jobs = [
     }
 ];
 
-async function seed() {
-    try {
-        const jobsCol = collection(db, 'jobs');
-        for (const job of jobs) {
-            await addDoc(jobsCol, job);
-            console.log(`Added job: ${job.title}`);
+async function seed(retries = 5) {
+    for (let i = 0; i < retries; i++) {
+        try {
+            console.log(`📡 Seeding attempt ${i + 1}/${retries}...`);
+            const jobsCol = collection(db, 'jobs');
+            for (const job of jobs) {
+                await addDoc(jobsCol, job);
+                console.log(`   ✅ Added job: ${job.title}`);
+            }
+            console.log("\n✨ Seeding completed successfully!");
+            return;
+        } catch (e) {
+            console.error(`   ⚠️ Attempt ${i + 1} failed: ${e.message}`);
+            if (i < retries - 1) {
+                console.log("   ⏳ Waiting 10 seconds for database provisioning...");
+                await new Promise(r => setTimeout(r, 10000));
+            } else {
+                console.error("\n❌ Maximum retries reached. Please check the Firebase console.");
+            }
         }
-        console.log("Seeding completed!");
-    } catch (e) {
-        console.error("Seeding failed: ", e);
     }
 }
 
