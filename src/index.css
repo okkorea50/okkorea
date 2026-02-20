@@ -248,6 +248,14 @@
   transition: text-shadow 0.4s ease !important;
 }
 
+/* 호버 시 시인성을 위한 효과 (공통) */
+.green-card-style:hover {
+  border-color: #7c4dff !important;
+  /* 마우스를 올리면 보라색 테두리로 포인트 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  transform: translateY(-5px) !important;
+}
+
 .pink-card-style:hover {
   transform: translateY(-12px) scale(1.02) !important;
   border-color: rgba(251, 207, 232, 0.8) !important;
