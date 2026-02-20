@@ -19,6 +19,8 @@ import FloatingHomeButton from './components/FloatingHomeButton';
 // Pages
 import AllJobs from './pages/AllJobs';
 import Login from './pages/Login';
+import Study from './pages/Study';
+import Work from './pages/Work';
 import { AuthProvider } from './context/AuthContext';
 const MainContent = () => {
   const [searchParams] = useSearchParams();
@@ -122,6 +124,8 @@ const App = () => {
           <Route path="/" element={<MainContent />} />
           <Route path="/all-jobs" element={<AllJobs />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/study" element={<Study />} />
+          <Route path="/work" element={<Work />} />
         </Routes>
         <FloatingHomeButton />
       </Router>
