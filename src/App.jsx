@@ -116,12 +116,12 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <FloatingHomeButton />
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/all-jobs" element={<AllJobs />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+        <FloatingHomeButton />
       </Router>
     </AuthProvider>
   );
