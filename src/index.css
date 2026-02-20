@@ -198,9 +198,7 @@
   /* 흰색 글자 */
   border: 1px solid rgba(255, 255, 255, 0.05) !important;
   /* 어둠 속에서 형태를 잡기 위한 미세한 선 */
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  position: relative !important;
-  z-index: 1 !important;
+  transition: all 0.3s ease !important;
 }
 
 .green-card-style h3,
@@ -209,22 +207,6 @@
 .green-card-style div {
   color: #ffffff !important;
   /* 내부 모든 요소 흰색 강제 */
-  transition: text-shadow 0.4s ease !important;
-}
-
-.green-card-style:hover {
-  transform: translateY(-12px) scale(1.02) !important;
-  border-color: rgba(134, 239, 172, 0.8) !important;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    0 0 15px rgba(134, 239, 172, 0.5),
-    0 0 45px rgba(134, 239, 172, 0.3),
-    0 0 80px rgba(134, 239, 172, 0.15) !important;
-  z-index: 10 !important;
-}
-
-.green-card-style:hover div:first-child {
-  text-shadow: 0 0 12px rgba(134, 239, 172, 0.8) !important;
 }
 
 /* 2. 기존 fbcfe8 카드 수정 (Dark Navy) */
@@ -234,9 +216,7 @@
   color: #ffffff !important;
   /* 흰색 글자 */
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  position: relative !important;
-  z-index: 1 !important;
+  transition: all 0.3s ease !important;
 }
 
 .pink-card-style h3,
@@ -245,30 +225,15 @@
 .pink-card-style div {
   color: #ffffff !important;
   /* 내부 모든 요소 흰색 강제 */
-  transition: text-shadow 0.4s ease !important;
 }
 
 /* 호버 시 시인성을 위한 효과 (공통) */
-.green-card-style:hover {
+.green-card-style:hover,
+.pink-card-style:hover {
   border-color: #7c4dff !important;
   /* 마우스를 올리면 보라색 테두리로 포인트 */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
   transform: translateY(-5px) !important;
-}
-
-.pink-card-style:hover {
-  transform: translateY(-12px) scale(1.02) !important;
-  border-color: rgba(251, 207, 232, 0.8) !important;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    0 0 15px rgba(251, 207, 232, 0.5),
-    0 0 45px rgba(251, 207, 232, 0.3),
-    0 0 80px rgba(251, 207, 232, 0.15) !important;
-  z-index: 10 !important;
-}
-
-.pink-card-style:hover div:first-child {
-  text-shadow: 0 0 12px rgba(251, 207, 232, 0.8) !important;
 }
 
 /* 4. 포인트 카드 수정 (Dusty Rose/Point Color) */
@@ -278,9 +243,7 @@
   color: #ffffff !important;
   /* 흰색 글자 */
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  position: relative !important;
-  z-index: 1 !important;
+  transition: all 0.3s ease !important;
 }
 
 .point-card-style h3,
@@ -289,22 +252,13 @@
 .point-card-style div {
   color: #ffffff !important;
   /* 내부 모든 요소 흰색 강제 */
-  transition: text-shadow 0.4s ease !important;
 }
 
 .point-card-style:hover {
-  transform: translateY(-12px) scale(1.02) !important;
-  border-color: rgba(255, 255, 255, 0.9) !important;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    0 0 15px rgba(215, 119, 147, 0.6),
-    0 0 45px rgba(215, 119, 147, 0.4),
-    0 0 80px rgba(215, 119, 147, 0.2) !important;
-  z-index: 10 !important;
-}
-
-.point-card-style:hover div:first-child {
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.8) !important;
+  border-color: #ffffff !important;
+  /* 포인트 카드는 흰색 테두리로 강조 */
+  box-shadow: 0 10px 30px rgba(215, 119, 147, 0.4) !important;
+  transform: translateY(-5px) !important;
 }
 
 /* 3. 노란색 카드 수정 (Dark Charcoal) */
@@ -314,9 +268,7 @@
   color: #ffffff !important;
   /* 흰색 글자 */
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  position: relative !important;
-  z-index: 1 !important;
+  transition: all 0.3s ease !important;
 }
 
 .yellow-card-style h3,
@@ -325,20 +277,10 @@
 .yellow-card-style div {
   color: #ffffff !important;
   /* 내부 모든 요소 흰색 강제 */
-  transition: text-shadow 0.4s ease !important;
 }
 
 .yellow-card-style:hover {
-  transform: translateY(-12px) scale(1.02) !important;
-  border-color: rgba(124, 77, 255, 0.9) !important;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    0 0 15px rgba(124, 77, 255, 0.5),
-    0 0 45px rgba(124, 77, 255, 0.3),
-    0 0 80px rgba(124, 77, 255, 0.15) !important;
-  z-index: 10 !important;
-}
-
-.yellow-card-style:hover div:first-child {
-  text-shadow: 0 0 12px rgba(124, 77, 255, 0.8) !important;
+  border-color: #7c4dff !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  transform: translateY(-5px) !important;
 }
