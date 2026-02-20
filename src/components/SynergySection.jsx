@@ -94,15 +94,19 @@ const SynergySection = forwardRef((props, ref) => {
                     position: relative;
                     border-radius: 24px;
                     overflow: hidden;
+                    border: 1px solid rgba(255, 255, 255, 0.08);
                     cursor: pointer;
                     height: 420px;
-                    background-color: #080812 !important;
-                    border: 1px solid rgba(255, 255, 255, 0.05);
-                    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-                    z-index: 1;
-                    opacity: 1;
+                    background: #0f1020;
+                    /* GSAP will handle the entrance, removing 'transition: all' 
+                       from the base state to avoid conflicts during reveal */
+                    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                                border-color 0.5s ease, 
+                                box-shadow 0.5s ease;
+                    opacity: 1; /* Ensure visible after GSAP cleanup */
                 }
 
+                /* Background image container for each card */
                 .card-image-bg {
                     position: absolute;
                     inset: 0;
@@ -121,14 +125,9 @@ const SynergySection = forwardRef((props, ref) => {
                 }
 
                 .synergy-card:hover {
-                    transform: translateY(-12px) scale(1.02);
-                    border-color: rgba(124, 77, 255, 0.9);
-                    box-shadow: 
-                        0 20px 40px rgba(0, 0, 0, 0.8),
-                        0 0 15px rgba(124, 77, 255, 0.5),
-                        0 0 45px rgba(124, 77, 255, 0.3),
-                        0 0 80px rgba(124, 77, 255, 0.15);
-                    z-index: 10;
+                    transform: translateY(-12px);
+                    border-color: rgba(124, 77, 255, 0.5);
+                    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
                 }
 
                 .card-content {
@@ -146,7 +145,7 @@ const SynergySection = forwardRef((props, ref) => {
 
                 .card-content h3 {
                     font-size: 0.9rem;
-                    color: #ffffff !important;
+                    color: rgba(255, 255, 255, 0.6);
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
@@ -156,13 +155,13 @@ const SynergySection = forwardRef((props, ref) => {
                 .member-name {
                     font-size: 1.5rem;
                     font-weight: 900;
-                    color: #ffffff !important;
+                    color: #fff;
                     margin-bottom: 12px;
                 }
 
                 .member-desc {
                     font-size: 0.95rem;
-                    color: #ffffff !important;
+                    color: #94a3b8;
                     line-height: 1.6;
                     font-weight: 500;
                     white-space: pre-line;
