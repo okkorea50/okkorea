@@ -1,6 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { db } from '../firebase';
+import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 
 const BlogResources = () => {
+    const [jobs, setJobs] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const jobsCol = collection(db, 'jobs');
+        const q = query(jobsCol, orderBy('date', 'desc'), limit(4));
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const jobsData = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setJobs(jobsData);
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    // Fallback static styles for cards if data is missing or loading
+    const cardStyles = [
+        { bg: "bg-[#3B1C1C]", color: "text-white", subColor: "text-white/60" },
+        { bg: "bg-[#D8B4FE]", color: "text-slate-900", subColor: "text-slate-700" },
+        { bg: "bg-[#FEF08A]", color: "text-slate-900", subColor: "text-slate-700" },
+        { bg: "bg-white", color: "text-slate-900", subColor: "text-slate-500", border: true }
+    ];
+
     return (
         <section id="resources" className="py-[100px] px-6 bg-slate-50">
             <div className="max-w-7xl mx-auto">
@@ -12,18 +41,35 @@ const BlogResources = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    {[
-                        { bg: "bg-[#3B1C1C]", title: "MADE FOR YOU IN 2026", sub: "Visa Insights", color: "text-white", subColor: "text-white/60" },
-                        { bg: "bg-[#D8B4FE]", title: "FIND A CEO'S EMAIL", sub: "Job Hunting", color: "text-slate-900", subColor: "text-slate-700" },
-                        { bg: "bg-[#FEF08A]", title: "MADE FOR YOU DEC 2025", sub: "Trend Report", color: "text-slate-900", subColor: "text-slate-700" },
-                        { bg: "bg-white", title: "Duo Inbox", sub: "Product Update", color: "text-slate-900", subColor: "text-slate-500", border: true }
-                    ].map((card, i) => (
-                        <div key={i} className={`${card.bg} bottom-feature-card rounded-2xl p-8 aspect-video md:aspect-[4/3] flex flex-col justify-center items-center text-center cursor-pointer hover:scale-105 transition-transform ${card.border ? 'border border-slate-200' : ''}`}>
-                            <h3 className={`text-2xl font-black ${card.color} uppercase tracking-tighter leading-none mb-2`}>{card.title}</h3>
-                            {/* Fix: Added code to render the 'sub' field */}
-                            <span className={`text-sm font-bold uppercase tracking-widest ${card.subColor || 'text-slate-500'}`}>{card.sub}</span>
+                    {loading ? (
+                        // Skeleton/Loading State
+                        [1, 2, 3, 4].map((n) => (
+                            <div key={n} className="bg-white border border-slate-200 rounded-2xl p-8 aspect-video md:aspect-[4/3] animate-pulse"></div>
+                        ))
+                    ) : (
+                        jobs.map((job, i) => {
+                            const style = cardStyles[i % cardStyles.length];
+                            return (
+                                <div key={job.id} className={`${style.bg} bottom-feature-card rounded-2xl p-8 aspect-video md:aspect-[4/3] flex flex-col justify-center items-start text-left cursor-pointer hover:scale-105 transition-transform ${style.border ? 'border border-slate-200' : ''}`}>
+                                    <span className={`text-[10px] font-bold uppercase tracking-widest ${style.subColor} mb-2`}>{job.company} • {job.location}</span>
+                                    <h3 className={`text-xl font-black ${style.color} uppercase tracking-tight leading-tight mb-4`}>{job.title}</h3>
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        {job.tags?.map(tag => (
+                                            <span key={tag} className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-black/10 ${style.color}`}>{tag}</span>
+                                        ))}
+                                    </div>
+                                    <span className={`text-xs font-bold ${style.color}`}>{job.salary}</span>
+                                </div>
+                            );
+                        })
+                    )}
+
+                    {/* Add a placeholder if fewer than 4 jobs */}
+                    {!loading && jobs.length < 4 && (
+                        <div className="bg-white border border-dashed border-slate-300 rounded-2xl p-8 aspect-video md:aspect-[4/3] flex flex-col justify-center items-center text-center opacity-50">
+                            <span className="text-sm font-bold text-slate-400">WAITING FOR MORE JOBS...</span>
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
         </section>
