@@ -41,26 +41,6 @@ const SynergySection = forwardRef((props, ref) => {
     return (
         <section ref={ref} className="marketing-synergy-section bg-[#080812] pt-[46px] pb-[76px] px-6 overflow-hidden">
             <style>{`
-                .marketing-synergy-section {
-                    text-align: center;
-                }
-
-                .synergy-header {
-                    margin-bottom: 60px;
-                }
-
-                .synergy-badge {
-                    display: inline-block;
-                    padding: 8px 16px;
-                    background: rgba(124, 77, 255, 0.15);
-                    color: #a88aff;
-                    border-radius: 99px;
-                    font-size: 0.85rem;
-                    font-weight: 700;
-                    margin-bottom: 20px;
-                    border: 1px solid rgba(124, 77, 255, 0.3);
-                }
-
                 .synergy-header h2 {
                     font-size: clamp(2.5rem, 5vw, 4rem);
                     font-weight: 900;
@@ -78,7 +58,7 @@ const SynergySection = forwardRef((props, ref) => {
                 .synergy-header p {
                     color: #94a3b8;
                     font-size: 1.1rem;
-                    max-width: 900px; /* Increased to allow one-line display */
+                    max-width: 900px;
                     margin: 0 auto;
                 }
 
@@ -88,47 +68,6 @@ const SynergySection = forwardRef((props, ref) => {
                     gap: 30px;
                     max-width: 1400px;
                     margin: 0 auto;
-                }
-
-                .synergy-card {
-                    position: relative;
-                    border-radius: 24px;
-                    overflow: hidden;
-                    cursor: pointer;
-                    height: 420px;
-                    background-color: #080812 !important;
-                    border: 1px solid rgba(255, 255, 255, 0.05);
-                    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-                    z-index: 1;
-                    opacity: 1;
-                }
-
-                .card-image-bg {
-                    position: absolute;
-                    inset: 0;
-                    background-size: cover;
-                    background-position: center;
-                    z-index: 0;
-                    opacity: 0.25;
-                    filter: grayscale(100%) brightness(0.6);
-                    transition: all 0.7s ease;
-                }
-
-                .synergy-card:hover .card-image-bg {
-                    opacity: 0.6;
-                    filter: grayscale(0%) brightness(0.85);
-                    transform: scale(1.1);
-                }
-
-                .synergy-card:hover {
-                    transform: translateY(-12px) scale(1.02);
-                    border-color: rgba(124, 77, 255, 0.9);
-                    box-shadow: 
-                        0 20px 40px rgba(0, 0, 0, 0.8),
-                        0 0 15px rgba(124, 77, 255, 0.5),
-                        0 0 45px rgba(124, 77, 255, 0.3),
-                        0 0 80px rgba(124, 77, 255, 0.15);
-                    z-index: 10;
                 }
 
                 .card-content {
@@ -141,31 +80,6 @@ const SynergySection = forwardRef((props, ref) => {
                     justify-content: flex-end;
                     background: linear-gradient(to top, rgba(8, 8, 18, 0.95), transparent 70%);
                     text-align: left;
-                }
-
-
-                .card-content h3 {
-                    font-size: 0.9rem;
-                    color: #ffffff !important;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    margin-bottom: 8px;
-                }
-
-                .member-name {
-                    font-size: 1.5rem;
-                    font-weight: 900;
-                    color: #ffffff !important;
-                    margin-bottom: 12px;
-                }
-
-                .member-desc {
-                    font-size: 0.95rem;
-                    color: #ffffff !important;
-                    line-height: 1.6;
-                    font-weight: 500;
-                    white-space: pre-line;
                 }
             `}</style>
 
