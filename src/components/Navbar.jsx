@@ -46,7 +46,7 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Home', action: (e) => scrollToSection(e, 'hero'), id: 'hero' },
         { name: 'Job orders', action: (e) => scrollToSection(e, 'resources'), id: 'resources' },
-        { name: 'Visa consulting', action: (e) => scrollToSection(e, 'footer'), id: 'footer' },
+        { name: 'Visa consulting', action: (e) => scrollToSection(e, 'consultation'), id: 'consultation' },
     ];
 
     return (

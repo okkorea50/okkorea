@@ -12,6 +12,7 @@ import PersonaSelector from './components/PersonaSelector';
 import SynergySection from './components/SynergySection';
 import TestimonialGrid from './components/TestimonialGrid';
 import BlogResources from './components/BlogResources';
+import ConsultationForm from './components/ConsultationForm';
 import Footer from './components/Footer';
 import FloatingHomeButton from './components/FloatingHomeButton';
 
@@ -107,6 +108,7 @@ const MainContent = () => {
       <SynergySection ref={synergyRef} />
       <TestimonialGrid />
       <BlogResources />
+      <ConsultationForm />
       <Footer />
     </div>
   );
