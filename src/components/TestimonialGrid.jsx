@@ -23,10 +23,10 @@ const TestimonialGrid = () => {
                         <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Global Avg: 72%</div>
                     </div>
 
-                    <div className="bg-[#86EFAC] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">20<span className="text-2xl align-top">+</span></div>
-                        <div className="font-medium text-slate-800">Partner Universities</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Across Korea</div>
+                    <div className="green-card-style rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px]">
+                        <div className="text-5xl font-black tracking-tighter text-white">20<span className="text-2xl align-top">+</span></div>
+                        <div className="font-medium">Partner Universities</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50">Across Korea</div>
                     </div>
 
                     <div className="bg-[#F8FAFC] rounded-3xl p-8 col-span-1 md:col-span-2 flex flex-col justify-center min-h-[240px] border border-slate-100 px-12 relative overflow-hidden">
@@ -74,23 +74,23 @@ const TestimonialGrid = () => {
                         <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">Fast Track</div>
                     </div>
 
-                    <div className="bg-[#FBCFE8] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-5xl font-black text-slate-900 tracking-tighter">Top<span className="text-2xl align-top">15</span></div>
-                        <div className="font-medium text-slate-800">Career Placement</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">IN SEOUL and 5 Metropolitan cities in KOREA</div>
+                    <div className="pink-card-style rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px]">
+                        <div className="text-5xl font-black tracking-tighter text-white">Top<span className="text-2xl align-top">15</span></div>
+                        <div className="font-medium">Career Placement</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50">IN SEOUL and 5 Metropolitan cities in KOREA</div>
                     </div>
 
                     {/* Row 3 */}
-                    <div className="bg-[#86EFAC] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-3xl font-black text-slate-900 tracking-tighter">E-7-1 ~ E-7-4</div>
-                        <div className="font-medium text-slate-800 leading-tight">Ready-To-Go Solution with Legal Experts</div>
-                        <div className="font-bold text-xs mt-4 uppercase text-slate-900">AVG 95% Approved</div>
+                    <div className="green-card-style rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px]">
+                        <div className="text-3xl font-black tracking-tighter text-white">E-7-1 ~ E-7-4</div>
+                        <div className="font-medium leading-tight">Ready-To-Go Solution with Legal Experts</div>
+                        <div className="font-bold text-xs mt-4 uppercase">AVG 95% Approved</div>
                     </div>
 
-                    <div className="bg-[#FBCFE8] rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px] hover:scale-105 transition-transform duration-300">
-                        <div className="text-3xl font-black text-slate-900 tracking-tighter">D-2, D-4 Visa 30%-80%</div>
-                        <div className="font-medium text-slate-800">Scholarship Base</div>
-                        <div className="font-bold text-xs mt-4 uppercase opacity-50 text-slate-900">From Banks or Schools</div>
+                    <div className="pink-card-style rounded-3xl p-8 col-span-1 flex flex-col justify-between min-h-[240px]">
+                        <div className="text-3xl font-black tracking-tighter text-white">D-2, D-4 Visa 30%-80%</div>
+                        <div className="font-medium">Scholarship Base</div>
+                        <div className="font-bold text-xs mt-4 uppercase opacity-50">From Banks or Schools</div>
                     </div>
 
                     <div className="bg-[#F8FAFC] rounded-3xl p-8 col-span-1 md:col-span-2 flex flex-col justify-center min-h-[240px] border border-slate-100 px-12">

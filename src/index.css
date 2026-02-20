@@ -187,3 +187,51 @@
 .animate-pop-in {
   animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
+
+/* High Contrast Card Styles for Insurtech Nepal / OK KOREA */
+
+/* 1. 그린 계통 카드 수정 (Deep Dark) */
+.green-card-style {
+  background-color: #080812 !important;
+  /* 요청하신 배경색 */
+  color: #ffffff !important;
+  /* 흰색 글자 */
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  /* 어둠 속에서 형태를 잡기 위한 미세한 선 */
+  transition: all 0.3s ease !important;
+}
+
+.green-card-style h3,
+.green-card-style p,
+.green-card-style span,
+.green-card-style div {
+  color: #ffffff !important;
+  /* 내부 모든 요소 흰색 강제 */
+}
+
+/* 2. 기존 fbcfe8 카드 수정 (Dark Navy) */
+.pink-card-style {
+  background-color: #13141c !important;
+  /* 요청하신 배경색 */
+  color: #ffffff !important;
+  /* 흰색 글자 */
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.3s ease !important;
+}
+
+.pink-card-style h3,
+.pink-card-style p,
+.pink-card-style span,
+.pink-card-style div {
+  color: #ffffff !important;
+  /* 내부 모든 요소 흰색 강제 */
+}
+
+/* 호버 시 시인성을 위한 효과 (공통) */
+.green-card-style:hover,
+.pink-card-style:hover {
+  border-color: #7c4dff !important;
+  /* 마우스를 올리면 보라색 테두리로 포인트 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  transform: translateY(-5px) !important;
+}
