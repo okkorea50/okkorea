@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -10,9 +11,12 @@ const Footer = () => {
                         Start your<br />
                         <span className="text-brand-purple">Super Journey.</span>
                     </h2>
-                    <button className="px-8 py-3.5 bg-white text-brand-dark rounded-full font-black text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                    <Link
+                        to="/login"
+                        className="inline-block px-8 py-3.5 bg-white text-brand-dark rounded-full font-black text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                    >
                         Login
-                    </button>
+                    </Link>
                 </div>
             </section>
 

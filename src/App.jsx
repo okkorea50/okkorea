@@ -16,6 +16,8 @@ import Footer from './components/Footer';
 
 // Pages
 import AllJobs from './pages/AllJobs';
+import Login from './pages/Login';
+import { AuthProvider } from './context/AuthContext';
 
 const MainContent = () => {
   const mainRef = useRef(null);
@@ -91,12 +93,15 @@ const MainContent = () => {
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainContent />} />
-        <Route path="/all-jobs" element={<AllJobs />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/all-jobs" element={<AllJobs />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 
