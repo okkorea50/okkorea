@@ -168,11 +168,11 @@ const SynergySection = forwardRef((props, ref) => {
                 }
             `}</style>
 
-            <div className="synergy-header max-w-4xl mx-auto">
+            <div className="synergy-header max-w-4xl mx-auto px-4">
                 <span className="synergy-badge">Global Strategic Team</span>
-                <h2>Everything for your <span className="gradient-text">Global Growth.</span></h2>
-                <p>핀테크 및 인슈어테크 전문 파트너와 함께 데이터 기반의 마케팅 혁신을 시작하세요.</p>
-                <p>OK KOREA 해외 마케팅 팀</p>
+                <h2 className="text-3xl md:text-5xl lg:text-7xl">Everything for your <span className="gradient-text">Global Growth.</span></h2>
+                <p className="text-sm md:text-lg">핀테크 및 인슈어테크 전문 파트너와 함께 데이터 기반의 마케팅 혁신을 시작하세요.</p>
+                <p className="text-sm md:text-lg font-bold mt-2">OK KOREA 해외 마케팅 팀</p>
             </div>
 
             <div className="synergy-grid">

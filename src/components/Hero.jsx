@@ -98,8 +98,8 @@ const Hero = forwardRef((props, ref) => {
     return (
         <section id="hero" ref={ref} className="pt-[140px] pb-[80px] px-6 relative overflow-hidden bg-brand-dark text-white">
             {/* Aurora Gradients matches reference */}
-            <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/30 rounded-full blur-[120px] mix-blend-screen animate-blob pointer-events-none"></div>
-            <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/30 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000 pointer-events-none"></div>
+            <div className="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/20 rounded-full blur-[120px] mix-blend-screen animate-blob pointer-events-none z-0"></div>
+            <div className="fixed top-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-orange/20 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000 pointer-events-none z-0"></div>
 
             {/* Particle Effect Container */}
             <div id="heroParticles" ref={particleContainerRef} className="absolute inset-0 pointer-events-none">
@@ -118,7 +118,7 @@ const Hero = forwardRef((props, ref) => {
                 {/* Content Group: Headline -> Subhead -> Buttons */}
                 <div className="flex flex-col items-center gap-6 mb-16 relative">
 
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] text-white">
+                    <h1 className="text-4xl md:text-7xl font-black tracking-tight leading-[0.9] text-white">
                         <span ref={titleLine1Ref} className="block">
                             Step into the future
                         </span>
@@ -150,9 +150,9 @@ const Hero = forwardRef((props, ref) => {
                 </div>
 
                 {/* Hero UI Mockup (Parallax) */}
-                <div className="hero-ui relative max-w-5xl mx-auto -mt-[30px]">
-                    {/* Floating Badge - Positioned OUTSIDE at extreme top-right of mockup container */}
-                    <div className="absolute -top-10 right-0 z-20 animate-bounce duration-[3000ms] cursor-default">
+                <div className="hero-ui relative max-w-5xl mx-auto -mt-[30px] w-full px-4 sm:px-0">
+                    {/* Floating Badge - Scaled down for mobile */}
+                    <div className="absolute -top-8 md:-top-10 right-4 md:right-0 z-20 animate-bounce duration-[3000ms] cursor-default scale-90 md:scale-100">
                         <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 flex items-center gap-2 shadow-[0_10px_25px_rgba(0,0,0,0.4)] whitespace-nowrap">
                             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
                             <span className="text-[12px] font-black text-slate-900 tracking-wide uppercase">Visa Approved</span>

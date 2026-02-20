@@ -6,11 +6,21 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   body {
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
     @apply bg-brand-light text-brand-text transition-colors duration-700;
+  }
+
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 }
 

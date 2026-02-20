@@ -99,7 +99,7 @@ const FeatureSection = forwardRef((props, ref) => {
                         }
                     `}</style>
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-purple to-brand-orange blur-[60px] opacity-20 group-hover/window:opacity-[0.25] transition-opacity"></div>
-                    <div className="relative rounded-3xl bg-[#0a0b14] border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-1000 transform perspective-[2000px] rotate-[1.5deg] hover:rotate-0">
+                    <div className="relative rounded-3xl bg-[#0a0b14] border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-1000 transform perspective-[2000px] md:rotate-[1.5deg] md:hover:rotate-0">
                         {/* Fake Window Header */}
                         <div className="flex items-center justify-between px-8 py-5 border-b border-white/5 bg-white/[0.02]">
                             <div className="flex gap-2.5">
