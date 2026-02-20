@@ -117,9 +117,9 @@ const Hero = forwardRef((props, ref) => {
 
                 {/* Content Group: Headline -> Subhead -> Buttons */}
                 <div className="flex flex-col items-center gap-6 mb-16 relative">
-                    {/* Floating Badge - Relocated to Headline Area */}
-                    <div className="absolute -top-12 right-0 md:right-[15%] z-20 animate-bounce duration-[3000ms]">
-                        <div className="bg-white/95 backdrop-blur-sm p-2 px-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 -rotate-[35deg] scale-90 origin-bottom-right">
+                    {/* Floating Badge - Relocated to above 'ure' in 'future' */}
+                    <div className="absolute -top-12 translate-x-1/2 right-[15%] md:right-[38%] z-20 animate-bounce duration-[3000ms]">
+                        <div className="bg-white/95 backdrop-blur-sm p-2 px-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 flex items-center gap-2 scale-90 origin-center">
                             <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 flex-shrink-0">
                                 <CheckCircle2 size={16} />
                             </div>
