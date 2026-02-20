@@ -46,23 +46,23 @@ const BlogResources = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     {loading ? (
                         [...Array(12)].map((_, i) => (
-                            <div key={i} className="bg-white/5 border border-white/10 rounded-xl h-[120px] animate-pulse"></div>
+                            <div key={i} className="bg-white/5 border border-white/10 rounded-lg h-[100px] animate-pulse"></div>
                         ))
                     ) : (
                         jobs.map((job) => (
-                            <div key={job.id} className="bg-[#12121A] border border-white/5 rounded-xl p-4 flex flex-col justify-between hover:border-brand-purple/50 transition-all duration-300 group hover:-translate-y-1">
-                                <div>
-                                    <div className="flex justify-between items-center mb-1">
-                                        <span className="text-[10px] font-bold text-brand-purple uppercase tracking-tight">{job.location}</span>
-                                        <span className="text-[9px] font-black text-white/20 uppercase">{job.visa}</span>
+                            <div key={job.id} className="bg-[#12121A] border border-white/5 rounded-lg p-3 flex flex-col justify-between hover:border-brand-purple/50 transition-all duration-300 group hover:-translate-y-0.5 shadow-sm">
+                                <div className="space-y-1">
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-[11px] font-black text-brand-purple uppercase tracking-tighter">{job.location}</span>
+                                        <span className="text-[9px] font-bold text-white/20 uppercase">{job.visa}</span>
                                     </div>
-                                    <h3 className="text-[14px] font-bold text-white line-clamp-1 group-hover:text-brand-purple transition-colors mb-1">{job.title}</h3>
+                                    <h3 className="text-[13px] font-bold text-white line-clamp-1 group-hover:text-brand-purple transition-colors">{job.title}</h3>
                                 </div>
-                                <div className="mt-auto">
-                                    <div className="text-[12px] font-black text-white mb-2">{job.salary}</div>
+                                <div className="mt-3 pt-2 border-t border-white/5 flex flex-col gap-1.5">
+                                    <div className="text-[12px] font-black text-white">{job.salary}</div>
                                     <div className="flex flex-wrap gap-1">
-                                        {(job.tags || []).slice(0, 2).map(tag => (
-                                            <span key={tag} className="px-1.5 py-0.5 rounded-sm bg-white/5 text-white/40 text-[8px] font-bold uppercase tracking-tighter">{tag}</span>
+                                        {(job.tags || []).map(tag => (
+                                            <span key={tag} className="px-1 py-0.5 rounded-sm bg-brand-purple/10 text-brand-purple text-[8px] font-bold uppercase tracking-tight">{tag}</span>
                                         ))}
                                     </div>
                                 </div>
