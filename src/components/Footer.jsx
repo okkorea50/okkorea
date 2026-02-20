@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
             {/* CTA Section */}
-            <section id="footer" className="py-20 px-6 bg-[#0B0C15] text-white text-center">
+            <section id="footer" className="pt-8 pb-24 px-6 bg-[#0B0C15] text-white text-center">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
                         Start your<br />
