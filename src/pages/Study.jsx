@@ -53,7 +53,7 @@ const Study = () => {
                 {/* New components for more details */}
                 <VisaInfo />
             </div>
-            <Footer />
+            <Footer showCTA={false} />
         </div>
     );
 };

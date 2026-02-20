@@ -49,7 +49,7 @@ const Work = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer showCTA={false} />
         </div>
     );
 };
