@@ -8,7 +8,8 @@ const BlogResources = () => {
 
     useEffect(() => {
         const jobsCol = collection(db, 'jobs');
-        const q = query(jobsCol, orderBy('date', 'desc'), limit(4));
+        // Fetch 12 jobs for 3 rows of 4 columns
+        const q = query(jobsCol, orderBy('date', 'desc'), limit(12));
 
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const jobsData = snapshot.docs.map(doc => ({
@@ -22,53 +23,59 @@ const BlogResources = () => {
         return () => unsubscribe();
     }, []);
 
-    // Fallback static styles for cards if data is missing or loading
+    // Dark neon themed styling for cards
     const cardStyles = [
-        { bg: "bg-[#3B1C1C]", color: "text-white", subColor: "text-white/60" },
-        { bg: "bg-[#D8B4FE]", color: "text-slate-900", subColor: "text-slate-700" },
-        { bg: "bg-[#FEF08A]", color: "text-slate-900", subColor: "text-slate-700" },
-        { bg: "bg-white", color: "text-slate-900", subColor: "text-slate-500", border: true }
+        { bg: "bg-[#080812]", color: "text-white", subColor: "text-white/60", border: true },
+        { bg: "bg-[#0B0C15]", color: "text-white", subColor: "text-white/40", border: true }
     ];
 
+    const handleViewAll = () => {
+        window.open('/all-jobs', '_blank');
+    };
+
     return (
-        <section id="resources" className="py-[100px] px-6 bg-slate-50">
+        <section id="resources" className="py-[100px] px-6 bg-brand-dark">
             <div className="max-w-7xl mx-auto">
                 <div className="flex justify-between items-end mb-12">
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Your Job Orders Here <span className="text-brand-purple">내 직업 찾기</span></h2>
+                        <h2 className="text-2xl font-bold text-white mb-2">Our Latest Job Listings <span className="text-brand-purple">실시간 구직 정보</span></h2>
+                        <p className="text-sm text-white/60">현재 모집 중인 최신 일자리 정보를 확인하세요.</p>
                     </div>
-                    <button className="px-6 py-2 bg-[#080812] text-white border border-white/10 rounded-full text-sm font-bold hover:border-brand-purple hover:shadow-[0_0_15px_rgba(124,77,255,0.4)] transition-all duration-300">View all jobs</button>
+                    <button
+                        onClick={handleViewAll}
+                        className="px-6 py-2 bg-brand-purple text-white rounded-full text-sm font-bold hover:shadow-[0_0_20px_rgba(124,77,255,0.6)] transition-all duration-300"
+                    >
+                        전체 보기 (All Jobs)
+                    </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                     {loading ? (
-                        // Skeleton/Loading State
-                        [1, 2, 3, 4].map((n) => (
-                            <div key={n} className="bg-white border border-slate-200 rounded-2xl p-8 aspect-video md:aspect-[4/3] animate-pulse"></div>
+                        [...Array(12)].map((_, i) => (
+                            <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-4 aspect-[3/2] animate-pulse"></div>
                         ))
                     ) : (
                         jobs.map((job, i) => {
                             const style = cardStyles[i % cardStyles.length];
                             return (
-                                <div key={job.id} className={`${style.bg} bottom-feature-card rounded-2xl p-8 aspect-video md:aspect-[4/3] flex flex-col justify-center items-start text-left cursor-pointer hover:scale-105 transition-transform ${style.border ? 'border border-slate-200' : ''}`}>
-                                    <span className={`text-[10px] font-bold uppercase tracking-widest ${style.subColor} mb-2`}>{job.company} • {job.location}</span>
-                                    <h3 className={`text-xl font-black ${style.color} uppercase tracking-tight leading-tight mb-4`}>{job.title}</h3>
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {job.tags?.map(tag => (
-                                            <span key={tag} className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-black/10 ${style.color}`}>{tag}</span>
-                                        ))}
+                                <div key={job.id} className={`${style.bg} border border-white/10 rounded-xl p-4 aspect-[3/2] flex flex-col justify-between items-start text-left cursor-pointer hover:border-brand-purple/50 hover:shadow-[0_0_15px_rgba(124,77,255,0.2)] transition-all duration-300 group`}>
+                                    <div>
+                                        <div className="flex justify-between w-full items-start">
+                                            <span className={`text-[9px] font-bold uppercase tracking-widest ${style.subColor}`}>{job.location}</span>
+                                            <span className="px-1.5 py-0.5 rounded bg-brand-purple/20 text-brand-purple text-[8px] font-black uppercase">{job.visa}</span>
+                                        </div>
+                                        <h3 className={`text-sm font-bold ${style.color} line-clamp-2 mt-2 leading-tight group-hover:text-brand-purple transition-colors`}>{job.title}</h3>
                                     </div>
-                                    <span className={`text-xs font-bold ${style.color}`}>{job.salary}</span>
+                                    <div className="w-full">
+                                        <div className="h-[1px] w-full bg-white/5 mb-3"></div>
+                                        <div className="flex justify-between items-center">
+                                            <span className={`text-[10px] font-bold ${style.color}`}>{job.salary}</span>
+                                            <span className={`text-[8px] ${style.subColor}`}>{new Date(job.date).toLocaleDateString()}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             );
                         })
-                    )}
-
-                    {/* Add a placeholder if fewer than 4 jobs */}
-                    {!loading && jobs.length < 4 && (
-                        <div className="bg-white border border-dashed border-slate-300 rounded-2xl p-8 aspect-video md:aspect-[4/3] flex flex-col justify-center items-center text-center opacity-50">
-                            <span className="text-sm font-bold text-slate-400">WAITING FOR MORE JOBS...</span>
-                        </div>
                     )}
                 </div>
             </div>
