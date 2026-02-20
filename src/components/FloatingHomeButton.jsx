@@ -11,7 +11,7 @@ const FloatingHomeButton = () => {
         console.log('FloatingHomeButton mounted');
         const toggleVisibility = () => {
             const scrolled = window.scrollY || document.documentElement.scrollTop;
-            setIsVisible(true); // Force true for debugging
+            setIsVisible(scrolled > 300);
         };
 
         window.addEventListener('scroll', toggleVisibility, { passive: true });
@@ -35,28 +35,27 @@ const FloatingHomeButton = () => {
         <button
             onClick={scrollToTop}
             aria-label="Back to home"
+            className={`transition-all duration-500 ease-in-out hover:scale-110 active:scale-95 group shadow-[0_0_40px_rgba(251,191,36,0.4)] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+                }`}
             style={{
                 position: 'fixed',
                 bottom: '30px',
                 right: '30px',
-                zIndex: 2147483647, // Max possible z-index
-                backgroundColor: 'red', // Changed to red for debugging as per instruction
+                zIndex: 2147483647,
+                backgroundColor: '#FBBF24',
                 color: '#080812',
-                width: '80px',
-                height: '80px',
+                width: '60px',
+                height: '60px',
                 borderRadius: '50%',
-                border: '4px solid white',
-                boxShadow: '0 0 50px rgba(0,0,0,0.5)',
+                border: '1px solid rgba(255,255,255,0.2)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                cursor: 'pointer',
-                opacity: 1,
-                visibility: 'visible',
-                pointerEvents: 'auto'
+                cursor: 'pointer'
             }}
         >
-            <Home size={32} />
+            <Home size={24} className="group-hover:-translate-y-0.5 transition-transform" />
+            <span className="absolute inset-0 rounded-full border-2 border-[#FBBF24] animate-ping opacity-20 group-hover:opacity-40"></span>
         </button>
     );
 };
