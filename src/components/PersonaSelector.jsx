@@ -135,13 +135,13 @@ const PersonaSelector = () => {
     const currentContent = contentMap[activeTab];
 
     return (
-        <section className="py-[100px] px-6 bg-slate-50">
+        <section className="py-[100px] px-6 bg-[#0B0C15]">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-8">
-                    <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight text-slate-900">
+                    <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight text-white">
                         Built to empower<br />international talent like you
                     </h2>
-                    <p className="text-[14px] text-slate-600 font-medium">
+                    <p className="text-[14px] text-slate-400 font-medium">
                         우리는 당신과 같은 글로벌 인재의 역량을 강화하기 위해 존재합니다.
                     </p>
                     <div className="flex flex-wrap justify-center gap-2 mt-8">
@@ -150,8 +150,8 @@ const PersonaSelector = () => {
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
                                 className={`px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${activeTab === tab
-                                    ? 'bg-white shadow-xl text-brand-purple border border-brand-purple/20 ring-4 ring-brand-purple/5 transform scale-105'
-                                    : 'bg-white text-slate-500 border-2 border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:bg-slate-50'
+                                    ? 'bg-[#1a1a2e] shadow-xl text-brand-purple border border-brand-purple/20 ring-4 ring-brand-purple/5 transform scale-105'
+                                    : 'bg-white/5 text-slate-400 border border-white/10 shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:bg-white/10'
                                     }`}
                             >
                                 {tab}
@@ -162,7 +162,7 @@ const PersonaSelector = () => {
 
                 <div
                     ref={sectionRef}
-                    className={`bg-white rounded-[2rem] shadow-2xl border border-slate-100 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : activeTab === 'Networks' ? 'max-w-4xl mx-auto p-8' : activeTab === 'Partners' ? 'max-w-5xl mx-auto p-8' : 'w-full p-6 md:p-10'
+                    className={`bg-[#13141C] rounded-[2rem] shadow-2xl border border-white/5 min-h-[600px] transition-all duration-500 ease-in-out ${activeTab === 'Achievement' ? 'max-w-3xl mx-auto p-5 md:p-8' : activeTab === 'Networks' ? 'max-w-4xl mx-auto p-8' : activeTab === 'Partners' ? 'max-w-5xl mx-auto p-8' : 'w-full p-6 md:p-10'
                         }`}
                 >
                     {activeTab === 'Achievement' ? (
@@ -172,7 +172,7 @@ const PersonaSelector = () => {
                                     <div
                                         key={i}
                                         onClick={() => setSelectedImage(img)}
-                                        className="relative group aspect-square rounded-2xl border-4 border-slate-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] bg-white overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-yellow-400 hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] cursor-zoom-in"
+                                        className="relative group aspect-square rounded-2xl border border-white/10 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] bg-[#1a1a2e] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-yellow-400 hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] cursor-zoom-in"
                                     >
                                         <img
                                             src={img}
@@ -193,26 +193,26 @@ const PersonaSelector = () => {
                                         className={`flex flex-col items-center group transition-all duration-300 hover:-translate-y-2 ${isVisible ? 'animate-pop-in' : 'opacity-0'}`}
                                         style={{ animationDelay: `${idx * 40}ms` }}
                                     >
-                                        <div className="relative mb-4 w-16 h-11 overflow-hidden rounded-lg shadow-md border border-slate-100 group-hover:shadow-xl group-hover:border-brand-purple/30 transition-all">
+                                        <div className="relative mb-4 w-16 h-11 overflow-hidden rounded-lg shadow-md border border-white/10 group-hover:shadow-xl group-hover:border-brand-purple/30 transition-all">
                                             <img
                                                 src={`https://flagcdn.com/w160/${getCountryCode(country)}.png`}
                                                 alt={`${country} flag`}
                                                 className="w-full h-full object-cover"
                                             />
                                         </div>
-                                        <span className="font-bold text-slate-700 group-hover:text-white group-hover:bg-brand-purple px-3 py-1 rounded-full transition-all duration-300">{country}</span>
+                                        <span className="font-bold text-slate-300 group-hover:text-white group-hover:bg-brand-purple px-3 py-1 rounded-full transition-all duration-300">{country}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
                     ) : activeTab === 'Partners' ? (
                         <div key="partners-wall" className="w-full h-full animate-fade-in text-center flex flex-col items-center justify-center">
-                            <p className="text-slate-500 mb-10 font-medium italic">함께 성장하는 소중한 파트너사입니다.</p>
+                            <p className="text-slate-400 mb-10 font-medium italic">함께 성장하는 소중한 파트너사입니다.</p>
                             <div className="flex flex-wrap justify-center gap-4 max-w-4xl">
                                 {partnerList.map((partner, idx) => (
                                     <span
                                         key={idx}
-                                        className={`inline-block px-6 py-3 bg-white border border-slate-100 rounded-full text-sm font-bold text-slate-600 shadow-[0_2px_5px_rgba(0,0,0,0.05)] transition-all duration-[400ms] hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/5 hover:-translate-y-[5px] hover:shadow-[0_8px_15px_rgba(106,90,205,0.2)] cursor-default ${isVisible ? 'animate-pop-in' : 'opacity-0'}`}
+                                        className={`inline-block px-6 py-3 bg-white/5 border border-white/10 rounded-full text-sm font-bold text-slate-300 shadow-[0_2px_5px_rgba(0,0,0,0.1)] transition-all duration-[400ms] hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/10 hover:-translate-y-[5px] hover:shadow-[0_8px_15px_rgba(106,90,205,0.3)] cursor-default ${isVisible ? 'animate-pop-in' : 'opacity-0'}`}
                                         style={{
                                             animationDelay: `${idx * 40}ms`,
                                             transitionTimingFunction: 'cubic-bezier(0.165, 0.84, 0.44, 1)'
@@ -226,7 +226,7 @@ const PersonaSelector = () => {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-stretch h-full">
                             <div key={activeTab} className="space-y-6 animate-fade-in">
-                                <h3 className="text-3xl font-bold whitespace-pre-line text-slate-900">{currentContent.title}</h3>
+                                <h3 className="text-3xl font-bold whitespace-pre-line text-white">{currentContent.title}</h3>
 
                                 <div className="space-y-4">
                                     {currentContent.benefits.map((benefit, idx) => (
@@ -235,23 +235,23 @@ const PersonaSelector = () => {
                                             className={`flex gap-4 hover:bg-slate-50 hover:scale-[1.02] transition-all duration-300 rounded-lg p-2 -mx-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                                             style={{ animationDelay: `${idx * 150}ms` }}
                                         >
-                                            <div className="w-1 rounded-full h-auto bg-[#8c52ef] shrink-0"></div>
+                                            <div className="w-1 rounded-full h-auto bg-brand-purple shrink-0"></div>
                                             <div>
-                                                <h4 className="font-bold text-lg mb-1 text-slate-800">{benefit.title}</h4>
-                                                <p className="text-slate-500 text-sm whitespace-pre-line">{benefit.desc}</p>
+                                                <h4 className="font-bold text-lg mb-1 text-white">{benefit.title}</h4>
+                                                <p className="text-slate-400 text-sm whitespace-pre-line">{benefit.desc}</p>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
 
                                 {currentContent.cta && (
-                                    <button className="mt-8 px-6 py-3 border border-slate-200 rounded-lg font-bold text-sm hover:border-brand-purple hover:text-brand-purple text-slate-700 transition-colors">
+                                    <button className="mt-8 px-6 py-3 border border-white/10 rounded-lg font-bold text-sm hover:border-brand-purple hover:text-brand-purple text-slate-300 hover:bg-white/5 transition-all">
                                         {currentContent.cta}
                                     </button>
                                 )}
                             </div>
 
-                            <div key={activeTab + '-img'} className={`bg-slate-50 rounded-2xl p-0 border border-slate-100 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
+                            <div key={activeTab + '-img'} className={`bg-white/5 rounded-2xl p-0 border border-white/5 relative overflow-hidden h-full min-h-[400px] flex items-center justify-center ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
                                 {currentContent.image ? (
                                     <img
                                         src={currentContent.image}
