@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import VisaInfo from '../components/VisaInfo';
 
 const Study = () => {
     return (
@@ -48,6 +49,9 @@ const Study = () => {
                         </ul>
                     </div>
                 </div>
+
+                {/* New components for more details */}
+                <VisaInfo />
             </div>
             <Footer />
         </div>
