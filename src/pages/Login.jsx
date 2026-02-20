@@ -33,7 +33,7 @@ const Login = () => {
                                 </svg>
                             </div>
                             <h2 className="text-3xl font-black uppercase tracking-tighter mb-2">Welcome Back</h2>
-                            <p className="text-white/40 font-medium">OK KOREA의 서비스를 이용하시려면 로그인이 필요합니다.</p>
+                            <p className="text-white/40 font-medium leading-relaxed">OK KOREA의 서비스를 이용하시려면<br />로그인이 필요합니다.</p>
                         </div>
 
                         <button
