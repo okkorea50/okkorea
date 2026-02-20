@@ -30,13 +30,13 @@ const Footer = ({ showCTA = true }) => {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 hover:opacity-100 transition-opacity duration-500">
                         <a href="https://www.hikorea.go.kr/Main.pt" target="_blank" rel="noopener noreferrer" className="grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                            <img src={HikoreaLogo} alt="Hi Korea" className="h-10 md:h-12 w-auto object-contain" />
+                            <img src={HikoreaLogo} alt="Hi Korea" className="h-10 md:h-12 w-auto object-contain" loading="lazy" decoding="async" />
                         </a>
                         <a href="https://www.visa.go.kr/" target="_blank" rel="noopener noreferrer" className="grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                            <img src={VisaPortalLogo} alt="Korea Visa Portal" className="h-10 md:h-12 w-auto object-contain" />
+                            <img src={VisaPortalLogo} alt="Korea Visa Portal" className="h-10 md:h-12 w-auto object-contain" loading="lazy" decoding="async" />
                         </a>
                         <a href="https://eps.hrdkorea.or.kr/main/intro.do" target="_blank" rel="noopener noreferrer" className="grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                            <img src={EpsLogo} alt="EPS HRD Korea" className="h-10 md:h-12 w-auto object-contain" />
+                            <img src={EpsLogo} alt="EPS HRD Korea" className="h-10 md:h-12 w-auto object-contain" loading="lazy" decoding="async" />
                         </a>
                     </div>
                 </div>

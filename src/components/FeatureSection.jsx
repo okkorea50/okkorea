@@ -54,6 +54,8 @@ const FeatureSection = forwardRef((props, ref) => {
                                 src={imgDirector}
                                 alt="Director Brian Kim"
                                 className="w-full h-full object-cover"
+                                loading="lazy"
+                                decoding="async"
                             />
                         </div>
                         <div className="space-y-1">
@@ -120,7 +122,7 @@ const FeatureSection = forwardRef((props, ref) => {
                                         className="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-2 border-brand-purple/40 flex-shrink-0 group-hover/card:border-brand-orange transition-all duration-700 shadow-2xl relative cursor-zoom-in active:scale-95"
                                     >
                                         <div className="absolute inset-0 bg-brand-purple/10 group-hover/card:bg-transparent transition-colors"></div>
-                                        <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale-[30%] group-hover/card:grayscale-0 transition-all duration-700" />
+                                        <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale-[30%] group-hover/card:grayscale-0 transition-all duration-700" loading="lazy" decoding="async" />
                                     </button>
                                     <div className="flex-grow text-center md:text-left space-y-1.5">
                                         <h4 className="text-white font-bold text-lg flex items-center justify-center md:justify-start gap-3">

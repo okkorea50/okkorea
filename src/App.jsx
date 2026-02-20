@@ -13,6 +13,10 @@ import SynergySection from './components/SynergySection';
 import TestimonialGrid from './components/TestimonialGrid';
 import BlogResources from './components/BlogResources';
 import ConsultationForm from './components/ConsultationForm';
+
+const LazyTestimonialGrid = React.lazy(() => import('./components/TestimonialGrid'));
+const LazyBlogResources = React.lazy(() => import('./components/BlogResources'));
+const LazyConsultationForm = React.lazy(() => import('./components/ConsultationForm'));
 import Footer from './components/Footer';
 import FloatingHomeButton from './components/FloatingHomeButton';
 
@@ -108,9 +112,11 @@ const MainContent = () => {
       <PersonaSelector />
       <FeatureSection ref={darkSectionRef} />
       <SynergySection ref={synergyRef} />
-      <TestimonialGrid />
-      <BlogResources />
-      <ConsultationForm />
+      <React.Suspense fallback={<div className="h-96 bg-[#0B0C15]" />}>
+        <LazyTestimonialGrid />
+        <LazyBlogResources />
+        <LazyConsultationForm />
+      </React.Suspense>
       <Footer />
     </div>
   );

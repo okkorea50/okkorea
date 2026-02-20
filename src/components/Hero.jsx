@@ -166,6 +166,8 @@ const Hero = forwardRef((props, ref) => {
                             className="w-full object-cover"
                             alt="OK KOREA Dashboard Analytics Interface"
                             referrerPolicy="no-referrer"
+                            fetchpriority="high"
+                            decoding="async"
                         />
                     </div>
                 </div>

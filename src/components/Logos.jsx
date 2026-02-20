@@ -46,6 +46,7 @@ const Logos = () => {
                                     className="w-full h-full object-cover"
                                     referrerPolicy="no-referrer"
                                     loading="lazy"
+                                    decoding="async"
                                     onError={(e) => {
                                         e.target.onerror = null;
                                         e.target.src = "https://placehold.co/160x220?text=" + uni.name;

@@ -179,6 +179,8 @@ const PersonaSelector = () => {
                                             alt={`Achievement Chart ${i + 1}`}
                                             className="w-full h-full object-cover pointer-events-none"
                                             referrerPolicy="no-referrer"
+                                            loading="lazy"
+                                            decoding="async"
                                         />
                                     </div>
                                 ))}
@@ -198,6 +200,8 @@ const PersonaSelector = () => {
                                                 src={`https://flagcdn.com/w160/${getCountryCode(country)}.png`}
                                                 alt={`${country} flag`}
                                                 className="w-full h-full object-cover"
+                                                loading="lazy"
+                                                decoding="async"
                                             />
                                         </div>
                                         <span className="font-bold text-slate-300 group-hover:text-white group-hover:bg-brand-purple px-3 py-1 rounded-full transition-all duration-300">{country}</span>
@@ -257,6 +261,8 @@ const PersonaSelector = () => {
                                         src={currentContent.image}
                                         alt={currentContent.title}
                                         className="w-full h-full object-cover animate-ken-burns"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 ) : (
                                     <>
