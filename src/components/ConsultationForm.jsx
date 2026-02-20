@@ -42,6 +42,26 @@ const ConsultationForm = () => {
             });
 
             console.log("Consultation saved with ID: ", docRef.id);
+
+            // Send to Make.com Webhook for Email Notification
+            const WEBHOOK_URL = 'https://hook.eu1.make.com/2jtlxg7vgm5zjwypzaijy0yn5il1sdkn';
+            try {
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: docRef.id,
+                        ...formData,
+                        hasAttachment: !!file,
+                        fileName: file ? file.name : null,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+                console.log("Make.com Webhook triggered successfully");
+            } catch (webhookError) {
+                console.error("Webhook notification failed:", webhookError);
+            }
+
             setStatus('success');
             setFormData({ name: '', mobile: '', email: '', nationality: '', message: '' });
             setFile(null);
