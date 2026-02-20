@@ -2,9 +2,9 @@ import React from 'react';
 
 const TestimonialGrid = () => {
     return (
-        <section className="py-[100px] px-6 bg-[#0B0C15]">
+        <section className="py-16 px-6 bg-[#0B0C15]">
             <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-24 relative">
+                <div className="text-center mb-12 relative">
                     <span className="absolute -top-10 left-1/2 -translate-x-1/2 -rotate-6 text-brand-purple font-handwriting text-2xl animate-bounce">See the insights!</span>
                     <h2 className="text-5xl md:text-6xl font-black text-white leading-tight">
                         Real results from<br />

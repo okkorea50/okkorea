@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
             {/* CTA Section */}
-            <section id="footer" className="pt-8 pb-24 px-6 bg-[#0B0C15] text-white text-center">
+            <section id="footer" className="pt-4 pb-16 px-6 bg-[#0B0C15] text-white text-center">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
                         Start your<br />
@@ -21,7 +21,7 @@ const Footer = () => {
             </section>
 
             {/* Footer Text */}
-            <footer className="py-12 bg-black text-slate-600 text-sm border-t border-white/10 text-center">
+            <footer className="py-8 bg-black text-slate-600 text-sm border-t border-white/10 text-center">
                 <p>© 2026 OK KOREA Inc.</p>
             </footer>
         </>

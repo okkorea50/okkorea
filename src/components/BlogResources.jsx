@@ -24,7 +24,7 @@ const BlogResources = () => {
     }, []);
 
     return (
-        <section id="resources" className="pt-[100px] pb-10 px-6 bg-[#080812]">
+        <section id="resources" className="pt-16 pb-12 px-6 bg-[#080812]">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
                     <div>

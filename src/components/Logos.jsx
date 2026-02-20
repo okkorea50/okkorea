@@ -23,8 +23,8 @@ const Logos = () => {
     const marqueeList = [...universities, ...universities, ...universities];
 
     return (
-        <section className="py-[100px] border-y border-white/5 bg-[#0B0C15] overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 text-center mb-12">
+        <section className="py-10 border-y border-white/5 bg-[#0B0C15] overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 text-center mb-6">
                 <p className="text-sm font-bold text-white uppercase tracking-widest">
                     TRUSTED BY MORE THAN 5000+ STUDENTS & COMPANIES
                 </p>
