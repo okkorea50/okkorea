@@ -8,17 +8,19 @@ const FloatingHomeButton = () => {
     const location = useLocation();
 
     useEffect(() => {
+        console.log('FloatingHomeButton mounted');
         const toggleVisibility = () => {
             const scrolled = window.scrollY || document.documentElement.scrollTop;
-            setIsVisible(scrolled > 100);
+            setIsVisible(true); // Force true for debugging
         };
 
         window.addEventListener('scroll', toggleVisibility, { passive: true });
-        toggleVisibility(); // Check initial state
+        toggleVisibility();
         return () => window.removeEventListener('scroll', toggleVisibility);
     }, []);
 
     const scrollToTop = () => {
+        console.log('Scrolling to top');
         if (location.pathname === '/') {
             window.scrollTo({
                 top: 0,
@@ -32,11 +34,9 @@ const FloatingHomeButton = () => {
     return (
         <button
             onClick={scrollToTop}
-            className={`fixed bottom-8 right-8 z-[9999] p-4 bg-[#FBBF24] text-[#080812] rounded-full shadow-[0_0_40px_rgba(251,191,36,0.6)] transition-all duration-500 hover:scale-110 active:scale-95 group flex items-center justify-center ${isVisible
-                    ? 'translate-y-0 opacity-100 pointer-events-auto'
-                    : 'translate-y-16 opacity-0 pointer-events-none'
-                }`}
+            className={`fixed bottom-8 right-8 z-[9999] p-4 bg-[#FBBF24] text-[#080812] rounded-full shadow-[0_0_50px_rgba(251,191,36,0.8)] border-4 border-white transition-all duration-500 hover:scale-110 active:scale-95 group flex items-center justify-center opacity-100 pointer-events-auto`}
             aria-label="Back to home"
+            style={{ display: 'flex' }}
         >
             <Home size={24} className="relative z-10 transition-transform group-hover:-translate-y-0.5" />
 
