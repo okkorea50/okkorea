@@ -34,6 +34,10 @@ const rawJobs = [
 ];
 
 const jobs = rawJobs.map((line, index) => {
+    // Robust salary extraction: look for patterns like 240만, 250-280만, 일 11만
+    const salaryMatch = line.match(/([\d\-,~\s]+만|일\s*\d+만)/);
+    const salary = salaryMatch ? salaryMatch[0] : "협의";
+
     const parts = line.split(' / ');
     const titlePart = parts[0].split('] ');
     const location = titlePart[0].replace(/.*\[/, '');
@@ -45,14 +49,14 @@ const jobs = rawJobs.map((line, index) => {
     if (line.includes('기숙사 무')) tags.push('기숙사❌');
     else if (line.includes('기숙사 유')) tags.push('기숙사🏠');
     if (line.includes('경력자')) tags.push('경력자우대');
-    if (line.includes('한국어 가능')) tags.push('한국어');
+    if (line.includes('한국어 가능')) tags.push('한국어🗣️');
 
     return {
-        title: title,
+        title: title.trim(),
         company: "확인 필요",
-        location: location,
+        location: location.trim(),
         visa: visa,
-        salary: parts[1] || parts[parts.length - 2] || "협의", // Improved salary extraction
+        salary: salary.trim(),
         raw: line,
         tags: tags,
         date: new Date(Date.now() - index * 60000).toISOString()
