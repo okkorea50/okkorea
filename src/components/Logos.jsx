@@ -23,9 +23,9 @@ const Logos = () => {
     const marqueeList = [...universities, ...universities, ...universities];
 
     return (
-        <section className="py-[100px] border-y border-slate-100 bg-white overflow-hidden">
+        <section className="py-[100px] border-y border-white/5 bg-[#0B0C15] overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 text-center mb-12">
-                <p className="text-sm font-bold text-black uppercase tracking-widest">
+                <p className="text-sm font-bold text-white uppercase tracking-widest">
                     TRUSTED BY MORE THAN 5000+ STUDENTS & COMPANIES
                 </p>
             </div>
@@ -36,7 +36,7 @@ const Logos = () => {
                     {marqueeList.map((uni, index) => (
                         <div
                             key={`${uni.name}-${index}`}
-                            className="group relative w-[160px] h-[220px] flex-shrink-0 cursor-pointer overflow-hidden rounded-xl bg-white border-2 border-slate-100 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(251,191,36,0.6)] transition-all duration-300"
+                            className="group relative w-[160px] h-[220px] flex-shrink-0 cursor-pointer overflow-hidden rounded-xl bg-slate-50/95 border-2 border-white/10 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] transition-all duration-300"
                         >
                             {/* Card Image Area (Full Height, Cover) */}
                             <div className="w-full h-full p-0"> {/* Removed padding to allow full cover */}

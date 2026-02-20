@@ -197,9 +197,10 @@
   /* 요청하신 배경색 */
   color: #ffffff !important;
   /* 흰색 글자 */
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   /* 어둠 속에서 형태를 잡기 위한 미세한 선 */
   transition: all 0.3s ease !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
 }
 
 .green-card-style h3,
@@ -216,8 +217,9 @@
   /* 요청하신 배경색 */
   color: #ffffff !important;
   /* 흰색 글자 */
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   transition: all 0.3s ease !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
 }
 
 .pink-card-style h3,
@@ -243,8 +245,9 @@
   /* 요청하신 포인트 색상 */
   color: #ffffff !important;
   /* 흰색 글자 */
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   transition: all 0.3s ease !important;
+  box-shadow: 0 10px 30px rgba(215, 119, 147, 0.1) !important;
 }
 
 .point-card-style h3,
@@ -268,8 +271,9 @@
   /* 요청하신 배경색 */
   color: #ffffff !important;
   /* 흰색 글자 */
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   transition: all 0.3s ease !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
 }
 
 .yellow-card-style h3,
