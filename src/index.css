@@ -236,6 +236,31 @@
   transform: translateY(-5px) !important;
 }
 
+/* 4. 포인트 카드 수정 (Dusty Rose/Point Color) */
+.point-card-style {
+  background-color: #d77793 !important;
+  /* 요청하신 포인트 색상 */
+  color: #ffffff !important;
+  /* 흰색 글자 */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.point-card-style h3,
+.point-card-style p,
+.point-card-style span,
+.point-card-style div {
+  color: #ffffff !important;
+  /* 내부 모든 요소 흰색 강제 */
+}
+
+.point-card-style:hover {
+  border-color: #ffffff !important;
+  /* 포인트 카드는 흰색 테두리로 강조 */
+  box-shadow: 0 10px 30px rgba(215, 119, 147, 0.4) !important;
+  transform: translateY(-5px) !important;
+}
+
 /* 3. 노란색 카드 수정 (Dark Charcoal) */
 .yellow-card-style {
   background-color: #1c1c27 !important;
