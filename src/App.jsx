@@ -13,6 +13,7 @@ import SynergySection from './components/SynergySection';
 import TestimonialGrid from './components/TestimonialGrid';
 import BlogResources from './components/BlogResources';
 import Footer from './components/Footer';
+import FloatingHomeButton from './components/FloatingHomeButton';
 
 // Pages
 import AllJobs from './pages/AllJobs';
@@ -115,6 +116,7 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
+        <FloatingHomeButton />
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/all-jobs" element={<AllJobs />} />
