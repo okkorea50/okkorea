@@ -41,6 +41,26 @@ const SynergySection = forwardRef((props, ref) => {
     return (
         <section ref={ref} className="marketing-synergy-section bg-[#080812] pt-[46px] pb-[76px] px-6 overflow-hidden">
             <style>{`
+                .marketing-synergy-section {
+                    text-align: center;
+                }
+
+                .synergy-header {
+                    margin-bottom: 60px;
+                }
+
+                .synergy-badge {
+                    display: inline-block;
+                    padding: 8px 16px;
+                    background: rgba(124, 77, 255, 0.15);
+                    color: #a88aff;
+                    border-radius: 99px;
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                    border: 1px solid rgba(124, 77, 255, 0.3);
+                }
+
                 .synergy-header h2 {
                     font-size: clamp(2.5rem, 5vw, 4rem);
                     font-weight: 900;
@@ -58,7 +78,7 @@ const SynergySection = forwardRef((props, ref) => {
                 .synergy-header p {
                     color: #94a3b8;
                     font-size: 1.1rem;
-                    max-width: 900px;
+                    max-width: 900px; /* Increased to allow one-line display */
                     margin: 0 auto;
                 }
 
@@ -68,6 +88,46 @@ const SynergySection = forwardRef((props, ref) => {
                     gap: 30px;
                     max-width: 1400px;
                     margin: 0 auto;
+                }
+
+                .synergy-card {
+                    position: relative;
+                    border-radius: 24px;
+                    overflow: hidden;
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    cursor: pointer;
+                    height: 420px;
+                    background: #0f1020;
+                    /* GSAP will handle the entrance, removing 'transition: all' 
+                       from the base state to avoid conflicts during reveal */
+                    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                                border-color 0.5s ease, 
+                                box-shadow 0.5s ease;
+                    opacity: 1; /* Ensure visible after GSAP cleanup */
+                }
+
+                /* Background image container for each card */
+                .card-image-bg {
+                    position: absolute;
+                    inset: 0;
+                    background-size: cover;
+                    background-position: center;
+                    z-index: 0;
+                    opacity: 0.25;
+                    filter: grayscale(100%) brightness(0.6);
+                    transition: all 0.7s ease;
+                }
+
+                .synergy-card:hover .card-image-bg {
+                    opacity: 0.6;
+                    filter: grayscale(0%) brightness(0.85);
+                    transform: scale(1.1);
+                }
+
+                .synergy-card:hover {
+                    transform: translateY(-12px);
+                    border-color: rgba(124, 77, 255, 0.5);
+                    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
                 }
 
                 .card-content {
@@ -82,8 +142,10 @@ const SynergySection = forwardRef((props, ref) => {
                     text-align: left;
                 }
 
+
                 .card-content h3 {
                     font-size: 0.9rem;
+                    color: rgba(255, 255, 255, 0.6);
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
@@ -93,19 +155,21 @@ const SynergySection = forwardRef((props, ref) => {
                 .member-name {
                     font-size: 1.5rem;
                     font-weight: 900;
+                    color: #fff;
                     margin-bottom: 12px;
                 }
 
                 .member-desc {
                     font-size: 0.95rem;
+                    color: #94a3b8;
                     line-height: 1.6;
                     font-weight: 500;
                     white-space: pre-line;
                 }
             `}</style>
 
-            <div className="synergy-header max-w-4xl mx-auto mb-16">
-                <span className="synergy-badge inline-block px-4 py-1.5 rounded-full bg-brand-purple/10 text-brand-purple font-bold text-xs border border-brand-purple/20 mb-6">Global Strategic Team</span>
+            <div className="synergy-header max-w-4xl mx-auto">
+                <span className="synergy-badge">Global Strategic Team</span>
                 <h2>Everything for your <span className="gradient-text">Global Growth.</span></h2>
                 <p>핀테크 및 인슈어테크 전문 파트너와 함께 데이터 기반의 마케팅 혁신을 시작하세요.</p>
                 <p>OK KOREA 해외 마케팅 팀</p>
@@ -113,11 +177,11 @@ const SynergySection = forwardRef((props, ref) => {
 
             <div className="synergy-grid">
                 {partners.map((partner) => (
-                    <div
-                        key={partner.id}
-                        className={`synergy-card card-${partner.id}`}
-                        style={{ '--card-bg': `url(${partner.img})` }}
-                    >
+                    <div key={partner.id} className={`synergy-card card-${partner.id}`}>
+                        <div
+                            className="card-image-bg"
+                            style={{ backgroundImage: `url(${partner.img})` }}
+                        />
                         <div className="card-content">
                             <h3>{partner.title}</h3>
                             <p className="member-name">{partner.name}</p>
