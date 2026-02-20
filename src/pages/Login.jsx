@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth, googleProvider } from '../firebase';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithRedirect, getRedirectResult } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Handle the result after returning from the redirect
+        const checkRedirect = async () => {
+            try {
+                const result = await getRedirectResult(auth);
+                if (result) {
+                    navigate('/'); // Login successful
+                }
+            } catch (err) {
+                console.error("Redirect Login Error:", err);
+                setError(err.message || "로그인 중 오류가 발생했습니다.");
+            }
+        };
+        checkRedirect();
+    }, [navigate]);
 
     const handleGoogleSignIn = async () => {
         try {
-            await signInWithPopup(auth, googleProvider);
-            navigate('/');
-        } catch (error) {
-            console.error("Login Error:", error);
+            setError(null);
+            await signInWithRedirect(auth, googleProvider);
+        } catch (err) {
+            console.error("Login Error initiation:", err);
+            setError(err.message || "구글 로그인을 시작할 수 없습니다.");
         }
     };
 
@@ -35,6 +53,12 @@ const Login = () => {
                             <h2 className="text-3xl font-black uppercase tracking-tighter mb-2">Welcome Back</h2>
                             <p className="text-white/40 font-medium leading-relaxed">OK KOREA의 서비스를 이용하시려면<br />로그인이 필요합니다.</p>
                         </div>
+
+                        {error && (
+                            <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-bold animate-pulse">
+                                {error}
+                            </div>
+                        )}
 
                         <button
                             onClick={handleGoogleSignIn}
