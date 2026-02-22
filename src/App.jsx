@@ -23,6 +23,9 @@ import Login from './pages/Login';
 import Study from './pages/Study';
 import Work from './pages/Work';
 import Recruiting from './pages/Recruiting';
+import Dashboard from './pages/Dashboard';
+import CoursePlayer from './pages/CoursePlayer';
+import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 const MainContent = () => {
   const [searchParams] = useSearchParams();
@@ -131,6 +134,22 @@ const App = () => {
           <Route path="/study" element={<Study />} />
           <Route path="/work" element={<Work />} />
           <Route path="/recruiting" element={<Recruiting />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/course/:courseId"
+            element={
+              <ProtectedRoute>
+                <CoursePlayer />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
         <FloatingHomeButton />
       </Router>

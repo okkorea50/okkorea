@@ -12,6 +12,7 @@ export default {
           dark: '#0B0C15', // Deep Space Black (Feature Section)
           light: '#FFFFFF', // Hero Background
           purple: '#7C3AED', // Primary Accent
+          blue: '#3B82F6',   // Secondary Accent
           orange: '#F97316', // Gradient Accent
           text: '#0F172A', // Main Text (Light Mode)
           textDark: '#F8FAFC', // Main Text (Dark Mode)
