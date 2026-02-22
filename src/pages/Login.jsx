@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth, googleProvider } from '../firebase';
-import { signInWithRedirect, getRedirectResult } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
@@ -20,28 +20,26 @@ const Login = () => {
         if (user) {
             navigate('/dashboard');
         }
-
-        const checkRedirect = async () => {
-            try {
-                const result = await getRedirectResult(auth);
-                if (result) {
-                    navigate('/dashboard');
-                }
-            } catch (err) {
-                console.error("Redirect Login Error:", err);
-                setError(err.message || "로그인 중 오류가 발생했습니다.");
-            }
-        };
-        checkRedirect();
     }, [user, navigate]);
 
     const handleGoogleSignIn = async () => {
         try {
             setError(null);
-            await signInWithRedirect(auth, googleProvider);
+            setLoading(true);
+            const result = await signInWithPopup(auth, googleProvider);
+            if (result.user) {
+                navigate('/dashboard');
+            }
         } catch (err) {
-            console.error("Login Error initiation:", err);
-            setError(err.message || "구글 로그인을 시작할 수 없습니다.");
+            console.error("Login Error:", err);
+            // Handle common popup errors (like user closing the window)
+            if (err.code === 'auth/popup-closed-by-user') {
+                setError("로그인 창이 닫혔습니다. 다시 시도해 주세요.");
+            } else {
+                setError(err.message || "구글 로그인을 완료할 수 없습니다.");
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
