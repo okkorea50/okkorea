@@ -48,6 +48,8 @@ const Navbar = () => {
         { name: 'Job orders', action: (e) => scrollToSection(e, 'resources'), id: 'resources' },
         { name: 'Visa consulting', action: (e) => scrollToSection(e, 'consultation'), id: 'consultation' },
         { name: 'Now Recruiting', path: '/recruiting', id: 'recruiting' },
+        ...(user ? [{ name: 'My Course', path: '/dashboard', id: 'dashboard' }] : []),
+        ...(isAdmin ? [{ name: 'Admin Panel', path: '/admin', id: 'admin' }] : []),
     ];
 
     return (
@@ -69,7 +71,7 @@ const Navbar = () => {
                         <Link
                             key={link.name}
                             to={link.path}
-                            className="transition-all duration-300 hover:text-[#FFD700] hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]"
+                            className={`transition-all duration-300 hover:text-[#FFD700] hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)] ${location.pathname === link.path ? 'text-[#FFD700]' : ''}`}
                         >
                             {link.name}
                         </Link>
@@ -90,14 +92,17 @@ const Navbar = () => {
             <div className="hidden md:flex items-center gap-4">
                 {user ? (
                     <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
-                        {user.photoURL ? (
-                            <img src={user.photoURL} alt={user.displayName} className="w-7 h-7 rounded-full border border-white/20" />
-                        ) : (
-                            <div className="w-7 h-7 bg-brand-purple rounded-full flex items-center justify-center">
-                                <User size={14} className="text-white" />
-                            </div>
-                        )}
-                        <span className="text-xs font-bold text-white/80">{user.displayName || 'User'}</span>
+                        <Link to="/dashboard" className="flex items-center gap-2 group cursor-pointer">
+                            {user.photoURL ? (
+                                <img src={user.photoURL} alt={user.displayName} className="w-7 h-7 rounded-full border border-white/20 group-hover:border-brand-purple transition-colors" />
+                            ) : (
+                                <div className="w-7 h-7 bg-brand-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <User size={14} className="text-white" />
+                                </div>
+                            )}
+                            <span className="text-xs font-bold text-white/80 group-hover:text-white transition-colors">{user.displayName || 'User'}</span>
+                        </Link>
+                        <div className="w-px h-4 bg-white/10 mx-1"></div>
                         <button
                             onClick={logout}
                             className="p-1.5 hover:bg-white/10 rounded-full transition-colors group"
