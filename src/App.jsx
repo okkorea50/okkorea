@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Components
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Logos from './components/Logos';
 const LazyFeatureSection = React.lazy(() => import('./components/FeatureSection'));
 const LazyPersonaSelector = React.lazy(() => import('./components/PersonaSelector'));
 const LazySynergySection = React.lazy(() => import('./components/SynergySection'));
