@@ -1,4 +1,4 @@
-import{r as n,j as e,Z as c,R as m,X as x}from"./vendor-C33kzALx.js";const p="/okkorea/assets/team-ariel-_5wWjiIu.jpg",g="/okkorea/assets/team-anna-_XJB575w.jpg",f="/okkorea/assets/team-eric-BYS7wGfe.jpg",h="/okkorea/assets/director-brian-kim-BplIpEFp.webp",b=n.forwardRef((u,d)=>{const[t,s]=n.useState(null),i=[{name:"Ariel",role:"Admin Expert",desc:`차분하고 꼼꼼한 행정 전문가. 
+import{r as n,j as e,Z as c,R as m,X as x}from"./vendor-8UkvxA3I.js";const p="/okkorea/assets/team-ariel-_5wWjiIu.jpg",g="/okkorea/assets/team-anna-_XJB575w.jpg",f="/okkorea/assets/team-eric-BYS7wGfe.jpg",h="/okkorea/assets/director-brian-kim-BplIpEFp.webp",b=n.forwardRef((u,d)=>{const[t,s]=n.useState(null),i=[{name:"Ariel",role:"Admin Expert",desc:`차분하고 꼼꼼한 행정 전문가. 
 깔끔하고 정확한 서류 정리로 
 인기가 높습니다. 자주 옥상에 
 올라가 머리를 식히곤 합니다.`,img:p},{name:"Anna",role:"Chief Team Leader",desc:`수석 팀장. 열받으면 대표도 
