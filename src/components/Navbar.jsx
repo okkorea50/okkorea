@@ -47,10 +47,11 @@ const Navbar = () => {
         { name: 'Home', action: (e) => scrollToSection(e, 'hero'), id: 'hero' },
         { name: 'Job orders', action: (e) => scrollToSection(e, 'resources'), id: 'resources' },
         { name: 'Visa consulting', action: (e) => scrollToSection(e, 'consultation'), id: 'consultation' },
+        { name: 'Now Recruiting', path: '/recruiting', id: 'recruiting' },
     ];
 
     return (
-        <nav className="fixed top-0 left-0 w-full px-6 md:px-8 py-4 flex justify-between items-center z-50 backdrop-blur-md bg-[#0B0C15]/80 border-b border-white/10 transition-all duration-700">
+        <nav className="fixed top-0 left-0 w-full px-4 md:px-8 py-3 md:py-4 flex justify-between items-center z-50 backdrop-blur-md bg-[#0B0C15]/80 border-b border-white/10 transition-all duration-700">
 
             {/* Brand Logo */}
             <a
@@ -62,17 +63,26 @@ const Navbar = () => {
                 <span className="text-white">OK KOREA</span>
             </a>
 
-            {/* Desktop Menu */}
             <div className="hidden md:flex gap-8 text-base font-medium text-white items-center">
                 {navLinks.map((link) => (
-                    <a
-                        key={link.name}
-                        href={`#${link.id}`}
-                        onClick={(e) => link.action(e)}
-                        className="transition-all duration-300 hover:text-[#FFD700] hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]"
-                    >
-                        {link.name}
-                    </a>
+                    link.path ? (
+                        <Link
+                            key={link.name}
+                            to={link.path}
+                            className="transition-all duration-300 hover:text-[#FFD700] hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]"
+                        >
+                            {link.name}
+                        </Link>
+                    ) : (
+                        <a
+                            key={link.name}
+                            href={`#${link.id}`}
+                            onClick={(e) => link.action(e)}
+                            className="transition-all duration-300 hover:text-[#FFD700] hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]"
+                        >
+                            {link.name}
+                        </a>
+                    )
                 ))}
             </div>
 
@@ -118,14 +128,25 @@ const Navbar = () => {
             {/* Mobile Drawer Menu */}
             <div className={`fixed inset-0 bg-[#080812] backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8 transition-transform duration-500 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {navLinks.map((link) => (
-                    <a
-                        key={link.name}
-                        href={`#${link.id}`}
-                        onClick={(e) => link.action(e)}
-                        className="text-2xl font-black text-white hover:text-[#FBBF24] transition-colors uppercase tracking-widest"
-                    >
-                        {link.name}
-                    </a>
+                    link.path ? (
+                        <Link
+                            key={link.name}
+                            to={link.path}
+                            onClick={() => setIsOpen(false)}
+                            className="text-2xl font-black text-white hover:text-[#FBBF24] transition-colors uppercase tracking-widest"
+                        >
+                            {link.name}
+                        </Link>
+                    ) : (
+                        <a
+                            key={link.name}
+                            href={`#${link.id}`}
+                            onClick={(e) => link.action(e)}
+                            className="text-2xl font-black text-white hover:text-[#FBBF24] transition-colors uppercase tracking-widest"
+                        >
+                            {link.name}
+                        </a>
+                    )
                 ))}
                 <div className="w-3/4 h-px bg-white/10 my-4"></div>
                 {user ? (

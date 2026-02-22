@@ -3,15 +3,15 @@ import { Globe, Shield, Users } from 'lucide-react';
 
 const BentoGrid = forwardRef((props, ref) => {
     return (
-        <section ref={ref} className="py-32 px-6 bg-slate-50 text-brand-text">
+        <section ref={ref} className="py-20 md:py-32 px-4 md:px-6 bg-slate-50 text-brand-text">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-20">
-                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900">Everything you need</h2>
+                    <h2 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 text-slate-900">Everything you need</h2>
                     <p className="text-xl text-slate-500">성공적인 정착을 위한 4가지 핵심 솔루션</p>
                 </div>
 
                 {/* Changed fixed height h-[800px] to min-h-[800px] or auto for responsiveness */}
-                <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-none md:grid-rows-2 gap-6 min-h-[800px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-none md:grid-rows-2 gap-6 min-h-auto md:min-h-[800px]">
                     {/* Bento Item 1 (Large Left) */}
                     <div className="bento-item col-span-1 md:col-span-2 row-span-2 rounded-[2rem] bg-white p-10 shadow-xl border border-slate-100 relative overflow-hidden group min-h-[400px]">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-green-50 rounded-full blur-3xl -z-10 transition-transform group-hover:scale-150"></div>

@@ -7,16 +7,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Logos from './components/Logos';
-import FeatureSection from './components/FeatureSection';
-import PersonaSelector from './components/PersonaSelector';
-import SynergySection from './components/SynergySection';
-import TestimonialGrid from './components/TestimonialGrid';
-import BlogResources from './components/BlogResources';
-import ConsultationForm from './components/ConsultationForm';
-
+const LazyFeatureSection = React.lazy(() => import('./components/FeatureSection'));
+const LazyPersonaSelector = React.lazy(() => import('./components/PersonaSelector'));
+const LazySynergySection = React.lazy(() => import('./components/SynergySection'));
 const LazyTestimonialGrid = React.lazy(() => import('./components/TestimonialGrid'));
 const LazyBlogResources = React.lazy(() => import('./components/BlogResources'));
 const LazyConsultationForm = React.lazy(() => import('./components/ConsultationForm'));
+const LazyLogos = React.lazy(() => import('./components/Logos'));
 import Footer from './components/Footer';
 import FloatingHomeButton from './components/FloatingHomeButton';
 
@@ -25,6 +22,7 @@ import AllJobs from './pages/AllJobs';
 import Login from './pages/Login';
 import Study from './pages/Study';
 import Work from './pages/Work';
+import Recruiting from './pages/Recruiting';
 import { AuthProvider } from './context/AuthContext';
 const MainContent = () => {
   const [searchParams] = useSearchParams();
@@ -108,11 +106,11 @@ const MainContent = () => {
     <div ref={mainRef} className="w-full min-h-screen bg-brand-light text-brand-text transition-colors duration-700">
       <Navbar />
       <Hero ref={heroRef} />
-      <Logos />
-      <PersonaSelector />
-      <FeatureSection ref={darkSectionRef} />
-      <SynergySection ref={synergyRef} />
-      <React.Suspense fallback={<div className="h-96 bg-[#0B0C15]" />}>
+      <React.Suspense fallback={<div className="h-48 bg-[#0B0C15]" />}>
+        <LazyLogos />
+        <LazyPersonaSelector />
+        <LazyFeatureSection ref={darkSectionRef} />
+        <LazySynergySection ref={synergyRef} />
         <LazyTestimonialGrid />
         <LazyBlogResources />
         <LazyConsultationForm />
@@ -132,6 +130,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/study" element={<Study />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/recruiting" element={<Recruiting />} />
         </Routes>
         <FloatingHomeButton />
       </Router>

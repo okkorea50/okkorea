@@ -10,10 +10,30 @@ const networkCountries = [
 ];
 
 const partnerList = [
-    "Samsung", "Hyundai", "LG Electronics", "SK Telecom", "Naver",
-    "Kakao", "Coupang", "Woowa Bros", "Line", "Toss",
-    "Google Korea", "AWS", "Microsoft", "Oracle", "Meta",
-    "Partner A", "Partner B", "Partner C", "Partner D", "Partner E"
+    "ADM Tech",
+    "국가평생교육진흥원",
+    "사회복지법인(행복충전소)",
+    "김포대학교",
+    "김상연타이어연구소",
+    "(주)엠케이에듀",
+    "(주) 몽돌",
+    "마이크로 청담",
+    "네팔 INUSRTECH",
+    "싱가폴 SEMICO",
+    "한국요양보호사중앙회",
+    "CH 소프트",
+    "KF24 BIZ",
+    "모리노일본어학원",
+    "서울시 농수산식품기업 수출협의회",
+    "한중국제문화교류센터",
+    "베트남 ACE VINA",
+    "베트남 JV-LINK",
+    "사단법인 KOVECA",
+    "한국-네팔 국제교류협회",
+    "영진기술교육원",
+    "HAPPY TRAVEL",
+    "두바이 Edu Guardian",
+    "(주)미래앤"
 ];
 
 const getCountryCode = (name) => {
@@ -66,9 +86,9 @@ const PersonaSelector = () => {
             borderColor: "border-brand-purple/20",
             benefits: [
                 { title: "1999", desc: "01 서울 대치, 송파 영어/한국어 교육원 시작\n02 건국대 외국인 유학생 한국어 교육 지원", iconColor: "bg-brand-purple/20" },
-                { title: "2007", desc: "01 싱가폴 교육법인 설립: 영어,한국어, 중국어, 일본어 교육\n02 어학 연수 프로그램 운영, 외국인 유학생 유치, 한국으로 송출\n03 동남아시아 교육, 무역 시장조사. 코트라, 한국산업인력공단, \n\u00A0\u00A0\u00A0\u00A0인천경제통상진흥원", iconColor: "bg-brand-purple/30" },
-                { title: "2016-22", desc: "01 국내 교육 서비스 및 컨설팅, 국내 대학 외국인 학생 유치 모집\n02 미국, 영국, 호주, 캐나다 유학 및 연수\n03 싱가폴 유학 및 취업 프로그램 운영\n04 외국인 유학생 모집 및 유치,관리, 해외 거점화 사업\n05 한국산업인력공단 K-move 사업", iconColor: "bg-brand-purple/40" },
-                { title: "2025", desc: "01 국내 대학 해외거점화 연구용역\n02 외국인 근로자의 학생 전환 연구 용역\n03 외국인 유학생 모집 및 유치 해외 거점화 사업(네팔,베트남\n\u00A0\u00A0\u00A0\u00A0캄보디아,태국,인도,싱가폴, 방글라데시, 스리랑카, 미얀마,\n\u00A0\u00A0\u00A0\u00A0라오스, 몽골 등 현지 네트워크 구축)\n04 KF24 BIZ 외국인 지원센터\n05 자동차 판금 도장, 부품 제조원, 요양보호사 연구용역, \n\u00A0\u00A0\u00A0\u00A0김포대학 외국인 지원", iconColor: "bg-brand-purple/50" }
+                { title: "2007", desc: "01 싱가폴 교육법인 설립: 영어,한국어, \n     중국어, 일본어 교육\n02 어학 연수 프로그램 운영, 외국인 유학생 \n     유치, 한국으로 송출\n03 동남아시아 교육, 무역 시장조사. 코트라, \n     한국산업인력공단, 인천경제통상진흥원", iconColor: "bg-brand-purple/30" },
+                { title: "2016-22", desc: "01 국내 교육 서비스 및 컨설팅, 국내 대학 \n      외국인 학생 유치 모집\n02 미국, 영국, 호주, 캐나다 유학 및 연수\n03 싱가폴 유학 및 취업 프로그램 운영\n04 외국인 유학생 모집 및 유치,관리, \n     해외 거점화 사업\n05 한국산업인력공단 K-move 사업", iconColor: "bg-brand-purple/40" },
+                { title: "2025", desc: "01 국내 대학 해외거점화 연구용역\n02 외국인 근로자의 학생 전환 연구 용역\n03 외국인 유학생 모집 및 유치 해외 거점화 \n     사업(네팔,베트남, 캄보디아,태국,인도,\n     싱가폴, 방글라데시, 스리랑카, 미얀마,\n     라오스, 몽골 등 현지 네트워크 구축)\n04 KF24 BIZ 외국인 지원센터\n05 자동차 판금 도장, 부품 제조원, \n     요양보호사 연구용역,\n    김포대학 외국인 지원", iconColor: "bg-brand-purple/50" }
             ],
             cta: null,
             image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
@@ -135,21 +155,23 @@ const PersonaSelector = () => {
     const currentContent = contentMap[activeTab];
 
     return (
-        <section className="py-16 px-6 bg-[#0B0C15]">
+        <section className="py-8 md:py-16 px-4 md:px-6 bg-[#0B0C15]">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-8">
-                    <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight text-white">
-                        Built to empower<br />international talent like you
+                    <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight text-white leading-tight">
+                        Built to empower<br />
+                        international talent<br />
+                        like you
                     </h2>
                     <p className="text-[14px] text-slate-400 font-medium">
                         우리는 당신과 같은 글로벌 인재의 역량을 강화하기 위해 존재합니다.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-8">
+                    <div className="flex flex-wrap justify-center gap-2 mt-8 px-2">
                         {tabs.map((tab) => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${activeTab === tab
+                                className={`px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold text-xs md:text-sm transition-all duration-300 ${activeTab === tab
                                     ? 'bg-[#1a1a2e] shadow-xl text-brand-purple border border-brand-purple/20 ring-4 ring-brand-purple/5 transform scale-105'
                                     : 'bg-white/5 text-slate-400 border border-white/10 shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:bg-white/10'
                                     }`}
@@ -188,14 +210,14 @@ const PersonaSelector = () => {
                         </div>
                     ) : activeTab === 'Networks' ? (
                         <div key="networks-grid" className="w-full h-full animate-fade-in text-center">
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                            <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8">
                                 {networkCountries.map((country, idx) => (
                                     <div
                                         key={idx}
                                         className={`flex flex-col items-center group transition-all duration-300 hover:-translate-y-2 ${isVisible ? 'animate-pop-in' : 'opacity-0'}`}
                                         style={{ animationDelay: `${idx * 40}ms` }}
                                     >
-                                        <div className="relative mb-4 w-16 h-11 overflow-hidden rounded-lg shadow-md border border-white/10 group-hover:shadow-xl group-hover:border-brand-purple/30 transition-all">
+                                        <div className="relative mb-2 md:mb-4 w-10 h-7 md:w-16 md:h-11 overflow-hidden rounded-md md:rounded-lg shadow-md border border-white/10 group-hover:shadow-xl group-hover:border-brand-purple/30 transition-all">
                                             <img
                                                 src={`https://flagcdn.com/w160/${getCountryCode(country)}.png`}
                                                 alt={`${country} flag`}
@@ -204,7 +226,7 @@ const PersonaSelector = () => {
                                                 decoding="async"
                                             />
                                         </div>
-                                        <span className="font-bold text-slate-300 group-hover:text-white group-hover:bg-brand-purple px-3 py-1 rounded-full transition-all duration-300">{country}</span>
+                                        <span className="font-bold text-[10px] md:text-sm text-slate-300 group-hover:text-white group-hover:bg-brand-purple px-2 md:px-3 py-0.5 md:py-1 rounded-full transition-all duration-300">{country}</span>
                                     </div>
                                 ))}
                             </div>
@@ -212,11 +234,11 @@ const PersonaSelector = () => {
                     ) : activeTab === 'Partners' ? (
                         <div key="partners-wall" className="w-full h-full animate-fade-in text-center flex flex-col items-center justify-center">
                             <p className="text-slate-400 mb-10 font-medium italic">함께 성장하는 소중한 파트너사입니다.</p>
-                            <div className="flex flex-wrap justify-center gap-4 max-w-4xl">
+                            <div className="flex flex-wrap justify-center gap-2 md:gap-4 max-w-4xl px-2">
                                 {partnerList.map((partner, idx) => (
                                     <span
                                         key={idx}
-                                        className={`inline-block px-6 py-3 bg-white/5 border border-white/10 rounded-full text-sm font-bold text-slate-300 shadow-[0_2px_5px_rgba(0,0,0,0.1)] transition-all duration-[400ms] hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/10 hover:-translate-y-[5px] hover:shadow-[0_8px_15px_rgba(106,90,205,0.3)] cursor-default ${isVisible ? 'animate-pop-in' : 'opacity-0'}`}
+                                        className={`inline-block px-3 py-1.5 md:px-6 md:py-3 bg-white/5 border border-white/10 rounded-full text-xs md:text-sm font-bold text-slate-300 shadow-[0_2px_5px_rgba(0,0,0,0.1)] transition-all duration-[400ms] hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/10 hover:-translate-y-[5px] hover:shadow-[0_8px_15px_rgba(106,90,205,0.3)] cursor-default ${isVisible ? 'animate-pop-in' : 'opacity-0'}`}
                                         style={{
                                             animationDelay: `${idx * 40}ms`,
                                             transitionTimingFunction: 'cubic-bezier(0.165, 0.84, 0.44, 1)'

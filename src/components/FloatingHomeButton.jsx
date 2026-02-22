@@ -8,16 +8,19 @@ const FloatingHomeButton = () => {
     const location = useLocation();
 
     useEffect(() => {
-        console.log('FloatingHomeButton mounted');
         const toggleVisibility = () => {
             const scrolled = window.scrollY || document.documentElement.scrollTop;
-            setIsVisible(scrolled > 300);
+            if (location.pathname === '/') {
+                setIsVisible(scrolled > 300);
+            } else {
+                setIsVisible(true);
+            }
         };
 
         window.addEventListener('scroll', toggleVisibility, { passive: true });
         toggleVisibility();
         return () => window.removeEventListener('scroll', toggleVisibility);
-    }, []);
+    }, [location.pathname]);
 
     const scrollToTop = () => {
         console.log('Scrolling to top');

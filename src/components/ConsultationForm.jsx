@@ -83,7 +83,7 @@ const ConsultationForm = () => {
     };
 
     return (
-        <section id="consultation" className="relative py-16 px-6 md:px-12 bg-[#0B0C15] overflow-hidden">
+        <section id="consultation" className="relative py-10 md:py-16 px-6 md:px-12 bg-[#0B0C15] overflow-hidden">
             {/* Background Glows */}
             <div className="absolute top-1/4 -left-20 w-80 h-80 bg-[#FBBF24]/5 rounded-full blur-[100px]"></div>
             <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#7C3AED]/5 rounded-full blur-[100px]"></div>
@@ -94,7 +94,10 @@ const ConsultationForm = () => {
                         Visa <span className="text-[#FBBF24]">Consulting</span>
                     </h2>
                     <p className="text-slate-400 text-base max-w-xl mx-auto leading-relaxed">
-                        Expert guidance for your Korean journey. Fill out the form below, and our specialists will get back to you within 24 hours.
+                        Expert guidance for your Korean journey.<br />
+                        Fill out the form below, and<br />
+                        our specialists will get back to you within<br />
+                        24 hours.
                     </p>
                 </div>
 

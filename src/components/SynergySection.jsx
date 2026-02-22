@@ -33,13 +33,13 @@ const SynergySection = forwardRef((props, ref) => {
             id: 'pralhad',
             title: 'International Business',
             name: 'Pralhad Sedhai',
-            desc: '10년 이상의 기술 컨설팅 경험으로\n글로벌 시스템 통합 및 리스크관리를 지원합니다.',
+            desc: '10년 이상의 기술 컨설팅 경험으로\n글로벌 시스템 통합 및 리스크관리를 \n지원합니다.',
             img: imgPralhad
         }
     ];
 
     return (
-        <section ref={ref} className="marketing-synergy-section bg-[#080812] py-16 px-6 overflow-hidden">
+        <section ref={ref} className="marketing-synergy-section bg-[#080812] py-8 md:py-16 px-4 md:px-6 overflow-hidden">
             <style>{`
                 .marketing-synergy-section {
                     text-align: center;
@@ -85,7 +85,7 @@ const SynergySection = forwardRef((props, ref) => {
                 .synergy-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                    gap: 30px;
+                    gap: 20px;
                     max-width: 1400px;
                     margin: 0 auto;
                 }
@@ -171,7 +171,11 @@ const SynergySection = forwardRef((props, ref) => {
             <div className="synergy-header max-w-4xl mx-auto px-4">
                 <span className="synergy-badge">Global Strategic Team</span>
                 <h2 className="text-3xl md:text-5xl lg:text-7xl">Everything for your <span className="gradient-text">Global Growth.</span></h2>
-                <p className="text-sm md:text-lg">핀테크 및 인슈어테크 전문 파트너와 함께 데이터 기반의 마케팅 혁신을 시작하세요.</p>
+                <p className="text-sm md:text-lg">
+                    핀테크 및 인슈어테크 전문 파트너와 <br className="md:hidden" />
+                    함께 데이터 기반의 마케팅 <br className="md:hidden" />
+                    혁신을 시작하세요.
+                </p>
                 <p className="text-sm md:text-lg font-bold mt-2">OK KOREA 해외 마케팅 팀</p>
             </div>
 
