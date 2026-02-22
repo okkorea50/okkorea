@@ -4,9 +4,16 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+import { useNavigate } from 'react-router-dom';
+
 const AllJobs = () => {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    const scrollToConsultation = () => {
+        navigate('/?section=consultation');
+    };
 
     useEffect(() => {
         const jobsCol = collection(db, 'jobs');
@@ -63,7 +70,11 @@ const AllJobs = () => {
                     </div>
                 )}
             </div>
-            <Footer />
+            <Footer
+                ctaSubtitle="Apply Now"
+                ctaButtonText="Get a Job"
+                ctaAction={scrollToConsultation}
+            />
         </div>
     );
 };

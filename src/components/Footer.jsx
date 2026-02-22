@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Footer = ({ showCTA = true }) => {
+const Footer = ({
+    showCTA = true,
+    ctaTitle,
+    ctaSubtitle,
+    ctaButtonText = "Login",
+    ctaAction
+}) => {
     return (
         <>
             {/* CTA Section */}
@@ -9,15 +15,29 @@ const Footer = ({ showCTA = true }) => {
                 <section id="footer" className="pt-4 pb-10 md:pb-16 px-6 bg-[#0B0C15] text-white text-center">
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tighter">
-                            Start your<br />
-                            <span className="text-brand-purple">Super Journey.</span>
+                            {ctaTitle || <>Start your<br />
+                                <span className="text-brand-purple">Super Journey.</span></>}
                         </h2>
-                        <Link
-                            to="/login"
-                            className="inline-block px-8 py-3.5 bg-white text-brand-dark rounded-full font-black text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.2)]"
-                        >
-                            Login
-                        </Link>
+                        {ctaSubtitle && (
+                            <p className="text-white/40 text-lg md:text-xl font-bold mb-8 uppercase tracking-widest">
+                                {ctaSubtitle}
+                            </p>
+                        )}
+                        {ctaAction ? (
+                            <button
+                                onClick={ctaAction}
+                                className="inline-block px-10 py-4 bg-[#FBBF24] text-[#080812] rounded-full font-black text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(251,191,36,0.3)]"
+                            >
+                                {ctaButtonText}
+                            </button>
+                        ) : (
+                            <Link
+                                to="/login"
+                                className="inline-block px-8 py-3.5 bg-white text-brand-dark rounded-full font-black text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                            >
+                                {ctaButtonText}
+                            </Link>
+                        )}
                     </div>
                 </section>
             )}

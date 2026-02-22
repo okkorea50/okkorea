@@ -38,7 +38,7 @@ const BlogResources = () => {
                         href="#/all-jobs"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-8 py-3 bg-white/5 text-white border border-white/10 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#FBBF24] hover:text-[#080812] hover:border-[#FBBF24] hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] transition-all duration-300"
+                        className="px-6 py-2.5 md:px-8 md:py-3 bg-white/5 text-white border border-white/10 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-[#FBBF24] hover:text-[#080812] hover:border-[#FBBF24] hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] transition-all duration-300 whitespace-nowrap"
                     >
                         View All Jobs
                     </a>
