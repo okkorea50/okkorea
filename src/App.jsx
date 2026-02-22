@@ -23,6 +23,7 @@ import Study from './pages/Study';
 import Work from './pages/Work';
 import Recruiting from './pages/Recruiting';
 import Dashboard from './pages/Dashboard';
+import Admin from './pages/Admin';
 import CoursePlayer from './pages/CoursePlayer';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
@@ -117,7 +118,7 @@ const MainContent = () => {
         <LazyBlogResources />
         <LazyConsultationForm />
       </React.Suspense>
-      <Footer />
+      <Footer showCTA={true} />
     </div>
   );
 };
@@ -129,6 +130,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/all-jobs" element={<AllJobs />} />
+          <Route path="/admin" element={<ProtectedRoute adminOnly={true}><Admin /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/study" element={<Study />} />
           <Route path="/work" element={<Work />} />

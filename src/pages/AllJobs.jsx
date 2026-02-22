@@ -71,6 +71,7 @@ const AllJobs = () => {
                 )}
             </div>
             <Footer
+                showCTA={true}
                 ctaSubtitle="Apply Now"
                 ctaButtonText="Get a Job"
                 ctaAction={scrollToConsultation}
