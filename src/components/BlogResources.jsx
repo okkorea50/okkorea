@@ -27,7 +27,7 @@ const BlogResources = () => {
         <section id="resources" className="pt-10 md:pt-16 pb-8 md:pb-12 px-6 bg-[#080812]">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
-                    <div className="text-center w-full">
+                    <div className="space-y-2">
                         <h2 className="text-3xl font-black text-white mb-2 uppercase tracking-tighter">
                             Your Job Orders<br />
                             <span className="text-brand-purple">내 직업 찾기</span>
