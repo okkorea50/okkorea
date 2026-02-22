@@ -51,7 +51,7 @@ import{r as n,j as e}from"./vendor-C33kzALx.js";const i="/okkorea/team/nepal-sum
                 .synergy-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                    gap: 20px;
+                    gap: 16px;
                     max-width: 1400px;
                     margin: 0 auto;
                 }
