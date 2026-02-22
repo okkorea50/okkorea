@@ -1,4 +1,4 @@
-import{r as n,j as e}from"./vendor-BH8wRc-n.js";const i="/okkorea/team/nepal-suman.png",s="/okkorea/team/nepal-pratik.png",o="/okkorea/team/nepal-sajina.png",l="/okkorea/team/nepal-pralhad.png",d=n.forwardRef((c,r)=>{const t=[{id:"suman",title:"Digital Transformation",name:"Suman Silwal (CEO)",desc:`9년 이상의 경험으로 비즈니스
+import{r as n,j as e}from"./vendor-C33kzALx.js";const i="/okkorea/team/nepal-suman.png",s="/okkorea/team/nepal-pratik.png",o="/okkorea/team/nepal-sajina.png",l="/okkorea/team/nepal-pralhad.png",d=n.forwardRef((c,r)=>{const t=[{id:"suman",title:"Digital Transformation",name:"Suman Silwal (CEO)",desc:`9년 이상의 경험으로 비즈니스
 디지털 성숙도를 진단하고
 전략적 로드맵을 설계합니다.`,img:i},{id:"pratik",title:"Growth & SEO",name:"Pratik Guragain",desc:`검색 최적화와 디지털 캠페인을
 통해 글로벌 시장에서의 가시성을
