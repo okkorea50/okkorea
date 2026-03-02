@@ -16,7 +16,7 @@ const TestimonialGrid = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {/* Row 1 */}
                     <div className="point-card-style rounded-3xl p-6 md:p-8 col-span-1 flex flex-col justify-between min-h-[200px] md:min-h-[240px]">
                         <div className="text-4xl md:text-5xl font-black tracking-tighter text-white">92%<span className="text-xl md:text-2xl align-top">+</span></div>

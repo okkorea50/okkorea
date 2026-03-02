@@ -7,10 +7,14 @@
   },
   "auth": {
     "providers": {
+      "emailPassword": true,
       "googleSignIn": {
         "oAuthBrandDisplayName": "OK KOREA Job Board",
-        "supportEmail": "ihappiness7@gmail.com"
+        "supportEmail": "ok.korea50@gmail.com"
       }
     }
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

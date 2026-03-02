@@ -1,149 +1,295 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion, collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
+import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
-// Mock data for lessons (In a real app, this would come from Firestore)
-const MOCK_COURSE_CONTENT = {
-    'part01': {
-        title: 'Part 01: 한국어 기초',
-        lessons: [
-            { id: '1-1', title: '자음 기초 01', videoId: 'dQw4w9WgXcQ', duration: '12:45' },
-            { id: '1-2', title: '자음 기초 02', videoId: 'dQw4w9WgXcQ', duration: '10:20' },
-            { id: '1-3', title: '모음 기초 01', videoId: 'dQw4w9WgXcQ', duration: '15:10' },
-            { id: '1-4', title: '모음 기초 02', videoId: 'dQw4w9WgXcQ', duration: '11:30' },
-        ]
-    },
-    'part03': {
-        title: 'Part 03: 일상 대화',
-        lessons: [
-            { id: '3-1', title: '첫 인사 나누기', videoId: 'dQw4w9WgXcQ', duration: '08:45' },
-            { id: '3-2', title: '자기소개 하기', videoId: 'dQw4w9WgXcQ', duration: '12:20' },
-        ]
-    }
-};
+import InteractivePlayer from '../components/interactive/InteractivePlayer';
+import TutorCustomizer from '../components/interactive/TutorCustomizer';
+import { DEFAULT_TUTOR_SETTINGS } from '../components/interactive/constants';
 
 const CoursePlayer = () => {
     const { courseId } = useParams();
     const navigate = useNavigate();
-    const course = MOCK_COURSE_CONTENT[courseId] || MOCK_COURSE_CONTENT['part01'];
+    const { user, hasPremium, loading: authLoading } = useAuth();
 
-    const [activeLesson, setActiveLesson] = useState(course.lessons[0]);
-    const [completedLessons, setCompletedLessons] = useState([]);
+    const [isCompleted, setIsCompleted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [courseData, setCourseData] = useState(null);
+    const [courseLoading, setCourseLoading] = useState(true);
 
-    const handleLessonComplete = (lessonId) => {
-        if (!completedLessons.includes(lessonId)) {
-            setCompletedLessons([...completedLessons, lessonId]);
+    // ✨ 인터랙티브 설정
+    const [tutorSettings, setTutorSettings] = useState(DEFAULT_TUTOR_SETTINGS);
+    const [showCustomizer, setShowCustomizer] = useState(false);
+
+    // ✨ 현재 재생 중인 강의 인덱스
+    const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
+
+    // 1. 가져오기
+    useEffect(() => {
+        const fetchCourseData = async () => {
+            try {
+                const q = query(collection(db, 'courses'), where('courseId', '==', courseId));
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    const docData = querySnapshot.docs[0].data();
+                    setCourseData(docData);
+                } else {
+                    const directRef = doc(db, 'courses', courseId);
+                    const directSnap = await getDoc(directRef);
+                    if (directSnap.exists()) {
+                        setCourseData(directSnap.data());
+                    }
+                }
+            } catch (error) {
+                console.error('강의 데이터 로드 에러:', error);
+            } finally {
+                setCourseLoading(false);
+            }
+        };
+
+        fetchCourseData();
+    }, [courseId]);
+
+    // 2. 권한/출석
+    useEffect(() => {
+        if (authLoading || courseLoading) return;
+
+        if (courseData?.isLocked && !hasPremium) {
+            alert('이 강의는 프리미엄 회원 전용입니다. 결제 후 이용해주세요.');
+            navigate('/dashboard');
+            return;
+        }
+
+        const checkAttendance = async () => {
+            if (user) {
+                const userRef = doc(db, 'users', user.uid);
+                const userSnap = await getDoc(userRef);
+                if (userSnap.exists()) {
+                    const userData = userSnap.data();
+                    if (userData.completedCourses && userData.completedCourses.includes(courseId)) {
+                        setIsCompleted(true);
+                    }
+                }
+            }
+        };
+        checkAttendance();
+    }, [user, courseId, courseData, authLoading, courseLoading]);
+
+    const markAttendance = async () => {
+        if (!user) return;
+        setLoading(true);
+        try {
+            const userRef = doc(db, 'users', user.uid);
+            await setDoc(userRef, {
+                completedCourses: arrayUnion(courseId),
+                attendanceHistory: arrayUnion({
+                    courseId: courseId,
+                    date: new Date().toISOString()
+                })
+            }, { merge: true });
+            setIsCompleted(true);
+            alert('✅ 수강 완료 처리되었습니다!');
+        } catch (error) {
+            console.error('수강 완료 에러:', error);
+            alert('처리 중 오류가 발생했습니다.');
+        } finally {
+            setLoading(false);
         }
     };
 
+    const getEmbedUrl = (url) => {
+        if (!url) return null;
+        if (url.includes('youtube.com/embed/')) return url;
+        const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+        if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
+        const watchMatch = url.match(/[?&]v=([^?&]+)/);
+        if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+        const shortsMatch = url.match(/shorts\/([^?&]+)/);
+        if (shortsMatch) return `https://www.youtube.com/embed/${shortsMatch[1]}`;
+        return url;
+    };
+
+    // ✨ lessonsList 지원 (하위호환 포함)
+    const lessons = courseData?.lessonsList && courseData.lessonsList.length > 0
+        ? courseData.lessonsList
+        : (courseData?.videoUrl ? [{ id: 'legacy', title: '본 강의', videoUrl: courseData.videoUrl }] : []);
+
+    const currentLesson = lessons[currentLessonIndex] || {};
+    const embedUrl = getEmbedUrl(currentLesson.videoUrl) || '';
+
+    // ✨ 3.1 인터랙티브 모드 판단
+    const isInteractive = courseData?.isInteractive === true;
+    const scenes = courseData?.scenesList || [];
+
     return (
-        <div className="w-full min-h-screen bg-[#080812] text-white flex flex-col font-['Inter']">
+        <div className="w-full min-h-screen bg-[#080812] text-white flex flex-col">
             <Navbar />
 
-            <main className="flex-1 pt-[100px] pb-[60px]">
-                <div className="max-w-[1600px] mx-auto px-6">
-                    {/* Breadcrumbs / Header */}
-                    <div className="flex items-center gap-4 mb-8">
-                        <Link to="/dashboard" className="text-white/40 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest flex items-center gap-2">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg>
-                            Back to Dashboard
-                        </Link>
-                        <span className="text-white/10">|</span>
-                        <h1 className="text-xl font-black uppercase tracking-tight text-brand-purple">{course.title}</h1>
+            <main className="flex-1 pt-[120px] pb-20 px-6 max-w-6xl mx-auto w-full animate-fade-in-up">
+                <div className="flex justify-between items-center mb-6">
+                    <button onClick={() => navigate('/dashboard')} className="text-white/50 hover:text-white font-bold text-sm transition-colors">
+                        ← 내 강의실로 돌아가기
+                    </button>
+                    <div className="flex gap-4">
+                        {isInteractive && (
+                            <button
+                                onClick={() => setShowCustomizer(true)}
+                                className="bg-purple-600/20 text-purple-400 border border-purple-500/30 px-4 py-2 rounded-lg text-xs font-bold hover:bg-purple-600 hover:text-white transition-all flex items-center gap-2"
+                            >
+                                👤 튜터 커스터마이징
+                            </button>
+                        )}
+                        {courseData?.pdfUrl && (
+                            <a
+                                href={courseData.pdfUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-blue-600/20 text-blue-400 border border-blue-500/30 px-4 py-2 rounded-lg text-xs font-bold hover:bg-blue-600 hover:text-white transition-all flex items-center gap-2"
+                            >
+                                <span className="text-base">📄</span> 강의 교안 (PDF) 다운로드
+                            </a>
+                        )}
                     </div>
+                </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                        {/* Video Player Area */}
-                        <div className="lg:col-span-3 space-y-6">
-                            <div className="aspect-video bg-[#12121A] rounded-3xl overflow-hidden border border-white/5 shadow-2xl relative shadow-brand-purple/5">
-                                <iframe
-                                    src={`https://www.youtube.com/embed/${activeLesson.videoId}?rel=0&modestbranding=1`}
-                                    title={activeLesson.title}
-                                    className="w-full h-full"
-                                    allowFullScreen
-                                ></iframe>
-                            </div>
-
-                            <div className="flex justify-between items-center p-8 bg-[#12121A] border border-white/5 rounded-3xl">
-                                <div className="space-y-1">
-                                    <h2 className="text-2xl font-black uppercase tracking-tight">{activeLesson.title}</h2>
-                                    <p className="text-white/40 text-sm font-medium">Duration: {activeLesson.duration} • Topic: Grammar & Speaking</p>
-                                </div>
-                                <button
-                                    onClick={() => handleLessonComplete(activeLesson.id)}
-                                    disabled={completedLessons.includes(activeLesson.id)}
-                                    className={`px-8 py-4 rounded-xl font-black text-xs uppercase tracking-[0.2em] transition-all ${completedLessons.includes(activeLesson.id)
-                                        ? 'bg-green-500/10 text-green-500 border border-green-500/20 cursor-default'
-                                        : 'bg-brand-purple hover:scale-105 shadow-lg shadow-brand-purple/20'
-                                        }`}
-                                >
-                                    {completedLessons.includes(activeLesson.id) ? 'Completed' : 'Mark as Done'}
-                                </button>
-                            </div>
+                <div className="bg-[#12121A] border border-white/5 rounded-3xl overflow-hidden shadow-2xl relative">
+                    {courseLoading ? (
+                        <div className="flex items-center justify-center py-20">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-purple"></div>
                         </div>
-
-                        {/* Lesson Sidebar */}
-                        <div className="lg:col-span-1 border-l border-white/5 pl-8 space-y-6">
-                            <h3 className="text-xs font-black uppercase tracking-[0.3em] text-white/30">Course Content</h3>
-                            <div className="space-y-3">
-                                {course.lessons.map((lesson, idx) => (
-                                    <button
-                                        key={lesson.id}
-                                        onClick={() => setActiveLesson(lesson)}
-                                        className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all text-left group ${activeLesson.id === lesson.id
-                                            ? 'bg-brand-purple/10 border-brand-purple/30'
-                                            : 'bg-white/20 border-white/5 hover:bg-white/5 hover:border-white/10'
-                                            }`}
-                                    >
-                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black border ${completedLessons.includes(lesson.id)
-                                            ? 'bg-green-500/10 border-green-500/30 text-green-500'
-                                            : activeLesson.id === lesson.id
-                                                ? 'bg-brand-purple text-white border-brand-purple'
-                                                : 'bg-white/10 border-white/10 text-white/40'
-                                            }`}>
-                                            {completedLessons.includes(lesson.id) ? (
-                                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" /></svg>
-                                            ) : (idx + 1).toString().padStart(2, '0')}
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                            <p className={`text-sm font-bold truncate ${activeLesson.id === lesson.id ? 'text-white' : 'text-white/60 group-hover:text-white'}`}>
-                                                {lesson.title}
-                                            </p>
-                                            <p className="text-[10px] text-white/20 font-medium uppercase tracking-widest">{lesson.duration}</p>
-                                        </div>
-                                    </button>
-                                ))}
+                    ) : (
+                        isInteractive ? (
+                            <div className="p-2">
+                                <InteractivePlayer
+                                    scenes={scenes}
+                                    tutorSettings={tutorSettings}
+                                    courseTitle={courseData?.title}
+                                    onComplete={markAttendance}
+                                    onOpenSettings={() => setShowCustomizer(true)}
+                                />
                             </div>
+                        ) : (
+                            <div className={`grid grid-cols-1 ${lessons.length > 1 ? 'lg:grid-cols-3' : ''}`}>
 
-                            <div className="p-6 bg-[#12121A] border border-white/5 rounded-2xl space-y-4">
-                                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-white/30">Course Resources</h3>
-                                <div className="space-y-2">
-                                    {[
-                                        { name: 'Vocabulary List.pdf', size: '1.2 MB' },
-                                        { name: 'Grammar Cheat Sheet.pdf', size: '0.8 MB' },
-                                    ].map((res, i) => (
-                                        <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5 hover:border-brand-purple/30 transition-all cursor-pointer group">
-                                            <div className="flex items-center gap-3">
-                                                <svg className="w-4 h-4 text-brand-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
-                                                <span className="text-xs font-bold text-white/60 group-hover:text-white transition-colors">{res.name}</span>
+                                {/* 왼쪽/메인: 영상 플레이어 영역 */}
+                                <div className={`p-6 ${lessons.length > 1 ? 'lg:col-span-2 border-b lg:border-b-0 lg:border-r border-white/5' : ''}`}>
+                                    <div className="mb-6 flex justify-between items-end">
+                                        <div>
+                                            {courseData?.category && (
+                                                <span className="text-[10px] font-black text-brand-purple uppercase tracking-widest bg-brand-purple/10 px-2 py-1 rounded">
+                                                    {courseData.category}
+                                                </span>
+                                            )}
+                                            <h1 className="text-2xl lg:text-3xl font-black mt-3 text-white">
+                                                {courseData?.title || `강의: ${courseId}`}
+                                            </h1>
+                                            {courseData?.subtitle && (
+                                                <p className="text-sm text-white/50 mt-2">{courseData.subtitle}</p>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* 선택된 강의 소제목 (여러 강의일 때만) */}
+                                    {lessons.length > 1 && (
+                                        <div className="mb-4 text-brand-purple font-bold flex items-center gap-2">
+                                            <span className="bg-brand-purple text-white px-2 py-0.5 rounded text-xs">{currentLessonIndex + 1}강</span>
+                                            {currentLesson.title}
+                                        </div>
+                                    )}
+
+                                    <div className="w-full aspect-video bg-black rounded-2xl border border-white/10 mb-8 overflow-hidden shadow-2xl">
+                                        {embedUrl ? (
+                                            <iframe
+                                                className="w-full h-full"
+                                                src={embedUrl}
+                                                title={currentLesson.title || courseData?.title || 'OKKorea Lecture Video'}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowFullScreen
+                                            ></iframe>
+                                        ) : (
+                                            <div className="w-full h-full flex flex-col items-center justify-center text-white/30">
+                                                <span className="text-4xl mb-2">🎬</span>
+                                                영상 링크가 없습니다.
                                             </div>
-                                            <span className="text-[10px] text-white/20 font-bold">{res.size}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                                        )}
+                                    </div>
 
-                            <div className="p-6 bg-gradient-to-br from-brand-purple/10 to-brand-blue/10 border border-brand-purple/20 rounded-2xl space-y-4">
-                                <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-purple">Next Step</h4>
-                                <p className="text-xs text-white/60 font-medium italic">"Every small step in learning Korean brings you closer to your dream life in Korea."</p>
+                                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-t border-white/10 pt-6 gap-4 bg-[#080812]/30 -mx-6 -mb-6 p-6">
+                                        <div>
+                                            <p className="text-sm font-bold text-white/80">강의를 수강하셨나요?</p>
+                                            <p className="text-xs text-white/50 mt-1">
+                                                {lessons.length > 1 ? '모든 영상을 시청한 후 수강 완료 버튼을 눌러 진행도를 기록하세요.' : '강의를 시청하신 후 완료 버튼을 눌러주세요.'}
+                                            </p>
+                                        </div>
+
+                                        <button
+                                            onClick={markAttendance}
+                                            disabled={isCompleted || loading}
+                                            className={`px-8 py-3 rounded-xl font-black transition-all whitespace-nowrap ${isCompleted
+                                                ? 'bg-green-500/20 text-green-400 border border-green-500/50 cursor-not-allowed'
+                                                : 'bg-brand-purple text-white hover:bg-purple-500 hover:scale-105 shadow-[0_0_20px_rgba(168,85,247,0.4)]'
+                                                }`}
+                                        >
+                                            {loading ? '처리 중...' : isCompleted ? '✅ 수강 완료됨' : '수강 완료 (출석)'}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* 오른쪽: 커리큘럼 플레이리스트 (강의가 여러 개일 때만 표시) */}
+                                {lessons.length > 1 && (
+                                    <div className="p-6 bg-[#080812]/50 lg:max-h-[85vh] lg:overflow-y-auto custom-scrollbar">
+                                        <div className="flex items-center justify-between mb-6 sticky top-0 bg-[#080812] py-2 z-10 border-b border-white/5">
+                                            <h3 className="text-sm font-black text-white uppercase tracking-wider">📚 커리큘럼</h3>
+                                            <span className="text-xs font-bold text-white/40 bg-white/5 px-2 py-1 rounded">총 {lessons.length}강</span>
+                                        </div>
+                                        <div className="space-y-2">
+                                            {lessons.map((lesson, idx) => (
+                                                <button
+                                                    key={lesson.id || idx}
+                                                    onClick={() => {
+                                                        setCurrentLessonIndex(idx);
+                                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                                    }}
+                                                    className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all text-left group ${currentLessonIndex === idx ? 'bg-brand-purple/20 border border-brand-purple/50 text-white' : 'hover:bg-white/5 text-white/50 border border-transparent'}`}
+                                                >
+                                                    <span className={`text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full shrink-0 ${currentLessonIndex === idx ? 'bg-brand-purple text-white' : 'bg-white/5 group-hover:bg-white/10'}`}>
+                                                        {idx + 1}
+                                                    </span>
+                                                    <span className="text-sm leading-snug flex-1 break-words line-clamp-2">{lesson.title}</span>
+                                                    {currentLessonIndex === idx && (
+                                                        <span className="w-2 h-2 rounded-full bg-brand-purple shrink-0 animate-pulse"></span>
+                                                    )}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
                             </div>
-                        </div>
-                    </div>
+                        )
+                    )}
                 </div>
             </main>
 
-            <Footer />
+            {/* ✨ 튜터 커스텀 모달 */}
+            {showCustomizer && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+                    <TutorCustomizer
+                        settings={tutorSettings}
+                        onApply={(newSettings) => {
+                            setTutorSettings(newSettings);
+                            setShowCustomizer(false);
+                        }}
+                        onClose={() => setShowCustomizer(false)}
+                    />
+                </div>
+            )}
+
+            <Footer showCTA={false} />
         </div>
     );
 };

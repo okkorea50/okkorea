@@ -44,7 +44,7 @@ const BlogResources = () => {
                     </a>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
                     {loading ? (
                         [...Array(12)].map((_, i) => (
                             <div key={i} className="bg-white/5 border border-white/10 rounded-lg h-[100px] animate-pulse"></div>

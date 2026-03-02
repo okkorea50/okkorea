@@ -210,7 +210,7 @@ const PersonaSelector = () => {
                         </div>
                     ) : activeTab === 'Networks' ? (
                         <div key="networks-grid" className="w-full h-full animate-fade-in text-center">
-                            <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8">
+                            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-8">
                                 {networkCountries.map((country, idx) => (
                                     <div
                                         key={idx}

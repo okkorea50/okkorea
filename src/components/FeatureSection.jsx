@@ -39,7 +39,7 @@ const FeatureSection = forwardRef((props, ref) => {
                     <div className="inline-block px-4 py-1 rounded-full bg-brand-purple/20 text-brand-purple font-bold text-sm border border-brand-purple/30 animate-fade-in">
                         Creative Experts
                     </div>
-                    <h2 className="text-3xl sm:text-4xl md:text-7xl font-black leading-[1.1]">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-[1.1]">
                         Meet Our <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-orange">Professional.</span>
                     </h2>

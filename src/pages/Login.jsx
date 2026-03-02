@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { auth, googleProvider } from '../firebase';
+import { auth, googleProvider, db } from '../firebase'; // ✨ db 추가
 import { signInWithPopup } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore'; // ✨ Firestore 함수 추가
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
@@ -13,8 +14,15 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
+    const [selectedRole, setSelectedRole] = useState('student'); // ✨ 기본값: student
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const roles = [
+        { id: 'student', label: 'Student', icon: '📝', desc: '학습을 준비하는 학생' },
+        { id: 'jobseeker', label: 'Jobseeker', icon: '💼', desc: '일자리를 찾는 구직자' },
+        { id: 'agent', label: 'Agent', icon: '🏢', desc: '사람을 찾는 대행사/에이전트' }
+    ];
 
     useEffect(() => {
         if (user) {
@@ -27,12 +35,28 @@ const Login = () => {
             setError(null);
             setLoading(true);
             const result = await signInWithPopup(auth, googleProvider);
+
             if (result.user) {
+                // ✨ 1. DB에 이 유저가 있는지 확인
+                const userRef = doc(db, 'users', result.user.uid);
+                const userSnap = await getDoc(userRef);
+
+                // ✨ 2. 처음 온 사람(DB에 데이터가 없음)이면 새로 만들어줌
+                if (!userSnap.exists()) {
+                    await setDoc(userRef, {
+                        name: result.user.displayName || 'Google User',
+                        email: result.user.email,
+                        role: selectedRole, // ✨ 선택된 역할로 저장
+                        paymentStatus: 'unpaid',
+                        hasAccess: false,
+                        createdAt: new Date().toISOString()
+                    });
+                }
+
                 navigate('/dashboard');
             }
         } catch (err) {
             console.error("Login Error:", err);
-            // Handle common popup errors (like user closing the window)
             if (err.code === 'auth/popup-closed-by-user') {
                 setError("로그인 창이 닫혔습니다. 다시 시도해 주세요.");
             } else {
@@ -50,17 +74,26 @@ const Login = () => {
 
         try {
             if (isSignUp) {
-                await signUpWithEmail(email, password, displayName);
+                await signUpWithEmail(email, password, displayName, selectedRole); // ✨ selectedRole 추가
             } else {
                 await signInWithEmail(email, password);
             }
             navigate('/dashboard');
         } catch (err) {
             console.error("Auth Error:", err);
-            let message = "인증 중 오류가 발생했습니다.";
+            let message = `인증 중 오류가 발생했습니다. (${err.code || 'unknown'})`;
+
             if (err.code === 'auth/user-not-found') message = "가입되지 않은 이메일입니다.";
             if (err.code === 'auth/wrong-password') message = "비밀번호가 올바르지 않습니다.";
-            if (err.code === 'auth/email-already-in-use') message = "이미 사용 중인 이메일입니다.";
+            if (err.code === 'auth/email-already-in-use') message = "이미 사용 중인 이메일입니다. 로그인해 주세요.";
+            if (err.code === 'auth/invalid-email') message = "유효하지 않은 이메일 형식입니다.";
+            if (err.code === 'auth/weak-password') message = "비밀번호는 최소 6자 이상이어야 합니다.";
+            if (err.code === 'auth/popup-closed-by-user') message = "인증 창이 닫혔습니다.";
+            if (err.code === 'auth/account-exists-with-different-credential') message = "이미 다른 방법(구글 등)으로 가입된 계정입니다.";
+            if (err.code === 'auth/user-disabled') message = "해당 계정은 비활성화되었습니다. 관리자에게 문의하세요.";
+            if (err.code === 'auth/too-many-requests') message = "너무 많은 시도가 있었습니다. 잠시 후 다시 시도해 주세요.";
+            if (err.code === 'auth/operation-not-allowed') message = "이메일 회원가입 기능이 현재 비활성화되어 있습니다. 관리자에게 문의하세요.";
+
             setError(message);
         } finally {
             setLoading(false);
@@ -92,6 +125,41 @@ const Login = () => {
                                     : "회원님의 학습 현황을 확인하려면 로그인하세요."}
                             </p>
                         </div>
+
+                        {/* ✨ Role Selection UI (Signup Only) */}
+                        {isSignUp && (
+                            <div className="space-y-3">
+                                <label className="text-[10px] font-bold text-white/30 uppercase tracking-widest pl-1">Select Your Role</label>
+                                <div className="grid grid-cols-1 gap-3">
+                                    {roles.map((r) => (
+                                        <button
+                                            key={r.id}
+                                            type="button"
+                                            onClick={() => setSelectedRole(r.id)}
+                                            className={`flex items-center gap-4 p-4 rounded-2xl border transition-all ${selectedRole === r.id
+                                                ? 'bg-brand-purple/20 border-brand-purple shadow-[0_0_20px_rgba(168,85,247,0.15)]'
+                                                : 'bg-white/5 border-white/10 hover:border-white/20'
+                                                }`}
+                                        >
+                                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-xl ${selectedRole === r.id ? 'bg-brand-purple text-white' : 'bg-white/5 text-white/40'}`}>
+                                                {r.icon}
+                                            </div>
+                                            <div className="text-left">
+                                                <div className={`text-sm font-black ${selectedRole === r.id ? 'text-white' : 'text-white/60'}`}>{r.label}</div>
+                                                <div className="text-[10px] text-white/30 font-medium">{r.desc}</div>
+                                            </div>
+                                            {selectedRole === r.id && (
+                                                <div className="ml-auto">
+                                                    <svg className="w-5 h-5 text-brand-purple" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            )}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         {error && (
                             <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-[11px] font-bold text-center">
@@ -168,14 +236,15 @@ const Login = () => {
                             Google
                         </button>
 
-                        <div className="text-center">
-                            <button
-                                onClick={() => setIsSignUp(!isSignUp)}
-                                className="text-white/40 text-xs font-bold hover:text-white transition-colors"
-                            >
-                                {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Create One"}
-                            </button>
-                        </div>
+                        <button
+                            onClick={() => setIsSignUp(!isSignUp)}
+                            className="w-full text-center text-white/40 text-xs font-bold hover:text-white transition-colors group flex flex-col items-center gap-1 mt-4"
+                        >
+                            <span>{isSignUp ? "Already have an account? Sign In" : "Don't have an account? Create One"}</span>
+                            <span className="text-[10px] opacity-50 font-medium">
+                                {isSignUp ? "이미 회원이신가요? 로그인" : "아직 회원이 아니세요? 회원 가입"}
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>

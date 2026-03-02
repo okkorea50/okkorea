@@ -12,7 +12,7 @@ const Navbar = () => {
     // Close mobile menu on resize if screen becomes large
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 768) {
+            if (window.innerWidth >= 1024) {
                 setIsOpen(false);
             }
         };
@@ -65,7 +65,7 @@ const Navbar = () => {
                 <span className="text-white">OK KOREA</span>
             </a>
 
-            <div className="hidden md:flex gap-8 text-base font-medium text-white items-center">
+            <div className="hidden lg:flex gap-8 text-base font-medium text-white items-center">
                 {navLinks.map((link) => (
                     link.path ? (
                         <Link
@@ -89,7 +89,7 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Auth / CTA */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
                 {user ? (
                     <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
                         <Link to="/dashboard" className="flex items-center gap-2 group cursor-pointer">
@@ -123,7 +123,7 @@ const Navbar = () => {
 
             {/* Mobile Hamburger Button */}
             <button
-                className="md:hidden z-50 relative p-2 text-white hover:text-brand-purple transition-colors"
+                className="lg:hidden z-50 relative p-2 text-white hover:text-brand-purple transition-colors"
                 onClick={toggleMenu}
                 aria-label="Toggle Menu"
             >
@@ -131,7 +131,7 @@ const Navbar = () => {
             </button>
 
             {/* Mobile Drawer Menu */}
-            <div className={`fixed inset-0 bg-[#080812] backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8 transition-transform duration-500 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed inset-0 bg-[#080812] backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8 transition-transform duration-500 ease-in-out lg:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {navLinks.map((link) => (
                     link.path ? (
                         <Link

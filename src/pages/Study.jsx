@@ -50,6 +50,48 @@ const Study = () => {
                     </div>
                 </div>
 
+                <div className="mt-20 border-t border-white/5 pt-20">
+                    <h2 className="text-3xl font-black mb-12 text-center uppercase tracking-tighter">
+                        Sample <span className="text-brand-purple">Lectures</span>
+                    </h2>
+                    <div className="max-w-4xl mx-auto">
+                        <div className="bg-[#12121A] border border-brand-purple/20 rounded-3xl overflow-hidden shadow-2xl group">
+                            <div className="aspect-video bg-black/40 flex items-center justify-center relative overflow-hidden">
+                                <iframe
+                                    className="w-full h-full"
+                                    src="https://www.youtube.com/embed/nJNVucTqc0k"
+                                    title="OKKorea Sample Lecture"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                ></iframe>
+                                <div className="absolute inset-0 bg-brand-purple/5 pointer-events-none group-hover:bg-transparent transition-colors"></div>
+                            </div>
+                            <div className="p-8">
+                                <div className="flex justify-between items-start mb-4">
+                                    <h3 className="text-2xl font-bold text-white group-hover:text-brand-purple transition-colors">Study in Korea: Your Ultimate Guide</h3>
+                                    <span className="bg-brand-purple/20 text-brand-purple text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-brand-purple/30">
+                                        Free Sample
+                                    </span>
+                                </div>
+                                <p className="text-slate-400 leading-relaxed mb-6">
+                                    Get a glimpse into our high-quality video content. Our expert instructors provide clear, concise, and engaging lessons designed to help you master the Korean language and excel in your TOPIK exams.
+                                </p>
+                                <div className="flex items-center gap-6">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-slate-500 text-sm">Duration:</span>
+                                        <span className="text-white font-bold text-sm text-[12px]">Shorts</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-slate-500 text-sm">Instructor:</span>
+                                        <span className="text-white font-bold text-sm text-[12px]">OKKorea Staff</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* New components for more details */}
                 <VisaInfo />
             </div>

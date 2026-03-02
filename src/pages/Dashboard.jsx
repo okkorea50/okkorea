@@ -1,69 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { db } from '../firebase';
+import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PayPalPayment from '../components/PayPalPayment';
 
-const MOCK_COURSES = [
-    {
-        id: 'part01',
-        title: 'Part 01: 한국어 기초',
-        subtitle: '자음과 모음 (Consonants & Vowels)',
-        progress: 100,
-        category: 'Foundations',
-        lessons: 12,
-        isLocked: false
-    },
-    {
-        id: 'part03',
-        title: 'Part 03: 일상 대화',
-        subtitle: '인사와 소개 (Greetings & Intro)',
-        progress: 65,
-        category: 'Conversation',
-        lessons: 8,
-        isLocked: false
-    },
-    {
-        id: 'part04',
-        title: 'Part 04: 비즈니스 한국어',
-        subtitle: '직장 예절과 소통 (Work Ethic)',
-        progress: 12,
-        category: 'Business',
-        lessons: 15,
-        isLocked: false
-    },
-    {
-        id: 'topik-high',
-        title: 'TOPIK II Mastery',
-        subtitle: '고급 한국어 및 시험 대비 (Advanced)',
-        progress: 0,
-        category: 'Exam Prep',
-        lessons: 24,
-        isLocked: true,
-        price: '₩49,000'
-    },
-    {
-        id: 'korean-culture',
-        title: 'Korean Culture & Etiquette',
-        subtitle: '한국 문화와 예절 (Culture)',
-        progress: 0,
-        category: 'General',
-        lessons: 10,
-        isLocked: true,
-        price: '₩29,000'
-    },
-];
-
+// ✨ FREE_VIDEOS: 무료 유튜브 샘플 영상 (고정 유지)
 const FREE_VIDEOS = [
-    { id: 'v1', title: 'Top 10 Survival Phrases', duration: '12:45', link: '#' },
-    { id: 'v2', title: 'Korean Alphabet in 5 Minutes', duration: '05:30', link: '#' },
-    { id: 'v3', title: 'How to Order at a Restaurant', duration: '08:20', link: '#' },
-    { id: 'v4', title: 'Slang Young Koreans Use', duration: '10:15', link: '#' },
+    { id: 'v0', title: 'Korean Language Magic (Shorts)', duration: '00:59', link: 'https://youtube.com/shorts/nJNVucTqc0k?si=OKK' },
+    { id: 'v1', title: 'Lesson 1: Korean Consonants', duration: '32:47', link: 'https://www.youtube.com/watch?v=kCwBVDg7UpY' },
+    { id: 'v2', title: 'Lesson 2: Korean Vowels', duration: '24:56', link: 'https://www.youtube.com/watch?v=WqcFmW6_Fug' },
+    { id: 'v3', title: 'Lesson 4: Basic Vocabulary', duration: '04:14', link: 'https://www.youtube.com/watch?v=h4k6ic5Lg6k' },
 ];
 
 const Dashboard = () => {
-    const { user, logout } = useAuth();
+    const { user, hasPremium, grantPremiumAccess, logout } = useAuth();
     const navigate = useNavigate();
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [attendanceCount, setAttendanceCount] = useState(0);
+    const [attendanceHistory, setAttendanceHistory] = useState([]);
+    // ✨ DB에서 불러온 강의 목록 상태
+    const [courses, setCourses] = useState([]);
+    const [coursesLoading, setCoursesLoading] = useState(true);
+
+    useEffect(() => {
+        // 유저 데이터 로드
+        const fetchUserData = async () => {
+            if (user?.uid) {
+                try {
+                    const userRef = doc(db, 'users', user.uid);
+                    const userSnap = await getDoc(userRef);
+                    if (userSnap.exists()) {
+                        const userData = userSnap.data();
+                        setAttendanceCount(userData.completedCourses?.length || 0);
+                        setAttendanceHistory(userData.attendanceHistory || []);
+                    }
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
+            }
+        };
+
+        // ✨ Firestore 'courses' 컬렉션에서 실제 강의 목록 로드
+        const fetchCourses = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'courses'));
+                const courseList = querySnapshot.docs.map(d => ({
+                    id: d.data().courseId || d.id, // courseId 필드를 우선 사용
+                    docId: d.id,
+                    ...d.data(),
+                    progress: 0 // 개인 진도는 추후 연동
+                }));
+                // order 기준 정렬
+                courseList.sort((a, b) => (a.order || 0) - (b.order || 0));
+                setCourses(courseList);
+            } catch (error) {
+                console.error("강의 목록 로드 에러:", error);
+            } finally {
+                setCoursesLoading(false);
+            }
+        };
+
+        fetchUserData();
+        fetchCourses();
+    }, [user]);
 
     const handleLogout = async () => {
         try {
@@ -75,11 +77,33 @@ const Dashboard = () => {
     };
 
     const handleCourseAction = (course) => {
-        if (course.isLocked) {
-            alert(`${course.title} 강의를 신청하시겠습니까? 신청 페이지로 이동합니다.`);
+        if (course.isLocked && !hasPremium) {
+            const isConfirmed = window.confirm(`${course.title} 강의는 프리미엄 수강권이 필요합니다.\n\n수강 신청 및 결제 안내 페이지로 이동하시겠습니까?`);
+
+            if (isConfirmed) {
+                const element = document.getElementById('payment-section');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    navigate('/study');
+                }
+            }
             return;
         }
         navigate(`/course/${course.id}`);
+    };
+
+    const handlePaymentSuccess = async (details) => {
+        setIsProcessing(true);
+        try {
+            await grantPremiumAccess();
+            alert(`Payment successful! Welcome to Premium, ${details.payer.name.given_name}!`);
+        } catch (error) {
+            console.error("Error granting premium access:", error);
+            alert("Payment was successful, but there was an error updating your account. Please contact support.");
+        } finally {
+            setIsProcessing(false);
+        }
     };
 
     return (
@@ -119,18 +143,20 @@ const Dashboard = () => {
                                         </div>
                                         <div>
                                             <h2 className="font-bold text-base leading-tight">{user?.displayName || 'Active Member'}</h2>
-                                            <p className="text-white/30 text-[8px] font-bold uppercase tracking-widest">Premium Learner</p>
+                                            <p className={`text-[10px] font-bold uppercase tracking-widest ${hasPremium ? 'text-[#D6BBFB]' : 'text-white/20'}`}>
+                                                {hasPremium ? 'Premium Learner' : 'Free Member'}
+                                            </p>
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-2 gap-2">
                                         <div className="bg-white/5 rounded-xl p-3 border border-white/5">
-                                            <p className="text-[7px] font-black text-white/20 uppercase tracking-widest mb-0.5">XP</p>
-                                            <p className="text-sm font-black text-brand-purple">2,450</p>
+                                            <p className="text-[7px] font-black text-white/20 uppercase tracking-widest mb-0.5">Attendance</p>
+                                            <p className="text-sm font-black text-brand-purple">{attendanceCount} Days</p>
                                         </div>
                                         <div className="bg-white/5 rounded-xl p-3 border border-white/5">
-                                            <p className="text-[7px] font-black text-white/20 uppercase tracking-widest mb-0.5">Streak</p>
-                                            <p className="text-sm font-black text-brand-blue">12d</p>
+                                            <p className="text-[7px] font-black text-white/20 uppercase tracking-widest mb-0.5">Courses</p>
+                                            <p className="text-sm font-black text-brand-blue">{attendanceCount}</p>
                                         </div>
                                     </div>
 
@@ -146,23 +172,161 @@ const Dashboard = () => {
                                 </div>
                             </div>
 
-                            <div className="bg-[#12121A] border border-white/5 rounded-2xl p-4">
-                                <h3 className="text-[8px] font-black uppercase tracking-[0.2em] text-white/20 mb-3 flex items-center gap-2">
-                                    <span className="w-1 h-1 bg-brand-purple rounded-full animate-pulse"></span>
-                                    Badges
-                                </h3>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {['🔥', '🎯', '⭐', '🚀'].map((emoji, i) => (
-                                        <div key={i} className="w-8 h-8 bg-white/5 border border-white/5 rounded-lg flex items-center justify-center text-base grayscale opacity-30">
-                                            {emoji}
+                            {/* Scholarship Challenge Section */}
+                            <div className="bg-gradient-to-br from-[#1A1B26] to-[#12121A] border border-brand-purple/20 rounded-2xl p-5 relative overflow-hidden shadow-2xl mb-4 group">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-purple/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-brand-purple/10 transition-colors"></div>
+                                <div className="relative z-10">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h3 className="text-[12px] font-black uppercase tracking-[0.2em] text-brand-purple mb-1 flex items-center gap-2">
+                                                <span className="w-1.5 h-1.5 bg-brand-purple rounded-full animate-pulse"></span>
+                                                Scholarship Challenge
+                                            </h3>
+                                            <p className="text-white/60 text-[11px] font-bold">Collect 100 badges to earn your scholarship!</p>
                                         </div>
-                                    ))}
+                                        <div className="bg-brand-purple/20 px-2 py-1 rounded-md border border-brand-purple/30">
+                                            <span className="text-[12px] font-black text-brand-purple">14 / 100</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden mb-4 border border-white/5 p-[1px]">
+                                        <div className="h-full bg-gradient-to-r from-brand-purple via-brand-blue to-cyan-400 rounded-full shadow-[0_0_10px_rgba(124,58,237,0.5)] transition-all duration-1000" style={{ width: '14%' }}></div>
+                                    </div>
+
+                                    <div className="grid grid-cols-5 xs:grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-1">
+                                        {[...Array(100)].map((_, i) => {
+                                            const isEarned = i < 14; // Mock more progress
+                                            const emojis = ['🔥', '🎯', '⭐', '🚀', '💎', '📚', '🎓', '👑', '⚡', '🏆'];
+                                            const emoji = emojis[i % emojis.length];
+
+                                            // Example detailed badge names
+                                            const badgeNames = [
+                                                "Day 1 Explorer", "First Quiz Done", "Morning Person", "Night Owl",
+                                                "Streak Master 3d", "XP Collector", "Vocab Hero", "Grammar Pro",
+                                                "K-Culture Fan", "Global Learner"
+                                            ];
+                                            const badgeName = i < 10 ? badgeNames[i] : `Achievement #${i + 1}`;
+
+                                            return (
+                                                <div
+                                                    key={i}
+                                                    title={badgeName}
+                                                    className={`aspect-square rounded-md flex items-center justify-center text-[10px] transition-all duration-300 cursor-help ${isEarned
+                                                        ? 'bg-brand-purple/20 border border-brand-purple/40 text-white shadow-[0_0_10px_rgba(124,58,237,0.2)] hover:scale-110 active:scale-95'
+                                                        : 'bg-white/[0.05] border border-white/10 opacity-40 grayscale hover:opacity-100 hover:scale-110'
+                                                        }`}
+                                                >
+                                                    {emoji}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+
+                                    <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
+                                        <div className="flex -space-x-2">
+                                            {[...Array(3)].map((_, i) => (
+                                                <div key={i} className="w-5 h-5 rounded-full border border-[#080812] bg-white/10 flex items-center justify-center text-[8px]">
+                                                    👤
+                                                </div>
+                                            ))}
+                                            <div className="pl-3 text-[8px] font-bold text-white/30 uppercase tracking-widest flex items-center">
+                                                +128 students participating
+                                            </div>
+                                        </div>
+                                        <button className="text-[11px] font-black text-brand-purple uppercase tracking-widest hover:text-white transition-colors">
+                                            Details →
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Attendance History Section */}
+                            <div className="bg-[#12121A] border border-white/5 rounded-2xl p-5 relative overflow-hidden shadow-xl">
+                                <h3 className="text-[12px] font-black uppercase tracking-[0.2em] text-cyan-400 mb-4 flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                                    Attendance Log
+                                </h3>
+                                <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                                    {attendanceHistory.length > 0 ? (
+                                        [...attendanceHistory].reverse().map((record, idx) => {
+                                            const course = courses.find(c => c.id === record.courseId || c.courseId === record.courseId);
+                                            const date = new Date(record.date);
+                                            return (
+                                                <div key={idx} className="flex flex-col gap-1 p-2 rounded-lg bg-white/5 border border-white/5">
+                                                    <div className="flex justify-between items-center">
+                                                        <span className="text-[9px] font-black text-cyan-400/60 uppercase tracking-widest leading-none">
+                                                            {date.toLocaleDateString('ko-KR')}
+                                                        </span>
+                                                        <span className="text-[8px] font-bold text-white/20 uppercase tracking-widest leading-none">
+                                                            {date.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-[11px] font-bold text-white/80 truncate leading-tight">
+                                                        {course?.title || record.courseId}
+                                                    </p>
+                                                </div>
+                                            );
+                                        })
+                                    ) : (
+                                        <p className="text-[10px] text-white/20 font-bold uppercase tracking-widest text-center py-4">No records found</p>
+                                    )}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Main Lessons Area */}
-                        <div className="lg:col-span-3 space-y-8">
+                        {/* Dashboard Main Content */}
+                        <div className="lg:col-span-3 space-y-6">
+                            {/* Premium Call to Action */}
+                            {!hasPremium && (
+                                <div id="payment-section" className="bg-gradient-to-br from-[#1A1B26] to-[#12121A] border border-brand-purple/30 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-brand-purple/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                                        <div className="space-y-2 text-center md:text-left">
+                                            <h3 className="text-xl md:text-2xl font-black text-white leading-tight">
+                                                UNLOCK <span className="text-brand-purple text-glow-purple">PREMIUM</span> ACCESS
+                                            </h3>
+                                            <p className="text-white/60 text-sm max-w-md">
+                                                Get unlimited access to all TOPIK mastery courses, culture lessons, and earn your scholarship certificates.
+                                            </p>
+                                            <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-brand-purple">✓</span>
+                                                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">All Courses</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-brand-purple">✓</span>
+                                                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Certificates</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-brand-purple">✓</span>
+                                                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Study Materials</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="w-full max-w-[280px]">
+                                            {isProcessing ? (
+                                                <div className="flex flex-col items-center justify-center p-8 bg-white/5 rounded-2xl border border-white/10">
+                                                    <div className="w-8 h-8 border-4 border-brand-purple border-t-transparent rounded-full animate-spin mb-4"></div>
+                                                    <p className="text-[10px] font-black uppercase tracking-widest text-brand-purple">Updating Account...</p>
+                                                </div>
+                                            ) : (
+                                                <div className="space-y-4">
+                                                    <div className="text-center">
+                                                        <span className="text-3xl font-black text-white">$99</span>
+                                                        <span className="text-white/40 text-sm ml-1">/ one-time</span>
+                                                    </div>
+                                                    <PayPalPayment
+                                                        amount="99.00"
+                                                        onSuccess={handlePaymentSuccess}
+                                                        onError={() => alert("Payment encounter an error. Please try again.")}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
                             {/* Continuing Section */}
                             <div>
                                 <h3 className="text-[9px] font-black uppercase tracking-[0.3em] text-brand-purple mb-4 flex items-center gap-2">
@@ -170,7 +334,7 @@ const Dashboard = () => {
                                     Resume Lessons
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-1 gap-3">
-                                    {MOCK_COURSES.filter(c => c.progress > 0 && c.progress < 100).map(course => (
+                                    {courses.filter(c => c.progress > 0 && c.progress < 100).map(course => (
                                         <div
                                             key={course.id}
                                             onClick={() => handleCourseAction(course)}
@@ -233,7 +397,11 @@ const Dashboard = () => {
                                     </h3>
                                 </div>
                                 <div className="bg-[#12121A] border border-white/5 rounded-2xl overflow-hidden divide-y divide-white/5">
-                                    {MOCK_COURSES.map(course => (
+                                    {coursesLoading ? (
+                                        <div className="p-8 text-center text-white/30 text-xs font-bold animate-pulse">강의 목록 불러오는 중...</div>
+                                    ) : courses.length === 0 ? (
+                                        <div className="p-8 text-center text-white/20 text-xs font-bold">등록된 강의가 없습니다.</div>
+                                    ) : courses.map(course => (
                                         <div
                                             key={course.id}
                                             onClick={() => handleCourseAction(course)}
@@ -249,13 +417,13 @@ const Dashboard = () => {
                                                     </h4>
                                                     <div className="flex items-center gap-2">
                                                         <span className="text-[9px] font-bold text-white/20 uppercase tracking-widest truncate">{course.subtitle}</span>
-                                                        {course.isLocked && <span className="text-[8px] font-black text-brand-blue uppercase tracking-widest">{course.price}</span>}
+                                                        {course.isLocked && course.price > 0 && <span className="text-[8px] font-black text-brand-blue uppercase tracking-widest">₩{Number(course.price).toLocaleString()}</span>}
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div className="ml-4 shrink-0">
-                                                {course.isLocked ? (
+                                                {course.isLocked && !hasPremium ? (
                                                     <button className="px-3 py-1 rounded-md bg-brand-blue text-[8px] font-black uppercase tracking-wider">
                                                         Unlock
                                                     </button>

@@ -12,9 +12,9 @@ const Footer = ({
         <>
             {/* CTA Section */}
             {showCTA && (
-                <section id="footer" className="pt-4 pb-10 md:pb-16 px-6 bg-[#0B0C15] text-white text-center">
+                <section id="footer" className="pt-4 pb-10 md:pb-16 px-6 bg-[#0f0e1c] text-white text-center">
                     <div className="max-w-4xl mx-auto">
-                        <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tighter">
+                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-black mb-8 tracking-tighter">
                             {ctaTitle || <>Start your<br />
                                 <span className="text-brand-purple">Super Journey.</span></>}
                         </h2>
@@ -43,7 +43,7 @@ const Footer = ({
             )}
 
             {/* Government & Social Section */}
-            <div className="bg-black py-8 md:py-12 border-t border-white/5">
+            <div className="bg-[#0f0e1c] py-8 md:py-12 border-t border-white/5">
                 <div className="max-w-7xl mx-auto px-6">
                     {/* SNS Channels */}
                     <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 mb-12 opacity-60 hover:opacity-100 transition-opacity duration-500">
@@ -89,7 +89,7 @@ const Footer = ({
             </div>
 
             {/* Footer Text */}
-            <footer className="py-8 bg-black text-slate-600 text-sm border-t border-white/5 text-center">
+            <footer className="py-8 bg-[#0f0e1c] text-slate-600 text-sm border-t border-white/5 text-center">
                 <p>© Since 2007 OK KOREA Co,.Ltd</p>
             </footer>
         </>

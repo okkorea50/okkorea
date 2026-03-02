@@ -118,7 +118,7 @@ const Hero = forwardRef((props, ref) => {
                 {/* Content Group: Headline -> Subhead -> Buttons */}
                 <div className="flex flex-col items-center gap-6 mb-16 relative">
 
-                    <h1 className="text-3xl sm:text-4xl md:text-7xl font-black tracking-tight leading-[1.1] md:leading-[0.9] text-white">
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] md:leading-[0.9] text-white">
                         <span ref={titleLine1Ref} className="block">
                             Step into the future
                         </span>

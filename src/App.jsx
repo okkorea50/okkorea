@@ -98,7 +98,7 @@ const MainContent = () => {
           toggleActions: "play none none none"
         },
         onComplete: () => {
-          gsap.set(".synergy-card", { clearProps: "transform" });
+          gsap.set(".synergy-card", { clearProps: "all" });
         }
       });
     }, mainRef);
